@@ -1,0 +1,21 @@
+$(function(){
+	$("#mb_register > .r-div").each(function(){
+		var obj = $(this);
+		obj.find("input").focus(function(){
+			obj.find(".clear-input").show();
+			obj.css({"border-color":"#1455A4"});
+			obj.find(".clear-input").click(function(){
+				obj.find("input").val("");
+			})
+		});
+		obj.blur(function(){
+			obj.find(".clear-input").hide();
+			obj.css({"border-color":"#C9C9C9"});
+		});
+		obj.find("input").blur(function(){
+			
+			obj.css({"border-color":"#C9C9C9"});
+		});
+		
+	})
+})

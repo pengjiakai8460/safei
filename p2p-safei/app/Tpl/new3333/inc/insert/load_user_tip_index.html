@@ -1,0 +1,310 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+    lgdh1();
+    });
+    function lgdh1() {
+    $(".login_block").animate({
+    top: '20px'
+    }, 800);
+    setTimeout("lgdh2()", "100");
+    }
+    function lgdh2() {
+    $(".login_block").animate({
+    top: '0px'
+    }, 300);
+    }
+    $(function () {
+    $(".freebj").css("opacity", "0.5"); //设置透明度 
+    });</script>
+<style type="text/css">
+    .xf_m .xf_main .xf_body{
+        padding:10px 30px;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+    }
+    .xf_body .forms{color: #000000;}
+    .xf_body .forms label{color: #3c3d3d;font-size: 1rem;}
+    .xf_body .forms input{border: #dcdcdc 1px solid;padding: 7px 5px;margin-left: 10px;border-radius: 3px;width: 150px;margin-top: 15px;}
+    .xf_body .forms .verift{border: #dcdcdc 1px solid;padding: 7px 5px;margin-left: 10px;border-radius: 3px;width: 70px;margin-top: 15px;}
+    .xf_body .forms img{float: right;max-width: 80px;display: block;margin-top: 12px;border: #cbcccc 1px solid;margin-right: 10px;margin-top: 15px;}
+    .xf_body .forms .agree{margin-top: 15px;overflow: hidden;zoom: 1;width: 190px;height: 30px;position: relative;}
+    .xf_body .forms .agree .dx{float: left;width: 50px;}
+    .xf_body .forms .agree .dx .in{position: absolute;left:-10px;top:-12px;width: 20px; height: 20px;visibility: hidden; }
+    .agree .dx label{
+
+        position: absolute;
+        top:3px;
+        width: 20px; 
+        height: 20px;
+        border-radius: 50%;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -o-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        transition: all .5s ease;
+        cursor: pointer;
+        background: url("{$TMPL}/images/licai/agrees.png");
+    }
+
+    .agree .dx input[type=checkbox]:checked +label{
+        background: url("{$TMPL}/images/licai/agree.png");
+    }
+
+    /*.xf_body .forms .agree .dx img{position: relative;bottom: 12px;}*/
+    .xf_body .forms .dl{width:90%;margin-top: 20px;border: 0;background-color: #004ca2;color: #FFFFFF;border-radius: 4px;}
+    .xf_body .forms .db{margin-top: 10px;overflow: hidden;zoom: 1;}
+    .xf_body .forms .db .zc{float: left;padding-left: 10px;}
+    .xf_body .forms .db .pas{float: right;margin-right: 20px;}
+
+</style>
+<div class="wrap " style="z-index:9; position:relative;">
+    <div class="login_block"> 
+        <!--
+        {if app_conf("APPLE_DOWLOAD_URL") || app_conf("ANDROID_DOWLOAD_URL")}
+        <a title="点我"><div class="logingchange"></div></a> 
+           
+        {/if}
+        -->
+
+
+
+
+
+        <div class="freebj"></div>
+        <div class="freelogin" >
+
+            <div class="freereg ">
+                {if !$user_info}
+                <div class="xf_m">
+                    <div class="xf_wrap">
+                        <div class="xf_main">
+                            <div class="xf_body">
+                                <h5 style="border-bottom: #abaaaa 1px solid;padding-bottom: 10px;color: #3c3d3d;font-size: 1rem;">萨飞宝——让您的财富成倍增长</h5>
+                                <form id="ajax_login_form_1" name="user_login_form_index" action="{url x="index" r="user#dologin"}" class="forms">
+                                      <label>手机号码</label>
+                                    <input type="tel" name="email" id="email_1" placeholder="请输入您的手机号码" />
+                                    <label>输入密码</label>
+                                    <input type="password" autocomplete="off" name="user_pwd" id="user_pwd_1" placeholder="请输入密码" />
+                                    <label>验证码&nbsp;&nbsp;&nbsp;</label>
+
+                                    <input type="text" id="Jverify_1" name="Jverify_1" class="verift" placeholder="请输入图形验证码"  />
+                                   <img class=" f_l" maxlength="4" value=""style="margin-top:15px" src="{$APP_ROOT}/verify.php?w=89&h=32&rand={function name="rand"}" onclick="this.src='{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random();" id="Jverify_img_1" title="看不清楚？换一张" />
+
+                                    <div class="agree">
+                                        <span class="dx">
+                                            <!--<img src="{$TMPL}/images/img/agree.png"  />-->
+                                            <input type="checkbox" value="1" checked="" class="in" name="change" id="change" />
+                                            <label for="change"></label>
+                                        </span>
+                                        <span style="float: right;padding-top: 2px;">我已阅读<a href="/index.php?ctl=help&act=term" style="color: #004ca2;">《网站服务协议》</a></span>
+                                    </div>
+                                    <input type="button" value="登录" name="submit_form" class="ui-button dl" id="ajax-login-submit_1" />
+                                    <input type="hidden" value="1" name="ajax" />
+
+                                    <div class="db">
+                                        <a href="#" class="zc">立即注册</a>
+                                        <a href="#" class="pas">忘记密码</a>
+                                    </div>
+                                </form>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#ajax-login-submit_1").click(function(){
+			ajaxCheckLogin()
+		});	
+		
+		$("#ajax_login_form_1 input,#ajax_login_form_1 select").keydown(function(e){ 
+			var curKey = e.which; 
+			if(curKey == 13){
+				//ajaxCheckLogin();
+				return false;
+			} 
+		});
+	});
+		
+		function ajaxCheckLogin(){
+			
+				if($.trim($("#email_1").val()).length == 0)
+				{
+					$.showErr("{function name="sprintf" format=$LANG.FORMAT_ERROR_TIP value=$LANG.USER_TITLE_EMAIL}{$LANG.OR}{function name="sprintf" format=$LANG.FORMAT_ERROR_TIP value=$LANG.USER_TITLE_USER_NAME}");
+					$("#email_1").focus();
+					return false;
+				}
+		
+				if(!$.minLength($("#user_pwd_1").val(),4,false))
+				{
+					$.showErr("{function name="sprintf" format=$LANG.FORMAT_ERROR_TIP value=$LANG.USER_TITLE_USER_PWD}");
+					$("#user_pwd_1").focus();
+					return false;
+				}
+				
+				var ajaxurl = $("#ajax_login_form_1").attr("action");
+				var query = new Object();
+				query.email = $("#email_1").val();
+				query.user_pwd = FW_Password($("#user_pwd_1").val());
+				
+				if($("#Jverify_1").length > 0)
+					query.verify = $("#Jverify_1").val();
+				query.auto_login = 1;
+				query.ajax = 1;
+
+				$.ajax({ 
+					url: ajaxurl,
+					dataType: "json",
+					data:query,
+					type: "POST",
+					success: function(ajaxobj){
+						if(ajaxobj.status==0)
+						{
+							if($("#Jverify_img_1").length > 0)
+								$("#Jverify_img_1").attr("src",'{$APP_ROOT}/verify.php?w=89&h=44&rand='+ Math.random());
+							$.showErr(ajaxobj.info);	
+						}
+						else
+						{
+							var integrate = $("<span id='integrate_1'>"+ajaxobj.data+"</span>");
+							$("body").append(integrate);														
+							close_pop();
+							
+							update_user_tip();
+							
+							$("#integrate_1").remove();
+							if(ajaxobj.status==1){
+								$.showSuccess(ajaxobj.info,function(){
+									window.location.reload();
+								});
+							}
+							else{
+								$.showCfm(ajaxobj.info,function(){
+									location.href = ajaxobj.jump1;
+								},function(){
+									window.location.reload();
+								});
+							}					
+						}
+					},
+					error:function(ajaxobj)
+					{
+//						if(ajaxobj.responseText!='')
+//						alert(ajaxobj.responseText);
+					}
+				});	
+				
+				return false;
+		}
+
+		function update_user_tip()
+		{
+			var ajaxurl = APP_ROOT+"/index.php?ctl=ajax&act=update_user_tip";
+			$.ajax({ 
+			url: ajaxurl,
+			type: "POST",
+			success: function(ajaxobj){
+				$("#user_head_tip_1").html(ajaxobj);
+			},
+			error:function(ajaxobj)
+			{
+//				if(ajaxobj.responseText!='')
+//				alert(ajaxobj.responseText);
+			}
+		});	
+		}
+</script>                  
+                            </div>
+                            <div class="xf_mask"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                                        <div>
+                                                                <h2 class="f13 lh32 f_white tc mt22">{function name="app_conf" v="SHOP_TITLE"}成立至今，100%投资者按时获取收益</h2>
+                                                                <p class="tc f13 lh32 f_white">国有银行资金监管</p>
+                                                                <a href="javascript:void(0);" onclick="ajax_login();" class="f_white btn_red w274  f20 b h40 lh40 bdr3 reg-submit-btn tc ml20 mt20">登录</a>
+                                                                <div class="p_0_18">
+                                                                        <div class="clearfix pb8 bor_3">
+                                                                                <a href="{url x="index" u="user#register" }" class="f_l f_white f12 lh40">立即注册</a>
+                                                                                <a href="{url x="index" r="user#getpassword"}" class="f_r f_white f12 lh40">忘记密码</a>
+                                                                        </div>
+                                                                        <?php
+                                                                        $stats = site_statics();
+                                                                        $this->assign("stats",$stats);
+                                                                        ?>
+                                                                        <div class="clearfix pt19  tc f12  lh20">
+                                                                                <div class="f_l w-60 ">
+                                                                                        <div class="bor_4">
+                                                                                                <p class="b f_white">{$stats.total_load_format}元</p>
+                                                                                                <div class="blank10"></div>
+                                                                                            <p class="f_a39faf">成功投资</p>
+                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="f_r w-40">
+                                                                                        <p class="b f_white">{$stats.user_count}人</p>
+                                                                                        <div class="blank10"></div>
+                                                                                        <p class="f_a39faf">成为{function name="app_conf" v="SITE_TITLE"}会员</p>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>-->
+                {else}
+                <div class="p_0_36">
+                    <div class="after_login">
+                        <div class="user_name">
+                            <span class="name">账户名：<span>{$user_info.user_name}</span></span>
+                            {if $user_info.vip_id gt 0}
+                            <img src="{$TMPL}/images/vip/{$user_info.vip_id}.png" title="{function name="get_vip_name" id=$user_info.vip_id}">
+                                 {/if}
+                        </div>
+                        <div class="user_info ">
+                            <div class="user_img"><img src="{function name="get_user_avatar" uid="$user_info.id" type="big"}"></div>
+
+                            <div class="user_info_d">
+                                <a href="{url x="index" r="uc_center"}"><i class="iconfont">&#xe608;</i>账户中心</a>
+                                <a href="{url x="index" r="uc_account"}"><i class="iconfont">&#xe614;</i>个人资料</a>
+                                <a href="{url x="index" r="uc_money"}"><i class="iconfont">&#xe604;</i>资金记录</a>
+                                <a href="{url x="index" r="uc_msg"}"><i class="iconfont">&#xe61d;</i>站内信息</a>
+                            </div>
+                        </div>
+                        <div class="user_money">
+                            <a href="{url x="index" r="uc_money#incharge"}">充值</a>
+                            <a href="{url x="index" value="uc_money#carry"}">提现</a>
+                            <a class="rrd-dimgray" href="{url x="index" r="user#loginout"}">退出</a>
+                        </div>
+                    </div>
+                </div>
+                {/if}
+
+            </div>
+            {if app_conf("APPLE_DOWLOAD_URL") || app_conf("ANDROID_DOWLOAD_URL")}
+            <div class="freecord"  style="display:none;">
+                <div class="qrcordtit">移动客户端下载</div>
+                <div class="qrcordimg">
+                    <img src="{function name="gen_qrcode" v=$MOBILE_DOWN_PATH s=8}"  />
+                </div>
+                <div class="qrcordfooter">手机扫描二维码下载IOS/安卓</div>
+            </div>
+            {/if}
+        </div>
+    </div>
+
+</div>
+{if app_conf("APPLE_DOWLOAD_URL") || app_conf("ANDROID_DOWLOAD_URL")}
+<script type="text/javascript">
+    $(document).ready(function () {
+    $(".logingchange").bind('click', function () {
+    $(".logingchange").toggleClass("changev");
+    if ($(".logingchange").hasClass("changev")) {
+    $(".freereg").css("display", "none");
+    $(".freereg").css("height", "0px");
+    $(".freecord").css("display", "block");
+    $(".freecord").animate({height: "290px"});
+    } else {
+    $(".freecord").css("display", "none");
+    $(".freecord").css("height", "0px");
+    $(".freereg").css("display", "block");
+    $(".freereg").animate({height: "290px"});
+    }
+
+    });
+    });
+
+</script>
+{/if}

@@ -1,0 +1,121 @@
+<?php
+// +----------------------------------------------------------------------
+// | Yuemor 越陌p2p借贷系统
+// +----------------------------------------------------------------------
+// | Copyright (c) 2015 http://www.yuemor.com All rights reserved.
+// +----------------------------------------------------------------------
+// | 
+// +----------------------------------------------------------------------
+//require APP_ROOT_PATH.'app/Lib/uc.php';
+class uc_save_incharge
+{
+	public function index(){
+		$root = array();
+
+		$payment_id = intval($GLOBALS['request']['payment_id']);
+		$money = floatval($GLOBALS['request']['money']);
+		$bank_id = addslashes(htmlspecialchars(trim($GLOBALS['request']['bank_id'])));
+		$memo = addslashes(htmlspecialchars(trim($GLOBALS['request']['memo'])));
+		
+		// 新增 
+		$user = array();
+		$user['name'] = addslashes(htmlspecialchars(trim($GLOBALS['request']['uName'])));
+	
+		
+		$user['idno'] = addslashes(htmlspecialchars(trim($GLOBALS['request']['uIdno'])));
+		//ec_session::set('payInfo', $user);
+    
+      
+		$bankcard =$GLOBALS['request']['bankcard'];
+			es_session::set("bankcard",$bankcard);
+			es_session::set("fuyouname",$user['name']);
+			es_session::set("fuyouidno",$user['idno']);
+		if($payment_id == 0){
+			$root['response_code'] = 0;
+			$root['show_err'] = '支付方式不能为空';
+			output($root);
+		}
+		$user =  $GLOBALS['user_info'];
+
+		if(($user[real_name_encrypt]!=trim($GLOBALS['request']['uName']) && $user[real_name]!=trim($GLOBALS['request']['uName'])) || $user[idno]!=trim($GLOBALS['request']['uIdno'])){
+			$root['response_code'] = 0;
+			$root['show_err'] = '请使用实名认证人的卡进行充值';
+			output($root);
+		}
+		$root['session_id'] = es_session::id();
+		$user_id  = intval($user['id']);
+		
+		if($user['is_bank'] == 0)
+		{	
+			$bank_info = array('bank_number'=>$bankcard);
+			if($user['idcardpassed'] == 0)
+			{
+				$bank_info['real_name'] = addslashes(htmlspecialchars(trim($GLOBALS['request']['uName'])));
+				$bank_info['idno'] = addslashes(htmlspecialchars(trim($GLOBALS['request']['uIdno'])));
+			}
+			
+			$GLOBALS['db']->autoExecute(DB_PREFIX."user",$bank_info,"UPDATE","id =".$user['id']);
+		}
+		
+		if ($user_id >0){
+
+			$root['response_code'] = 1;
+			$root['user_login_status'] = 1;
+			
+			require APP_ROOT_PATH.'app/Lib/uc_func.php';
+			
+			$status = getInchargeDone($payment_id,$money,$bank_id,$memo);
+			
+
+			if($status['status'] == 0){				
+				$root['response_code'] = 0;
+				$root['show_err'] = $status['show_err'];
+			}
+			else{
+				$root['is_sdk'] = 0;
+				$root['pay_status'] = $status['pay_status'];
+				$root['order_id'] = $status['order_id'];
+				$root['payment_notice_id'] = $status['payment_notice_id'];	
+			
+				$payment_info = $status['payment_info'];
+
+				$payment_notice_id = $status['payment_notice_id'];	
+				
+				//创建了支付单号，通过支付接口创建支付数据
+				if ($payment_info['class_name']=='Otherpay'){
+					$root['pay_code'] == 'otherpay';
+					$root['pay_type'] = 2;
+					$root['show_err'] ="信息已经提交,请等待管理员审核";
+				}else{
+					require_once APP_ROOT_PATH."system/payment/".$payment_info['class_name']."_payment.php";
+					$payment_class = $payment_info['class_name']."_payment";
+					$payment_object = new $payment_class();
+
+					$pay = $payment_object->get_payment_code($payment_notice_id);
+					
+					$root['pay_code'] = $pay['pay_code'];
+					if ($pay['pay_code'] <> '' || $pay['is_wap'] == 1){
+						$root['pay_code'] = $pay['pay_code'];
+						$root['pay_type'] = 1;
+						if($pay['is_wap']==0){
+							$root['is_sdk'] = 1;
+						}
+						$root['pay_wap'] = $pay['notify_url'];
+						$root['pay_pc'] ="http://www.safeionline.com/callback/fuioupc.php?id=".$payment_notice_id;
+						$root['pay_order_url'] = $pay['pay_order_url'];		
+						$root['config'] = $pay['config'];
+					}	
+					//$root['response_code'] = 0;
+					//$root['show_err'] = $pay['user_ua'].';ip:'.$pay['user_ip'];
+				}
+			}
+									
+		}else{
+			$root['response_code'] = 0;
+			$root['show_err'] ="未登录";
+			$root['user_login_status'] = 0;
+		}
+		output($root);		
+	}
+}
+?>

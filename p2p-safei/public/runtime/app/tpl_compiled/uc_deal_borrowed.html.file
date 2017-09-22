@@ -1,0 +1,8 @@
+<div class="tabbox">
+	<div class="tab cur"><a href="<?php
+echo parse_url_tag("u:index|uc_deal#borrowed|"."".""); 
+?>"><?php echo $this->_var['page_title']; ?></a></div>
+</div>
+<div class="uc_box bbd bt0 clearfix">
+<?php echo $this->fetch('inc/uc/uc_deal_borrowed_deals.html'); ?>
+</div>

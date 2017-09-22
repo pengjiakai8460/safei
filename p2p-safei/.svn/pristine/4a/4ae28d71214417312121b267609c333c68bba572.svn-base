@@ -1,0 +1,313 @@
+{if $smarty.request.is_ajax neq 1}
+{include file="./inc/header.html"}	
+<?php
+$this->_var['hide_back'] = 1;
+?>
+<div class="page" id='{$data.act}'>
+{include file="./inc/title.html"}
+<div class="content pull-to-refresh-content">
+{/if}
+<!-- 这里是页面内容区 -->
+<style type="text/css">
+	body{
+		background-color: #F5F5F5;
+	}
+	.new-box{width: 96%;margin: 1em 2%;background-color: #fff;height: 8.5em;}
+	.new-box .new-box-sm{
+		width: 25%;float: left;text-align: center;font-size: 1em;font-weight: bold;
+	}
+	.new-box .new-box-sm img{width:3em;height: 3em;display: block;clear: both;margin:0 auto;}
+	.new-box .new-box-sm span{height: 3em;line-height: 3em;clear: both;}
+
+	.top-tips{height: 1.5em;line-height: 1.5em;width: 96%;margin-left: 2%;clear: both;font-size: 1em;font-weight: bold;}
+	.top-tips .top-tips-left{display: block;float: left;}
+	.top-tips .top-tips-left img{height: 1.5em;display: block;float: left;}
+	.top-tips .top-tips-right{display: block;float: right;}
+	.colors{color: #1658A4;}
+	.black{color:black;}
+	.image-login{position: relative;top:0;left:75%;background-color: red;height: 2.5em;width: 20%;text-align: center;line-height: 2.5em;border-radius: 1em;background-color: #B3B9C6;color: #1658A4;background: rgba(0,0,0,0.05);}
+	.small-tips{font-size: 0.8em;color:#A6A6A6;}
+
+	.total-msg{height: 6em;clear: both;width: 96%;background-color: #fff;margin-left: 2%;margin-top: 1em;}
+	.total-msg > div{width: 33.33%;float: left;text-align: center;height: 7em;}
+	.total-msg .total-msg-title{height: 3em;line-height: 3em;font-size: 1.2em;font-weight: bold;color: #999999;}
+	.total-msg .total-msg-nums{color: #3A90FB;height: 2em;}
+	.tc > div{width: 35%;text-align: center;}
+
+	.buy-now{font-size: 1em;background-color: #094DA0;width: 20%;height: 2em;line-height: 2em;text-align: center;border-radius: 5%;position: absolute;right:11%;}
+	.buy-now a{color: #fff;}
+
+	.tops{ width: 2em; height: 2em; text-align: center; color: #fff; padding: 0;} 
+	.tops > span{width: 2em;height: 1em;display: block;} 
+	.greens{ background-color: #63C251; } 
+	.left-space{ width: 0; height: 0; border-top: 1em solid #63C251; border-right: 1em solid transparent; float: left; } 
+	.right-space{ width: 0; height: 0; border-top: 1em solid #63C251; border-left: 1em solid transparent; float: left; } 
+	.grays{background-color: #4E9AFB;}
+	.left-space-grays{ width: 0; height: 0; border-top: 1em solid #4E9AFB; border-right: 1em solid transparent; float: left; } 
+	.right-space-grays{ width: 0; height: 0; border-top: 1em solid #4E9AFB; border-left: 1em solid transparent; float: left; }
+
+</style>
+<div class="pull-to-refresh-layer">
+    <div class="preloader"></div>
+    <div class="pull-to-refresh-arrow"></div>
+</div>
+<div class="swiper-container" data-space-between='10'>
+	<div class="image-login">
+		<a href="#" onclick="RouterURL('{wap_url a="index" r="login" p="epage=$data.act"}','#login'{if $is_weixin},1{else},2{/if});"  class="colors">登录</a> | <a href="#" onclick="RouterURL('{wap_url a="index" r="register" p="epage=$data.act"}','#register'{if $is_weixin},1{else},2{/if});" class="colors" >注册</a>
+	</div>
+    <div class="swiper-wrapper">
+    	{foreach from=$data.index_list.adv_list item=adv key=k}
+    	<div class="swiper-slide"><a href="#" onclick="RouterURL('{$adv.data}','#adv_{$adv.open_url_type}',1);" style="background-image:url('{$adv.img}')"></a></div>
+    	{/foreach}
+    </div>
+    {if count($data.index_list.adv_list) >1}
+    <div class="swiper-pagination"></div>
+    {/if}
+ </div>	
+
+<div class="blank055"></div>
+<!-- 上部标题 -->
+<div class="top-tips">
+	<span class="top-tips-left black"><img src="./images/a1.png">&nbsp;上海萨飞投资管理有限公司开业活动公告</span>
+	<!-- 此处链接未填写 -->
+	<span class="top-tips-right"><a href="" class="colors">更多&nbsp;></a></span>
+</div>
+<hr>
+<!--头部 en-->
+<!--///中部///-->
+<div class="new-box">
+	<!-- 需更换图标 -->
+	<div class="new-box-sm">
+		<img src="./images/t1.jpg" style="margin-top:1.5em;">
+		<span><a href="">银行存管</a></span>
+	</div>
+	<div class="new-box-sm">
+		<img src="./images/t2.jpg" style="margin-top:1.5em;">
+		<span><a href="">运营报告</a></span>
+	</div>
+	<div class="new-box-sm">
+		<img src="./images/t3.jpg" style="margin-top:1.5em;">
+		<span><a href="">业务模式</a></span>
+	</div>
+	<div class="new-box-sm">
+		<img src="./images/t4.jpg" style="margin-top:1.5em;">
+		<span><a href="">普惠金融</a></span>
+	</div>
+</div>
+
+<div class="top-tips" style="margin-top: 1em;">
+	<span class="top-tips-left black"><img src="./images/a2.png" >&nbsp;平台实时数据&nbsp;&nbsp;<span class="small-tips">自2017年3月15起统计</span></span>
+	<span class="top-tips-right"><a href="#" onclick="RouterURL('{wap_url a="index" r="deals"}','#deals')" class="colors">更多&nbsp;></a></span>
+</div>
+<div class="total-msg">
+	<div>
+		<div class="total-msg-title">
+			总计成交额
+		</div>
+		<div class="total-msg-nums">
+			{$data.virtual_money_1}
+		</div>
+	</div>
+	<div>
+		<div class="total-msg-title">
+			总创造收益
+		</div>
+		<div class="total-msg-nums">
+			{$data.virtual_money_2}
+		</div>
+	</div>
+	<div>
+		<div class="total-msg-title">
+			本息保证金
+		</div>
+		<div class="total-msg-nums">
+			{$data.virtual_money_3}
+		</div>
+	</div>
+</div>
+
+<div class="top-tips" style="margin-top: 1em;">
+	<span class="top-tips-left black"><img src="./images/a3.png" >&nbsp;新手专享，高回报率</span>
+	<span class="top-tips-right"><a href="#" onclick="RouterURL('{wap_url a="index" r="deals"}','#deals')" class="colors">更多&nbsp;></a></span>
+</div>
+<div class="index_con" style="margin-top: 1em;">
+	
+ 		{if $data.index_list.rec_deal_list}		
+		<ul class="recommended_nav_2">
+				{foreach from=$data.index_list.rec_deal_list item="deal" } 
+				{if $deal.deal_status eq 1 && $deal.remain_time gt 0}
+			<li class="clearfix"  style="width: 96%;margin-left: 2%;">
+				<a href="#" onclick="RouterURL('{wap_url a="index" r="deal" p="id=$deal.id"}','#deal',2);">
+					
+					
+					<div class="title_nav bb1">
+						<div style="float: left;">
+							<div class="tops greens">
+								<span>新</span>
+								<span>手</span>
+							</div>
+							<div>
+								<div class="left-space"></div>
+								<div class="right-space"></div>
+							</div>
+						</div>&nbsp;
+						{if $deal.is_wait eq 1}<span class="state  c666666">
+			            	{else}
+							{if $deal.deal_status eq 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}<span class="state  c56b1ea">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 2}<span class="state  ea544a">{/if}
+							{if $deal.deal_status eq 3}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 4}<span class="state  c66d191">{/if}
+							{if $deal.deal_status eq 5}<span class="state  c666666">{/if}
+							{/if}
+								
+							{if $deal.is_wait eq 1}未开始
+			            	{else}
+							{if $deal.deal_status eq 0}等待材料{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}进行中{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}已过期{/if}
+							{if $deal.deal_status eq 2}已满标{/if}
+							{if $deal.deal_status eq 3}已流标{/if}
+							{if $deal.deal_status eq 4}还款中{/if}
+							{if $deal.deal_status eq 5}已还清{/if}
+							{/if}
+							</span>
+						<span class="name">{$deal.name}</span>
+						<span class="r_state"><div class=" tl sj" style="color: #FD6B43;"><i class="small">期限{$deal.repay_time}{if $deal.repay_time_type eq 1}月{else}天{/if}</i><i class="unit"></i></div></span>
+					</div>
+					<div class=" con_height" style="clear: both;">
+						<div class="  w_b  pt tc" >
+							<div class=" tl lv black" ><i class="big" style="font-weight: bold;font-size: 2em;">{function name="round" v=$deal.rate f=0}%</i><p style="color:#999999;font-size: 0.8em;">年化收益率</p></div>
+							<div class=" tl je black" style="margin-left: 15%;"><i class="big" style="font-weight: bold;font-size: 2em;color: #FD6B43;">{function name="replacemoney" v=$deal.borrow_amount}万</i><i class="unit"></i><p style="color:#999999;font-size: 0.8em;">剩余可购</p></div>
+						<div  class="progress-radial_parent"  style="margin-left: 50%;">
+							<div class="progress-radial  progress-{if $deal.deal_status eq 4}100{else}{function name="round" v=$deal.progress_point f=0}{/if}
+							{if $deal.is_wait eq 1} c999999
+			            	{else}
+							{if $deal.deal_status eq 0}  c999999 {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}  c56b1ea {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}  c999999 {/if}
+							{if $deal.deal_status eq 2}  ea544a {/if}
+							{if $deal.deal_status eq 3}  c999999  {/if}
+							{if $deal.deal_status eq 4}  c66d191  {/if}
+							{if $deal.deal_status eq 5}  c999999  {/if}
+							{/if}
+							"><b></b>
+						
+							
+							
+						</div>
+					</div>
+
+						</div>
+						<!-- 链接未填写 -->
+						<!-- <div class="buy-now">
+							<a href="#" onclick="RouterURL('{wap_url a="index" r="deal" p="id=$deal.id"}','#deal',2);">立即购买</a>
+						</div> -->
+					
+				</a>
+			</li>
+			{/if}
+			{/foreach}		
+		</ul>
+		{/if}
+
+	<div class="top-tips" style="margin-top: 1em;">
+		<span class="top-tips-left black"><img src="./images/a4.png" >&nbsp;投资项目&nbsp;收益高于银行，选择最合适的</span>
+		<span class="top-tips-right"><a href="#" onclick="RouterURL('{wap_url a="index" r="deals"}','#deals')" class="colors">更多&nbsp;></a></span>
+	</div>	
+    
+	<ul class="recommended_nav_2"  style="margin-top: 1em;">
+ 		{foreach from=$data.index_list.deal_list item="deal" } 
+ 		{if $deal.deal_status eq 1 && $deal.remain_time gt 0}
+			<li class="clearfix" onclick="RouterURL('{wap_url a="index" r="deal" p="id=$deal.id"}','#deal',2);" style="width: 96%;margin-left: 2%;">
+					
+					<div class="title_nav bb1">
+						<div style="float: left;">
+							<div class="tops grays">
+								<span>项</span>
+								<span>目</span>
+							</div>
+							<div>
+								<div class="left-space-grays"></div>
+								<div class="right-space-grays"></div>
+							</div>
+						</div>&nbsp;
+						{if $deal.is_wait eq 1}<span class="state  c666666">
+			            	{else}
+							{if $deal.deal_status eq 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}<span class="state  c56b1ea">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 2}<span class="state  ea544a">{/if}
+							{if $deal.deal_status eq 3}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 4}<span class="state  c66d191">{/if}
+							{if $deal.deal_status eq 5}<span class="state  c666666">{/if}
+							{/if}
+								
+							{if $deal.is_wait eq 1}未开始
+			            	{else}
+							{if $deal.deal_status eq 0}等待材料{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}进行中{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}已过期{/if}
+							{if $deal.deal_status eq 2}已满标{/if}
+							{if $deal.deal_status eq 3}已流标{/if}
+							{if $deal.deal_status eq 4}还款中{/if}
+							{if $deal.deal_status eq 5}已还清{/if}
+							{/if}
+							</span>
+						<span class="name" style="width: 40%;">{$deal.name}</span>
+						<span class="r_state"><div class=" tl sj"  style="color: #FD6B43;"><i class="small">期限{$deal.repay_time}{if $deal.repay_time_type eq 1}月{else}天{/if}</i><i class="unit"></i></div></span>
+					</div>
+					<div class=" con_height" style="clear: both;">
+						<div class="  w_b  pt tc">
+							<div class=" tl lv black" ><i class="big" style="font-weight: bold;font-size: 2em;">{function name="round" v=$deal.rate f=0}%</i><i class="unit"></i><p style="color:#999999;font-size: 0.8em;">年化收益率</p></div>
+							<div class=" tl je" style="margin-left: 15%;"><i class="big" style="font-weight: bold;font-size: 2em;color: #FD6B43;">{function name="replacemoney" v=$deal.borrow_amount}万</i><i class="unit"></i><p style="color:#999999;font-size: 0.8em;">剩余可购</p></div>
+						<div  class="progress-radial_parent " style="margin-left: 50%;">
+							<div class="progress-radial  progress-{function name="round" v=$deal.progress_point f=0}
+							{if $deal.is_wait eq 1} c999999
+			            	{else}
+							{if $deal.deal_status eq 0}  c999999 {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}  c56b1ea {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}  c999999 {/if}
+							{if $deal.deal_status eq 2}  ea544a {/if}
+							{if $deal.deal_status eq 3}  c999999  {/if}
+							{if $deal.deal_status eq 4}  c66d191  {/if}
+							{if $deal.deal_status eq 5}  c999999  {/if}
+							{/if}
+							"><b></b></div>
+						</div>
+					</div>
+					<!-- 链接未填写 -->
+						<!-- <div class="buy-now">
+							<a href="#" onclick="RouterURL('{wap_url a="index" r="deal" p="id=$deal.id"}','#deal',2);">立即购买</a>
+						</div> -->
+			</li>
+			{/if}
+			{/foreach}		
+		</ul>
+       
+   <!--  <div class="index_about">
+    	<dd>公司简介</dd>
+        <p>萨飞投资管理（上海）有限公司（以下简称萨飞资本），成立于2016年4月14日，注册资本5000万人民币，公司位于上海市杨浦区政通路177号万达广场C座17楼。</p>
+
+        <p>公司拥有一流的金融服务团队，主要从事民间投资管理服务中小企业和个人，发展民间借贷和互联网线上融资业务。</p>
+
+        <p>公司根据国内的经济形势，将先进的小额借贷管理模式和中国社会结合，力致打造优秀的投资理财和风控管理为核心的服务平台，向客户提供简单，快捷，灵活，普惠的融资服务，同时向广大投资人提供安全可靠，规范透明，收益稳定的网络投资理财服务。</p>
+
+    </div> 
+   
+	<div class="more"><a class="tab-item " href="http://www.safeionline.com/wap/index.php?ctl=show_article&id=96" ><dd>查看更多</dd></a></div>-->
+    <ul class="fwlx">
+    	<li class="t">400-778-1969</li>
+        <li class="c">工作时间：周一到周日：9:00-18:00</li>
+		<li class="c">官方QQ群 ：655452159</li>
+    </ul>
+</div>
+{if $smarty.request.is_ajax neq 1}
+{include file="./inc/footer.html"}
+{/if}
+
+
+
+
+

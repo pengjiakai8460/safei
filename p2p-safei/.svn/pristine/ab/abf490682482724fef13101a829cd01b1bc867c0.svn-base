@@ -1,0 +1,352 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+<meta name="renderer" content="webkit">
+<meta name="Generator" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>立即支付 - 上海萨飞投资管理有限公司</title>
+<link rel="icon" href="favicon.ico" type="/image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="/image/x-icon" />
+<meta name="keywords" content="萨飞,萨飞资本,萨飞宝,上海萨飞投资管理有限公司," />
+<meta name="description" content="萨飞宝-专业透明的供应链金融综合产品理财平台，由上海萨飞投资管理有限公司投资运营。" />
+<link rel="stylesheet" type="text/css" href="http://www.safeionline.com/public/runtime/statics/89f3a495a2024eeec405e007b9747375.css" />
+<script type="text/javascript">
+var APP_ROOT = '';;
+var LOADER_IMG = 'http://www.safeionline.com/app/Tpl/new/images/lazy_loading.gif';
+var ERROR_IMG = 'http://www.safeionline.com/app/Tpl/new/images/image_err.gif';
+var TMPL = 'http://www.safeionline.com/app/Tpl/new';
+var send_span = 2000;
+var to_send_msg = false;
+var __LOGIN_KEY = "zWlMnDTmfkPQNIvfeoGnegwgyrkfmTSHoZWEtDHLEnjxsZPWIz";
+var __HASH_KEY__ = "NwyOnaVgbGiGcRKplXXXPmSmExhawLAUStJPiuHfrNPwvjWILQ";
+</script>
+<script type="text/javascript" src="/public/runtime/app/lang.js"></script>
+<script type="text/javascript" src="http://www.safeionline.com/public/runtime/statics/7e0201f0785abe0f2fbc994e3a1ce8a3.js"></script>
+<script type="text/javascript" src="/public/layer/layer.js"></script>
+<!--[if lt IE 10]>
+<script type="text/javascript" src="http://www.safeionline.com/app/Tpl/new/js/PIE.js"></script>
+<![endif]-->
+<script language="javascript">
+$(function() {
+    if (window.PIE) {
+        $('.bdr3,.bdr5,.user_info_d a,.main_adv_ctl li,.after_login .user_money A,.listbtn SPAN').each(function() {
+            PIE.attach(this);
+        });
+    }
+});
+</script><link href="http://www.safeionline.com/app/Tpl/new/css/css.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="header" id="header">
+   <!---->
+<div class="constr">
+	<div class="wrap">
+		 		<div class="app_down f_l" id="J_APP_DOWN">
+			<a href="http://www.safeionline.com/public/images/qrcode/cd/42837a99023af0642baa162830453c3b.png"><i class="iconfont">&#xe613;</i>手机理财</a>
+			<span style="color:red">投资有风险,理财需谨慎!</span>
+		</div>
+				<div class="f_r lh30">
+			
+		</div>	
+		<div class="f_r">
+			<ul class="right mt9">
+				<!-- <li class="hover_a top_li">
+					<i class="iconfont">&#xe614;</i>
+					官方QQ群
+				</li> -->
+				<li class="hover_a top_li" >
+							<label id="show002"></label>
+				</li>
+								<li class="hover_a top_li jcur " >
+					<a href="http://www.safeionline.com/public/images/qrcode/c3/6427c7435bfe8b613db07860d10758e4.png" id="weixim">
+					<i class="iconfont">&#xe614;</i>
+					微信
+					</a>
+				</li>
+								<script language="javascript" type="text/javascript" runat="server">
+var curDate="";
+var time="";
+ $.ajax({type:"OPTIONS",
+	      url:"/",
+	      async :false,
+	      complete:function(x){
+       time = x.getResponseHeader("Date");
+	  }
+ });
+ curDate=Date.parse(time);
+	function getNowFormatDate(curDate) {
+	   curDate2=curDate;
+		  curDate = new Date(curDate);
+    document.all.show002.innerHTML=curDate.getFullYear()+"-"+(curDate.getMonth()+1)+"-"+curDate.getDate()+" "+curDate.getHours()+":"+curDate.getMinutes()+":"+curDate.getSeconds();
+    setTimeout("getNowFormatDate(curDate2+1000)",1000); 
+	}
+window.onload = getNowFormatDate(curDate); 
+</script>
+				<li class="top_li"><a href="/index.php?ctl=helpcenter">帮助中心</a></li>
+				<li class=" top_li relative">
+					<div id="user_head_tip">
+							<span class="li li_no" id="J_account">
+		<span class="f14">您好，</span><a href="/member.php?ctl=uc_center">狗头</a>
+		<ul class="ui-nav-dropdown ui-nav-dropdown-account">
+        	<li class="ui-nav-dropdown-angle" style="_top: -13px;"><span></span></li>
+		   	<li class="ui-nav-dropdown-item">
+			   	<a href="/member.php?ctl=uc_msg" class="rrd-dimgray ">
+			   	<i class="iconfont pm new_pm ">&#xe630;</i>
+				 消息(21)</a>
+		   	</li>
+			<li class="ui-nav-dropdown-separator"></li>
+          	<li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/member.php?ctl=uc_money&act=incharge">充值</a></li>
+          	<li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/member.php?ctl=uc_money&act=bank">提现</a></li>
+          	<li class="ui-nav-dropdown-separator"></li>
+          	<li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/member.php?ctl=uc_money">资金管理</a></li>
+          	<li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/member.php?ctl=uc_invest">投资管理</a></li>
+          	<li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/member.php?ctl=uc_deal&act=refund">借款管理</a></li>
+            <li class="ui-nav-dropdown-separator"></li>
+            <li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/index.php?ctl=licai&act=uc_published_lc">我的理财</a></li>
+            <li class="ui-nav-dropdown-separator"></li>
+          	<li class="ui-nav-dropdown-item"><a class="rrd-dimgray" href="/index.php?ctl=user&act=loginout">退出</a></li>
+        </ul>
+	</span>
+	<script type="text/javascript">
+	var acc_menu_hide = null;
+	var hide_menu = null;
+	jQuery(function(){
+		$("#J_account").hover(function(){
+			clearTimeout(acc_menu_hide);
+			$(this).addClass("li_hover");
+		},function(){
+			var obj = $(this);
+			hide_menu = function(){
+				obj.removeClass("li_hover");
+			}
+			acc_menu_hide = setTimeout(hide_menu,100);
+		});
+	});
+	</script>
+			      </div>
+			    </li>
+			</ul>
+		</div>	
+	</div>
+</div>
+<!---->	<div class="main_bars">
+		<div class="main_bar wrap">	
+			<div class="logo mr15">
+				<a class="link f_l" href="/">
+										<span style='display:inline-block; width:313px; height:90px; background:url(http://www.safeionline.com/public/attachment/201708/18/10/59964c4eec921.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=http://www.safeionline.com/public/attachment/201708/18/10/59964c4eec921.png, sizingMethod=scale);_background-image:none;' title='上海萨飞投资管理有限公司'></span>				</a>
+			</div>     
+			<!--加载菜单-->
+			<ul class="main_nav">
+									<li class="  ml5 bdr3 pr" rel='1'>
+						<a href="/index.php" target="" >首页 </a>
+											</li>
+									<li class=" jcur ml5 bdr3 pr" rel='2'>
+						<a href="/index.php?ctl=deals&select=1" target="" class="pr20">我要投资 <i class="iconfont">&#xe61c;</i></a>
+						                        <div class="sub_main_nav ps hide">
+													<a href="/index.php?ctl=tool"  target="">理财计算器</a>
+												</div>
+											</li>
+									<li class=" jcur ml5 bdr3 pr" rel='3'>
+						<a href="/index.php?ctl=borrow" target="" class="pr20">我要借款 <i class="iconfont">&#xe61c;</i></a>
+						                        <div class="sub_main_nav ps hide">
+													<a href="/index.php?ctl=borrow"  target="">申请贷款</a>
+													<a href="/index.php?ctl=deal_msgboard"  target="">登记借款</a>
+												</div>
+											</li>
+									<li class="  ml5 bdr3 pr" rel='60'>
+						<a href="/index.php?ctl=acate&id=34" target="" >信息披露 </a>
+											</li>
+									<li class="  ml5 bdr3 pr" rel='10'>
+						<a href="http://www.safeionline.com/index.php?ctl=help&id=96" target="" >关于我们 </a>
+											</li>
+									<li class="  ml5 bdr3 pr" rel='18'>
+						<a href="/member.php?ctl=uc_center" target="" >会员中心 </a>
+											</li>
+							</ul>
+			<!--加载菜单END-->
+		</div>
+	</div>
+</div>
+<!---->
+
+						
+<div class="wrap"> 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".paybutton,.payLink").bind("click",function(){
+			$.weeboxs.open(APP_ROOT+"/index.php?ctl=payment&act=tip&id=2930", {contentType:'ajax',showButton:false,title:LANG['PAYMENT_TIP'],width:460,height:150,type:'wee'});	
+		});
+	});
+</script>
+<div class="blank"></div>
+
+<div class="bdd bddf  p20">	
+				<div class="msg_box">
+<?php
+require '../system/common.php';
+
+
+//$payment_notice_id = intval($_REQUEST['payment_notice_id']);
+$payment_notice_id = intval($_REQUEST['id']);
+require_once APP_ROOT_PATH."system/payment/fuiouwap_payment.php";
+$payment_object = new fuiouwap_payment();
+$html = $payment_object->get_payment($payment_notice_id);
+
+echo $html;
+?>
+			</div>
+
+</div>
+
+
+</div>
+<!--底部-->
+<div class="foot_bg">
+	<div class="width1200 hidden margin">
+    	<div class="fl ul_div">
+   								
+    	<ul>
+            <li class="top"><a href="">关于萨飞</a></li>
+            														<li><a href="/index.php?ctl=help&id=110" >验资报告</a></li>
+																												<li><a href="/index.php?ctl=help&id=102" >核心团队</a></li>
+																												<li><a href="/index.php?ctl=help&id=101" >公司证照</a></li>
+																												<li><a href="/index.php?ctl=help&id=96" >公司简介</a></li>
+																																																								  
+        </ul>
+          														
+    	<ul>
+            <li class="top"><a href="">基本介绍</a></li>
+            														<li><a href="/index.php?ctl=help&id=40" >关于p2p信贷</a></li>
+																												<li><a href="/index.php?ctl=help&id=41" >常用名词解释</a></li>
+														  
+        </ul>
+          														
+    	<ul>
+            <li class="top"><a href="">安全保护</a></li>
+            														<li><a href="/index.php?ctl=aboutlaws" target="_blank">政策法规</a></li>
+																												<li><a href="/index.php?ctl=help&id=3" >隐私保护</a></li>
+														  
+        </ul>
+          														
+    	<ul>
+            <li class="top"><a href="">了解更多</a></li>
+            														<li><a href="/index.php?ctl=help&id=4" >咨询热点</a></li>
+														  
+        </ul>
+          						        </div>
+        <div class="fl img_div">
+        	<p class="sz">400-778-1969</p>
+            <p class="sj"><i class="fl">工作时间</i><i class="fr">周一到周日：9:00-18:00</i></p>
+            <p class="qq"><i class="fl">	  </i><i class="fr">官方QQ群 ：655452159</i></p>
+            
+        </div>
+        <ul class="fr">
+        	<li class="fl">
+                <img src="http://www.safeionline.com/app/Tpl/new/images/ewm1.jpg" />
+                <p>下载安卓APP</p>
+            </li>
+            <li class="fl">
+                <img src="http://www.safeionline.com/app/Tpl/new/images/ewm2.jpg" />
+                <p>下载苹果APP</p>
+            </li>
+            <li class="fr">
+                <img src="http://www.safeionline.com/app/Tpl/new/images/ewm3.jpg" />
+                <p>关注微信</p>
+            </li>
+        </ul>
+    </div>
+    <div class="width1200 hidden margin foot_con">
+    	<p><a id="_pingansec_bottomimagelarge_p2p" href="http://si.trustutn.org/info?sn=207170828000601522788&certType=4" target="_blank"><img src="http://www.safeionline.com/app/Tpl/new/images/foot2.png" /></a>
+            	<a id="_pingansec_bottomimagelarge_p2p" href="https://ss.knet.cn/verifyseal.dll?sn=e1708293101106871644oz000000&ct=df&a=1&pa=0.020491837756708264" target="_blank"><img src="http://www.safeionline.com/app/Tpl/new/images/foot1.jpg" /></a>
+             <a href="https://v.pinpaibao.com.cn/cert/site/?site=www.safeionline.com&at=business" target="_blank"><img src="http://www.safeionline.com/app/Tpl/new/images/foot3.png" /></a>
+       </p>
+    	<p>Copyright@2017 www.safeionline.com All rights reserved︱萨飞投资管理（上海）有限公司︱ 沪ICP备17013896号-1</p>
+    </div>
+</div>
+        <!-- 右侧联系我们 -->
+<div style="right:-230px;" class="contactusdiyou">
+  <div class="hoverbtn">
+     <span>联</span><span>系</span><span>我</span><span>们</span>
+     <img class="hoverimg" src="http://www.safeionline.com/app/Tpl/new/images/hoverbtnbg.gif" height="9" width="13">
+  </div>
+  
+  <div class="conter" >
+
+  <div class="con1"> 
+    <dl class="fn_cle">
+         <dt><img src="http://www.safeionline.com/app/Tpl/new/images/tel.png" height="31" width="31"></dt>
+         <dd class="f1">财富热线：</dd>
+         <dd class="f2"><span class="ph_num">400-778-1969</span></dd>
+     </dl>
+  </div> 
+    <div class="blank0"></div>
+  <div class="qqcall"> 
+    <dl class="fn_cle">
+         <dt><img src="http://www.safeionline.com/app/Tpl/new/images/zxkfqq.png" height="31" width="31"></dt>
+         <dd class="f1 f_s14">在线客服：</dd>
+                 <dd class="f2">
+          <span>萨飞-浅浅</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3446416536&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3446416536:51" alt="点击这里给我发消息" title="点击这里给我发消息" width="77" height="22" /></a> 
+        </dd>
+               <dd class="f2">
+          <span>萨飞-馨佑</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2370666086&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2370666086:51" alt="点击这里给我发消息" title="点击这里给我发消息" width="77" height="22" /></a> 
+        </dd>
+               <dd class="f2">
+          <span>萨飞-夏漠</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3012910441&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3012910441:51" alt="点击这里给我发消息" title="点击这里给我发消息" width="77" height="22" /></a> 
+        </dd>
+               <dd class="f2">
+          <span>萨飞-梦梦</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3458585924&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3458585924:51" alt="点击这里给我发消息" title="点击这里给我发消息" width="77" height="22" /></a> 
+        </dd>
+               <dd class="f2">
+          <span>萨飞-芸草</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3457295692&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3457295692:51" alt="点击这里给我发消息" title="点击这里给我发消息" width="77" height="22" /></a> 
+        </dd>
+               <dd class="f2">
+          <span>萨飞-天意</span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3457271661&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3457271661:51" alt="点击这里给我发消息" title="点击这里给我发消息" width="77" height="22" /></a> 
+        </dd>
+               
+               </dl>
+    <div class="blank0"></div>           
+  </div> 
+    <div class="blank0"></div>
+    <div class="weixincall"> 
+    <dl class="fn_cle">
+         <dt><img src="http://www.safeionline.com/app/Tpl/new/images/weixin.png" height="31" width="31"></dt>
+         <dd class="f1" >下载客户端：</dd>
+
+           <dd class="f3"><img src="http://www.safeionline.com/public/images/qrcode/cd/42837a99023af0642baa162830453c3b.png" height="73" width="73"></dd>
+
+
+     </dl>
+  </div> 
+  <div class="blank0"></div>
+  <div class="dytimer">
+     <span style="font-weight: bold;">服务时间：</span>
+     <span>周一至周日 9:00-18:00</span>
+  </div>
+  
+  </div>
+
+</div>
+<div class="diyoumask"></div>
+<!-- 右侧联系我们 -->
+
+        <!--<div id="gotop"></div>-->
+        <script type="text/javascript" defer="defer">
+        resetWindowBox();
+    </script>
+    <script>
+        $(function () {
+            $(".ft .ft_left .ft_left_ul li a:first").addClass("ft_left_xz");
+            $(".ft .ft_left .ft_left_ul li a").mouseover(function () {
+                $(this).addClass("ft_left_xz").siblings().removeClass("ft_left_xz");
+            }).mouseout(function () {
+                $(this).removeClass("ft_left_xz").siblings().show();
+            })
+        })
+    </script>
+    </div>
+
+</body>
+</html>
+

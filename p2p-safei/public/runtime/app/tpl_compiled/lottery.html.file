@@ -1,0 +1,201 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>来抽奖</title>
+    <link rel="stylesheet" href="/public/lottery/css/css1.css">
+    
+    <script type="text/javascript" src="/public/lottery/js/jquery-1.8.3.min.js"></script>
+   	<script type="text/javascript" src="/public/lottery/js/custom.js"></script>
+    <script type="text/javascript" src="/public/lottery/js/jquery.imgscroll.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+        imgScroll.rolling({
+            name:'g1',
+            width:'600px',
+            height:'37px',
+            direction:'top',
+            speed:40,
+            addcss:true
+        });
+    })
+    </script>
+</head>
+<body>
+<!--头部-->
+<div  id="header" style="margin-bottom:0;">
+	<?php echo $this->fetch('inc/header.html'); ?>
+</div>
+	
+
+<!--头部 en-->
+<div class="cj_banner" style=""></div>
+
+<div class="hidden cj_main" >
+<!--top-->
+<ul class="cj_top">
+	<li class="cj_jh">你还有<i id="nums">1</i>次机会</li>
+	<li class="cj_bx"></li>
+    <li class="cj_nav"><a rel="popupre" class="popup"></a></li>
+	<li class="cj_con">(以5000的倍数计算开启宝箱的次数，活动时间截止为到9:30日）</li>
+	<li class="cj_con2">请登录查看您的开箱次数，<a href="http://www.safeionline.com/index.php?ctl=user&act=login">登录</a></li>
+</ul>
+<div class="popupbox" id="popupre">
+	<i class="popupbox_i"></i>
+    <ul>
+    	<li class="i"><img src=""  id="lottery_image" /></li>
+    	<li class="t">恭喜您中奖</li>
+        <li class="t">获得加息劵一张</li>
+        <li class="n"><a href="http://www.safei.com/member.php?ctl=uc_lottery&act=lottery_log">查看我的奖励</a></li>
+    </ul>
+</div>
+<!--cj_jp-->
+<div class="cj_jp">
+	<ul>
+    	<li class="jp1">
+        	<div></div>
+        	<p>MacBook Pro</p>
+            <p>3台</p>
+        </li>
+        <li class="jp2">
+        	<div></div>
+        	<p>iPhone 7 Plus</p>
+            <p>6台</p>
+        </li>
+        <li class="jp3">
+        	<div></div>
+        	<p>iPad平板电脑</p>
+            <p>6台</p>
+        </li>
+        <li class="jp4">
+        	<div></div>
+        	<p>魔音耳机</p>
+            <p>12副</p>
+        </li>
+        <li class="jp5">
+        	<div></div>
+        	<p>精美项链</p>
+            <p>30条</p>
+        </li>
+        <li class="jp6">
+        	<div></div>
+        	<p>现金50元</p>
+            <p>50份</p>
+        </li>
+        <li class="jp7">
+        	<div></div>
+        	<p>话费50元</p>
+            <p>80份</p>
+        </li>
+        <li class="jp8">
+        	<div></div>
+        	<p>现金30元</p>
+            <p>120份</p>
+        </li>
+        <li class="jp9">
+        	<div></div>
+        	<p>话费30元</p>
+            <p>150份</p>
+        </li>
+        <li class="jp10">
+        	<div></div>
+        	<p>现金10元</p>
+            <p>200份</p>
+        </li>
+        <li class="jp11">
+        	<div></div>
+        	<p>话费10元</p>
+            <p>250份</p>
+        </li>
+        <li class="jp12">
+        	<div></div>
+        	<p>加息劵3%</p>
+            <p>数额不限</p>
+        </li>
+        <li class="jp13">
+        	<div></div>
+        	<p>加息劵2%</p>
+            <p>数额不限</p>
+        </li>
+        
+    </ul>
+</div>
+
+<!--开箱直播-->
+<div class="cj_zb">
+	<dd>开箱直播</dd>
+    <div class="g1">
+        <ul>
+        	<?php $_from = $this->_var['goods_info']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list');if (count($_from)):
+    foreach ($_from AS $this->_var['list']):
+?>
+        	<li>
+            	<div><i>恭喜用户</i><?php echo $this->_var['list']['user_name']; ?></div>
+                <div><?php echo $this->_var['list']['time_create']; ?></div>
+                
+                <div>获得了<i><?php echo $this->_var['list']['name']; ?></i></div>
+            </li> 
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+        </ul>
+    </div>
+    <a onclick="herfs();" ><ol>去首页投标></ol></a>
+</div>
+
+<!--foot-->
+	<div class="cj_foot">
+    	<dd>抽奖说明：</dd>
+        <p>每累计投资满5000元可获得一次抽奖机会，抽奖次数无上限。</p>
+        <p>活动时间：8月25日-9月30日</p>
+        <p><br /></p>
+        <dd>活动规则：</dd>
+        <p>1、用户累计投资5000元及以上标的方可参与活动；</p>
+        <p>2、投资金额越多，期限越长，获得鼓励金越多；</p>
+        <p>4、现金奖励和加息劵将于活动结束后7个工作日内（节假日顺延）发放至您的“我的账户”中，请注意查收;</p>
+        <p>5、实物奖品将于活动结束后7个工作日内（节假日顺延）发放，请保持电话畅通。</p>
+        <ol>本活动的最终解释权归萨飞投资管理（上海）有限公司所有</ol>
+    </div>	
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	$(function(){
+		$(".popup").click(function(){
+			var remain_num = 1;
+			if(remain_num == 0)
+			{
+				alert('您的抽奖次数为0，赶紧去投资吧！');
+				
+				$("#popupre").hide();
+				window.location.reload();
+			}else{
+				$.ajax({
+					url:"http://www.safei.com/member.php?ctl=uc_lottery&act=add_lottery_log",
+					data:{num:remain_num},
+					type:"post",
+					success:function(data){
+						var data = jQuery.parseJSON(data);
+						if(data.status == 1){
+
+							if(data.id == 11){
+								$("#lottery_image").attr("src","/public/lottery/images/cj_j11.png");
+							}else if(data.id == 15){
+								$("#lottery_image").attr("src","/public/lottery/images/cj_j10.png");
+							}
+							$("#popupre").show();
+							$(".popupbox_i").click(function(){
+								remain_num--;
+								$("#nums").text(remain_num);
+							})
+						}
+					}
+				})
+			}
+		})
+	})
+
+	function herfs(){
+		window.location.href = "http://www.safeionline.com";
+	}
+</script>

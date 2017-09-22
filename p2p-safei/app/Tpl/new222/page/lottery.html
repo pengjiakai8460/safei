@@ -1,0 +1,285 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="stylesheet" href="/public/lottery/css/reset.css">
+<link rel="stylesheet" href="/public/lottery/css/atom.css">
+<link rel="stylesheet" href="/public/lottery/css/global.css">
+<link rel="stylesheet" href="/public/lottery/css/open.css">
+<script type="text/javascript" src="/public/lottery/js/jquery-1.8.3.min.js"></script>
+<style>
+.remain-num{
+	position: absolute;
+	top: 240px;
+	left: 65px;
+	color: #000;
+	font-size: 20px;
+	width: 200px;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+	function timer(opj){
+		$(opj).find('ul').animate({
+			marginTop : "-3.5rem"  
+			},500,function(){  
+			$(this).css({marginTop : "0.7rem"}).find("li:first").appendTo(this);  
+		})  
+	}
+	$(function(){ 
+		var num = $('.notice_active').find('li').length;
+		if(num > 1){
+		   var time=setInterval('timer(".notice_active")',3500);
+			$('.gg_more a').mousemove(function(){
+				clearInterval(time);
+			}).mouseout(function(){
+				time = setInterval('timer(".notice_active")',3500);
+			}); 
+		}
+		
+		$(".news_ck").click(function(){
+			location.href = $(".notice_active .notice_active_ch").children(":input").val();
+		})
+	});
+</script>
+<style type="text/css">
+/*border-bottom: 1px solid #F0F0F0;*/
+	.huadong {width: 60rem;height:4rem;padding: 0.5rem 0 0.3rem 0; border-bottom: 1px solid #F0F0F0; position:relative;font: 12px/1.5 "Hiragino Sans GB","Microsoft YaHei",simsun;margin:0 auto;}
+	.huadong .huabox {  margin:0 auto; line-height: 4rem;}
+	.huadong .hdimg {float:left;line-height:3.5rem;}
+	.huadong .hdimg img { width: 100%; vertical-align:middle;}
+	.huadong .hdimg img { width: 100%; vertical-align:middle;}
+	.huadong h5 {font-size:1rem;float:left; line-height: 2.2rem; margin: 0.8rem 0 0 0; }
+	.huadong .gg_more { float: left;}
+	.huadong .gg_more a { font-size: 0.8rem; text-decoration:none;}
+	
+	.huadong .notice_active {
+
+			float: left;
+			width: 55%;
+			height: 26rem;
+			padding: 0;
+			overflow: hidden;
+			
+	}
+	.huadong .notice_active ul{padding-top:4rem;}
+	.huadong .notice_active li{list-style-type:none;line-height: 2rem;overflow: hidden;}
+	/*.huadong .notice_active li.notice_active_ch {}*/
+	
+	.huadong .gg_more .news_ck {
+			float: left;
+			margin: 0 1rem 0 1rem;
+			color: #888;
+			width: 5rem;
+			height: 2rem;
+			line-height: 2rem;
+			display: block;
+			border: 1px solid #656972;
+			text-align: center;
+			border-radius: 0.7rem;
+			font-size: 0.8rem;
+			margin-top: 1rem;
+		}
+	.huadong .gg_more .news_more {
+		
+	}
+	.huadong .notice_active li.notice_active_ch em {text-align:right;float:right;color:#888;font-size:0.8rem;font-style:normal;  }
+</style>
+
+<title>萨飞宝-{$data.name}</title>
+</head>
+<body ontouchstart="" class="open-body">
+	<div class="wrapper">
+		<div class="bg rotate"></div>
+		<div class="open-has ">
+			<h3 class="title-close"><span class="user">天上飘来一个宝箱！</span></h3>
+
+			<h3 class="title-open" id="word1">恭喜您，成功打开了宝箱</h3>
+
+			<div class="mod-chest">
+				<div class="chest-close show ">
+					<div class="gift"></div>
+					<div class="tips">
+						<i class="arrow"></i>
+					</div>
+					<div class="remain-num" id="remain-count">
+						您还剩{$data.user_num}次抽奖机会！
+					</div>
+				</div>
+				<div class="chest-open ">
+					<div class="mod-chest-cont open-cont">
+						<div class="content">
+							<!-- <div class="gift"> -->
+								<!-- <div class="icon"><img src="/public/lottery/images/chest-icon-zuan.png"></div> x 500  -->
+							<!-- </div> -->
+							<div class="func">
+								<button class="chest-btn" id="word2"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="open-none" style="display:none">
+			<h3>你来晚啦，下次早点吧！</h3>
+			<div class="mod-chest">
+				<div class="chest-open show"></div>
+			</div>
+			<div class="func">
+				<button class="chest-btn">查看领取详情</button>
+			</div>
+		</div>
+		<div class="func" style="width:30%;margin-left:35%;z-index:100;" id="reload" hidden>
+			<button class="chest-btn" id="reload-btn" href="#" style="z-index:999;"><p id="reload-text" style="z-index:0;">再来一次</p></button>
+		</div>
+		
+		<div class="func" style="width:30%;margin-left:35%;margin-top:50px;z-index:100;" id="log" hidden>
+			<button class="chest-btn" id="log-btn" href="#" style="z-index:999;"><p id="log-text" style="z-index:0;">查看中奖记录</p></button>
+		</div>
+		<!--获奖名单 -->
+	<!-- 	<div class="wrap" style="width:700px;margin: 0 auto;"> 
+		<div style="width:500px;float:left">
+		{foreach from="$goods_info" item="list"}
+	
+			<div style="line-height:30px;">恭喜用户<span style="">{$list.user_name}</span>于<span style="">{$list.time_create}</span>获得了<span style="color:#d9501a">{$list.name}</span></div>
+		{/foreach}
+		</div>
+		<div style="width:200px;float:left">
+		<h3>抽奖可获得奖品如下：</h3>
+		{foreach from="$goods_all" item="list"}
+		<p style="line-height:30px;">{$list.name}</p>
+		{/foreach}
+		</div>
+		</div> -->
+		<div class="huadong" style="width:800px;margin: 0 auto;">
+	<div class="huabox">
+	
+		<div class="notice_active"  style="width:500px;">
+		<h4>【获奖名单】</h4>
+			<ul>
+				{foreach from="$goods_info" item="list"}
+				<li class="notice_active_ch">
+					恭喜用户<span style="">{$list.user_name}</span>于<span style="">{$list.time_create}</span>获得了<span style="color:#d9501a">{$list.name}</span>               
+					
+				</li>
+				{/foreach}
+				
+			</ul>   
+	
+		</div>
+<div style="width:200px;float:left">
+		<h4>抽奖可获得奖品如下：</h4>
+		{foreach from="$goods_all" item="list"}
+		<p style="line-height: 2rem;">{$list.name}</p>
+		{/foreach}
+		</div>
+	</div>
+</div>
+	</div>
+
+  
+<script type="text/javascript">
+	$(function(){
+		$(".chest-close").click(function(){
+		
+			var remain_num = {$data.user_num};
+			if(remain_num == 0)
+			{
+				alert('您的抽奖次数为0，赶紧去投资吧！');
+				return false;
+			}
+			
+			var ajaxurl = "http://www.safeionline.com/member.php?ctl=uc_lottery&act=do_lottery";
+			$(this).addClass("shake");
+			var that=this;
+			
+			$.ajax({
+				url:ajaxurl,
+				data:{id:{$data.id}},
+				type:"POST",
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					if(res.status == 1)
+					{
+						
+						$("#word2").empty();
+						$("#word2").html(res.msg);
+						
+						
+						that.addEventListener("webkitAnimationEnd", function(){
+						  
+							$(that).closest(".open-has").addClass("opened");
+							setTimeout(function(){
+								$(that).removeClass("show");
+								$(that).closest(".mod-chest").find(".chest-open").addClass("show");
+								setTimeout(function(){
+									$(".chest-open").addClass("blur");
+									$("#reload").show();
+								},500)
+							},200)
+						}, false);
+						
+					}else if(res.status == 2)
+					{	
+						$("#word2").empty();
+						$("#word2").html(res.msg);
+						
+						that.addEventListener("webkitAnimationEnd", function(){
+						  
+							$(that).closest(".open-has").addClass("opened");
+							setTimeout(function(){
+								$(that).removeClass("show");
+								$(that).closest(".mod-chest").find(".chest-open").addClass("show");
+								setTimeout(function(){
+									$(".chest-open").addClass("blur");
+									$("#reload").show();
+									$("#log").show();
+								},500)
+							},200)
+						}, false);
+						
+					}else
+					{
+						alert(res.msg);
+						return false;
+					}
+				},
+				error:function(xhr, type)
+				{
+				}
+			});
+		})
+		
+		$("#reload").click(function(){
+			console.log(1);
+			location.reload();
+		});
+		$("#reload-btn").click(function(){
+			console.log(1);
+			location.reload();
+		});
+		$("#reload-text").click(function(){
+			console.log(1);
+			location.reload();
+		});
+		$("#log").click(function(){
+			window.location.href =  "/member.php?ctl=uc_lottery&act=lottery_log";
+		});
+		$("#log-btn").click(function(){
+			window.location.href =  "/member.php?ctl=uc_lottery&act=lottery_log";
+		});
+		$("#log-text").click(function(){
+			window.location.href =  "/member.php?ctl=uc_lottery&act=lottery_log";
+		});
+	});
+	
+	
+	
+</script>
+</body>
+</html>

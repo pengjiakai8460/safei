@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+/* CSS Document */
+body{padding:0; font-family:"Microsoft YaHei",Arial; background-color:#f2f2f2; font-size:16px;}
+
+.yh_banner{ height:500px; background:url(../images/banner.jpg) no-repeat scroll center 0px; overflow:hidden;}
+.yh_t,.yh_t2{ text-align:center;  width:100%;font-size:1.875rem;color:#707071; overflow:hidden; height:40px;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+.yh_t{ font-weight: bold; margin-top:1.875rem;}
+.yh_t2{ margin-bottom:1.875rem;}
+
+.yh_con{ position:relative; overflow:hidden; width:100%;height:550px; background:url(../images/yh_con.jpg) no-repeat scroll center 18px;}
+dd.yh_tt{ border-radius:27px; padding:0px 17px; background:url(../images/dd.png) no-repeat scroll center 0px;width:62%; margin:0px auto; height:60px; overflow:hidden; line-height:3.75rem; text-align:center; color:#fff; font-size:1.5rem; margin-bottom:1.6875rem;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+.yh_con p{ color:#fff; text-align:center; font-size:1.375rem;width:94%; margin:0px auto; line-height:2.5rem;overflow:hidden;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+.yh_con p i{ color:#f2c820;}
+
+.yh_aq{ background:url(../images/yh_aq.png) no-repeat scroll center 0px #fff; height:685px; padding-top:2.0625rem;}
+dd.foot{ margin-top:-30px;}
+
+.yh_hc{ overflow:hidden; padding-top:5.9375rem;}
+.yh_hc ul.wt_top{ width:100%; max-width:750px; margin:0px auto;height:200px; background-color:#fff; border-bottom:1px solid #d8d7d7; border-top:1px solid #d8d7d7; position:relative;}
+.yh_hc ul.wt_top li{ float:left; width:33%; text-align:center; position:relative;}
+.yh_hc ul.wt_top li div{ font-weight:bold; font-size:1.5rem; padding-top:112px;height:70px; line-height:70px; overflow:hidden; word-break: keep-all;white-space: nowrap;text-overflow: ellipsis; margin-top:-60px;}
+.yh_hc ul.wt_top li.wt1 div{ background:url(../images/wt1.png) no-repeat scroll center 0px;}
+.yh_hc ul.wt_top li.wt2 div{ background:url(../images/wt2.png) no-repeat scroll center 0px;}
+.yh_hc ul.wt_top li.wt3 div{ background:url(../images/wt3.png) no-repeat scroll center 0px;}
+.yh_hc ul.wt_top li p{ font-size:1rem; line-height:1.875rem; height:1.875rem; overflow:hidden;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+
+.yh_hc dd.name{ font-size:0.5625rem; color:#070707; text-align:center; margin:30px 0px 20px; height:72px; overflow:hidden;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+.yh_hc dd.name b{ font-size:2.5rem;}
+.yh_hc dd.name p{overflow:hidden;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+
+.yh_hc ul.wt_foot{ overflow:hidden; width:94%; max-width:700px;margin:0px auto 260px;;}
+.yh_hc ul.wt_foot li{ overflow:hidden;}
+.yh_hc ul.wt_foot li ol{ font-size:1.5rem; font-weight:bold; color:#6b6c6e; height:60px; line-height:60px; overflow:hidden;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+.yh_hc ul.wt_foot li div{ background-color:#fff; padding:20px; font-size:1.125rem; line-height:2.25rem;}
+.yh_hc ul.wt_foot li div p{ height:36px; overflow:hidden;ord-break: keep-all;white-space: nowrap;text-overflow: ellipsis;}
+.yh_hc ul.wt_foot li div p i{ color:#2650a4;}

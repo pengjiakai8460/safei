@@ -1,0 +1,239 @@
+<div class="tabbox">
+	<div class="tab cur">
+		<a href="<?php
+echo parse_url_tag("u:index|uc_money#incharge|"."".""); 
+?>"><?php echo $this->_var['LANG']['UC_MONEY_INCHARGE']; ?></a>
+	</div>
+	<div class="tab">
+		<a href="<?php
+echo parse_url_tag("u:index|uc_money#incharge_log|"."".""); 
+?>"><?php echo $this->_var['LANG']['UC_MONEY_INCHARGE_LOG']; ?></a>
+	</div>
+</div>
+<div class="u_incharge uc_box bdd bt0 pt10">
+	<div class="prompt">
+		<p><i></i>即时充值所产生的转账费用，由第三方平台收取，充值费用视平台而定。</p>
+		<p><i></i>请注意您的银行卡充值限制，以免造成不便。</p>
+		<p><i></i>如果充值金额没有及时到账，请和客服联系。</p>
+	</div>
+	<div class="blank1"></div>
+	
+	<form name="incharge_form" id="incharge_form" action="<?php
+echo parse_url_tag("u:index|uc_money#incharge_done|"."".""); 
+?>" method="post" />			
+		<div class="sect cf">
+			<div class="clearfix uc-table">
+				
+				<div class="way clearfix">
+					<div  class=" f_l w80">充值方式：</div>
+					<div class="f_l" style="*padding-top:8px">
+						<label class=" ui-radiobox" rel="common_check_ol_bl_pay" onclick="SelectPayType(1);" >
+							<input type="radio" checked="checked" name="check_ol_bl_pay" />快捷支付
+						</label>
+						<label class=" ui-radiobox" rel="common_check_ol_bl_pay" onclick="SelectPayType(0);" >
+							<input type="radio" name="check_ol_bl_pay" />网关支付
+						</label>
+					</div>
+				</div>
+				<div class="m_number clearfix" id="money3">				        	        	
+		        	<div class=" f_l w80">银行卡号：</div>
+					<input type="text" id="bankcard" class="f-input ui-textbox f_l w200  " name="bankcard" value = "<?php if ($this->_var['has_bank'] == 1): ?><?php echo $this->_var['user_bankcard']['bankcard']; ?><?php endif; ?>" <?php if ($this->_var['has_bank'] == 1): ?>readonly<?php endif; ?>/> &nbsp;
+				</div>
+				<div class="m_number clearfix" id="money2">				        	        	
+		        	<div class=" f_l w80">真实姓名：</div>
+					<input type="text" id="realname" class="f-input ui-textbox f_l w200 " name="realname" value = "<?php if ($this->_var['has_bank'] == 1): ?><?php echo $this->_var['user_bankcard']['real_name']; ?><?php endif; ?>" <?php if ($this->_var['has_bank'] == 1): ?>readonly<?php endif; ?> /> &nbsp;
+				</div>
+				<div class="m_number clearfix" id="money1">				        	        	
+		        	<div class=" f_l w80">身份证号码：</div>
+					<input type="text" id="idno" class="f-input ui-textbox f_l w200 " name="idno" value = "<?php if ($this->_var['has_bank'] == 1): ?><?php echo $this->_var['user_bankcard']['idno']; ?><?php endif; ?>" <?php if ($this->_var['has_bank'] == 1): ?>readonly<?php endif; ?>/> &nbsp;
+				</div>
+				<div class="m_number clearfix">				        	        	
+		        	<div class=" f_l w80">充值<?php echo $this->_var['LANG']['PRICE_AMOUNT']; ?>：</div>
+					<input type="text" class="f-input ui-textbox f_l w100 " id="money" name="money" value = "" /> &nbsp;元
+				</div>
+				
+				<div class="J_online">
+					<div  id="J_online_pay" class="clearfix" >		
+						<div class="f_l  w80">充值接口：</div>		
+						<div class="f_l pt10" style="width:800px">							
+						<?php $_from = $this->_var['payment_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'payment_item');if (count($_from)):
+    foreach ($_from AS $this->_var['payment_item']):
+?>									
+							<?php echo $this->_var['payment_item']['display_code']; ?>	
+							<div class="blank"></div>										
+						<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+						</div>		
+					</div>
+					<?php if ($this->_var['below_payment']): ?>
+					
+					<div  id="J_below_pay" class="clearfix" style="display:none;">
+						
+						<?php echo $this->_var['below_payment']['display_code']; ?>	
+						<div class="blank"></div>		
+					</div>
+					<?php endif; ?>
+					<div class="pay_btn">
+						<input type="submit" id="incharge_done" value="确定<?php echo $this->_var['LANG']['DO_INCHARGE']; ?>" class="sub_btn">
+					</div>
+				</div>
+			</div>	
+				
+		</div><!--end sect-->
+	</form>		
+</div>
+<script type="text/javascript">
+	var payType = 2;
+	$("#money1").show();
+	$("#money2").show();
+	$("#money3").show();
+	function SelectPayType(i){
+		payType = 0;
+		switch(i){
+			case 0:
+				payType = 1;
+				$("#money1").hide();
+				$("#money2").hide();
+				$("#money3").hide();
+				break;
+			case 1:
+				payType = 2;
+				$("#money1").show();
+				$("#money2").show();
+				$("#money3").show();
+				break;
+		}
+	}
+	
+	$(document).ready(function(){
+		$("#money").keyup(function(){
+			calculate_money();
+		});
+		
+		$("#incharge_done").click(function(){
+			if(!($("input[name='money']").val()!='' && !isNaN($("input[name='money']").val())&&$("input[name='money']").val()>0))			
+			{
+				$.showErr("<?php echo $this->_var['LANG']['PLEASE_INPUT_CORRECT_INCHARGE']; ?>",function(){
+					$("input[name='money']").focus();
+				});
+				return false;
+			}
+			
+			if(payType == 2)
+			{
+			
+			
+				if($("#J_online_pay input[name='payment']:checked").length == 0){
+					$.showErr("<?php echo $this->_var['LANG']['PLEASE_SELECT_PAYMENT']; ?>");
+					return false;
+				}
+				if(!$("input[name='realname']").val()!='')
+				{
+					$.showErr("请输入用户名");return false;
+				}else if(!$("input[name='idno']").val()!='')
+				{
+					$.showErr("请输入用户身份证号");return false;
+				}else if(!$("input[name='bankcard']").val()!='')
+				{
+					$.showErr("请输入卡号");return false;
+				}
+				
+				var ajaxurl = APP_ROOT+'/wap/index.php?ctl=uc_save_incharge';
+				
+				var pTrdAmt = $.trim($("#money").val());
+				var bankcard = $.trim($("#bankcard").val());
+				var idno = $.trim($("#idno").val());
+				var realname = $.trim($("#realname").val());
+				
+				$.ajax({
+					url:ajaxurl,
+					data:{
+						'money': pTrdAmt,
+						'payment_id': 33,
+						'bankcard': bankcard,
+						'uName': realname,
+						'uIdno': idno,
+						'post_type': 'json',
+						'memo': 'pc'
+					},
+					type:"Post",
+					dataType:"json",
+					success:function(data){
+						if(data.response_code == 1){
+							//alert(data.pay_pc);
+							window.location.href = data.pay_pc;
+						}else{
+						  $.showErr(data.show_err);
+						  return false;
+					    }
+						
+					}
+				});
+				return false;
+			}
+		});
+		
+		$("label[name='payment']").live("click",function(){
+			if(payType!=1){
+				$.ajax({
+					url:'<?php
+echo parse_url_tag("u:index|ajax#payment_fee|"."".""); 
+?>',
+					data:"&id="+$(this).find("input").val(),
+					type:"post",
+					dataType:"json",
+					cache:true,
+					success:function(result){
+						$("#Fee_t").attr("fee_type",result.fee_type);
+						$("#Fee_t").attr("fee_amount",result.fee_amount);
+						calculate_money();
+					}
+				});
+			}
+			else{
+				calculate_money();
+			}
+		});
+		$("label[name='payment']").click();
+	});
+	
+	function calculate_money(){
+		if(!$("input[name='payment']:checked").val())
+		{
+			if(!$("input[name='payment']:checked").val())
+			{
+				if(payType==1){
+					<?php if (strtolower ( getCollName ( ) ) != 'yeepay'): ?>
+						$("#Actual_Money_t").html(formatNum(0));
+						return false;
+					<?php endif; ?>
+				}
+				else{
+					$("#Actual_Money_t").html(formatNum(0));
+					return false;
+				}
+			}
+		}
+		var money=0;
+		if($("input[name='money']").val()!='' && !isNaN($("input[name='money']").val())&&$("input[name='money']").val()>0){
+			money = parseFloat($("#money").val());
+		}
+		var fee_type = $("#Fee_t").attr("fee_type");
+		var fee_amount = parseFloat($("#Fee_t").attr("fee_amount"));
+		var Fee_t= 0;
+		if(fee_type==0){
+			Fee_t = fee_amount;
+		}
+		else{
+			Fee_t = money*fee_amount;
+		}
+		
+       $("#Fee_t").html(Fee_t);
+		
+		
+		var num=money+Fee_t;
+		$("#Actual_Money_t").html(formatNum(num));
+		
+	}
+	
+	calculate_money();
+</script>

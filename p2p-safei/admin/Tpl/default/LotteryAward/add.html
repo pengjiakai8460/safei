@@ -1,0 +1,95 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/conf.js' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<script type="text/javascript">
+
+</script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/goods.js' />
+<script type="text/javascript">
+	window.onload = function()
+	{
+		init_dealform();
+	}
+</script>
+<div class="main">
+<div class="main_title">{%ADD}  <a href="{:u("Lottery/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+	<table class="form conf_tab" cellpadding=0 cellspacing=0 rel="1">
+		<tr><td colspan=2 class="topTd"></td></tr>
+		<tr>
+			<td class="item_title">名称:</td>
+			<td class="item_input"><input type="text" class="textbox require" name="name" style="width:500px;" value="" /></td>
+		</tr>
+		<tr>
+			<td class="item_title">总抽奖次数:</td>
+			<td class="item_input">
+				<input type="number" class="textbox require" name="num"  value=""/>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">抽到奖品数:</td>
+			<td class="item_input">
+				<input type="number" class="textbox require" name="sell_num"  value=""/>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">已抽奖次数:</td>
+			<td class="item_input">
+				<input type="number" class="textbox require" name="take_part_num"  value=""/>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">状态:</td>
+			<td class="item_input">
+				<label>未开始<input type="radio" name="status" value="0" checked /></label>
+				<label>进行中<input type="radio" name="status" value="1" /></label>
+				<label>已结束<input type="radio" name="status" value="2" /></label>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">开始时间:</td>
+			<td class="item_input">
+				<input type="text" class="textbox" name="time_start" value="" id="time_start"  onfocus="this.blur(); return showCalendar('time_start', '%Y-%m-%d %H:%M:%S', false, false, 'btn_start_time');" />
+				<input type="button" class="button" id="btn_start_time" value="{%SELECT_TIME}" onclick="return showCalendar('time_start', '%Y-%m-%d %H:%M:%S', false, false, 'btn_start_time');" />
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">结束时间:</td>
+			<td class="item_input">
+				<input type="text" class="textbox" name="time_end" value="" id="time_end"  onfocus="this.blur(); return showCalendar('time_end', '%Y-%m-%d %H:%M:%S', false, false, 'btn_time_end');" />
+				<input type="button" class="button" id="btn_time_end" value="{%SELECT_TIME}" onclick="return showCalendar('time_end', '%Y-%m-%d %H:%M:%S', false, false, 'btn_start_time');" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table>
+
+	<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="Lottery" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 	 
+</form>
+</div>
+<include file="Public:footer" />

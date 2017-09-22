@@ -1,0 +1,149 @@
+<script type="text/javascript">
+	var json_fee = <?php echo $this->_var['json_fee']; ?>;
+</script>
+	
+<div class="tabbox">
+	<div class="tab"><a href="<?php
+echo parse_url_tag("u:index|uc_money#bank|"."".""); 
+?>">银行卡列表</a></div>
+	<div class="tab cur"><a href="<?php
+echo parse_url_tag("u:index|uc_money#carry|"."".""); 
+?>"><?php echo $this->_var['LANG']['UC_CARRY']; ?></a></div>
+	<div class="tab"><a href="<?php
+echo parse_url_tag("u:index|uc_money#carry_log|"."".""); 
+?>">提现日志</a></div>
+</div>
+<div class="uc_box u_incharge  bdd bt0">
+    <div class="prompt">
+		<p><i></i>请输入您要提现的金额，以及正确无误的银行帐号信息。</p>
+		<p><i></i>我们将在3个工作日（双休日和法定节假日除外）之内，将钱转入您指定的银行帐号 。</p>
+		<p><i></i>在双休日和法定节假日期间，用户可申请取现，但<?php 
+$k = array (
+  'name' => 'app_conf',
+  'v' => 'SHOP_TITLE',
+);
+echo $k['name']($k['v']);
+?>暂不处理，需要等恢复正常上班之后才进行处理。不便之处，请多多谅解！ <p class="f_red"><i></i>重要！！如果您填写的开户行支行不正确，提现交易将无法成功，提现费用不予返还。如果您不确定开户行支行名称，可以打电话到当地所在银行的营业网点询问或者上网查询。</p>
+	</div>
+	<div class="total clearfix"> 
+ 		<div  class="b f_l">累计提现金额：</div>
+  		<div class="f_l pl10"> <?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['carry_total_money'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?> 元 （备注：不含手续费，为实际到帐金额。）</div>
+	</div>
+	<div class="blank20"></div>
+	<div class="m_number clearfix">
+		<form name="Jcarry_From" id="Jcarry_From" action="<?php
+echo parse_url_tag("u:index|uc_money#savecarry|"."".""); 
+?>" method="post" autocomplete="off">
+			<div  class="b pb15">请输入你的提款金额：</div>
+			<div class="pr">
+	            <div class="field">
+	                <label>帐户总资金：</label>
+	                <span class="f_l"><?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['user_info']['money'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?> 元<?php echo $this->_var['tmoney']; ?></span><span><input id="Jcarry_totalAmount" type="hidden" value="<?php echo $this->_var['user_info']['money']; ?>"></span>
+	            </div>
+				<div class="blank10"></div>
+				<div class="field">
+	                <label>不可提现资金：</label>
+	                <span class="f_l"><?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['user_info']['nmc_amount'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?> 元<input id="Jcarry_nmc_amount" type="hidden" value="<?php echo $this->_var['user_info']['nmc_amount']; ?>"></span>
+	            </div>
+				<div class="blank10"></div>
+	            <div class="field">
+	                <label><span class="f_red b">*</span> 提取金额：</label>
+	                <span class="f_l"><input type="text" autocomplete="off" name="amount" class="f-input ui-textbox w100" id="Jcarry_amount" value="0">&nbsp;&nbsp;元</span>
+	                &nbsp;
+					<span id="Jcarry_balance" class="f_red lh28"></span>
+	            </div>
+				<div class="blank10"></div>
+	            <div class="field">
+	                <label>提现费用：</label>
+	                <span id="Jcarry_fee" class="f_l">0.00 元</span>
+					<?php if ($this->_var['fee_config']): ?>
+					<img src="<?php echo $this->_var['TMPL']; ?>/images/tips_wh.jpg" id="imgtips" class="pr" style="top:5px;left:10px;z-index:999; cursor:pointer;" onmouseover="tips(this,'第三方收取提现手续费:&lt;/br&gt;&lt;table width=\'100%\' class=\'tiptable\' cellspacing=\'1\' border=\'0\' &gt;&lt;tr style=\'background:#eff5fe;text-align:center\'&gt;<?php $_from = $this->_var['fee_config']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'fee');if (count($_from)):
+    foreach ($_from AS $this->_var['fee']):
+?>&lt;td height=\'22\'&gt;<?php echo $this->_var['fee']['name']; ?>&lt;/td&gt;<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>&lt;/tr&gt;&lt;tr class=\'bg\'&gt;<?php $_from = $this->_var['fee_config']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'fee');if (count($_from)):
+    foreach ($_from AS $this->_var['fee']):
+?>&lt;td&gt;<?php echo $this->_var['fee']['fee_format']; ?>&lt;/td&gt;<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>&lt;/tr&gt;&lt;/table&gt;',100,290)"><br>
+	            	<?php endif; ?>
+				</div>
+				<div class="blank10"></div>
+	            <div class="field">
+	                <label>实付金额：</label>
+	                <span id="Jcarry_realAmount" class="f_l">0.00 元</span><br>
+	            </div>
+				<div class="blank10"></div>
+	            <div class="field">
+	                <label>提现后账户可用余额：</label>
+	                <span id="Jcarry_acount_balance" class="f_l">0.00 元</span>
+	                <br>
+	            </div>
+				<div class="blank10"></div>
+				<div class="field">
+	                <label> 开户行：</label>
+	                <span class="f_l"><?php echo $this->_var['user_bank']['bankname']; ?>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php
+echo parse_url_tag("u:index|uc_money#bank|"."".""); 
+?>" class="f_red">我想重新选择</a></span>
+	            </div>
+				<div class="blank10"></div>
+	            <div class="field">
+	                <label>开户名：</label>
+	                <span class="f_l"><?php 
+$k = array (
+  'name' => 'utf_substr',
+  'v' => $this->_var['user_bank']['real_name'],
+);
+echo $k['name']($k['v']);
+?></span>
+	            </div>
+	            <div class="blank10"></div>
+	             <div class="field">
+	                <label>卡号：</label>
+	                <span class="f_l"><?php echo msubstr($this->_var['user_bank']['bankcard'],0,strlen($this->_var['user_bank']['bankcard'])-3,"utf-8",false); ?>***</span>
+	            </div>
+				<div class="blank10"></div>
+	           <div class="field">
+	               <label>&nbsp;</label>
+	               <span class="f_gray f_l" id="Jcarry_bankSuggestNote">提现时间约为3个工作日。</span>
+	           </div>
+			   <div class="blank10"></div>
+			  <div class="field">
+					 <label>支付密码：</label>
+					<span>
+						<input type="password" autocomplete="off" class="f-input ui-textbox w100" name="paypassword" id="J_PAYPASSWORD" />
+						&nbsp;&nbsp;<?php if ($this->_var['user_info']['paypassword'] == ''): ?>还未设置！<?php else: ?>忘记了？<?php endif; ?><a href="<?php
+echo parse_url_tag("u:index|uc_account#security|"."".""); 
+?>" target="_blank" class='f_blue'>点这里</a>
+					</span>
+				</div>
+				<div class="blank10"></div>
+	        </div>
+	
+		<div class="f_red tc f14">警告：禁止信用卡套现、虚假交易等行为，一经确认，将终止该账户的使用。</div>
+		<div class="blank20"></div>
+		<div class="tc">
+			<input type="hidden" name="bid" value="<?php echo $this->_var['bid']; ?>" />
+			<input type="hidden" name="acount_balance" id="Jcarry_acount_balance_res" style="width:70px">
+	        <input type="submit" value="申请提现" class="sub_btn w120">
+	    </div>
+	</form>
+	</div>
+</div>	

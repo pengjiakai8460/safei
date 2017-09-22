@@ -1,0 +1,477 @@
+﻿<!-- <!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="stylesheet" href="/public/lottery/css/reset.css">
+<link rel="stylesheet" href="/public/lottery/css/atom.css">
+<link rel="stylesheet" href="/public/lottery/css/global.css">
+<link rel="stylesheet" href="/public/lottery/css/open.css">
+<script type="text/javascript" src="/public/lottery/js/jquery-1.8.3.min.js"></script>
+<style>
+.remain-num{
+	position: absolute;
+	top: 240px;
+	left: 65px;
+	color: #000;
+	font-size: 20px;
+	width: 200px;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+	function timer(opj){
+		$(opj).find('ul').animate({
+			marginTop : "-3.5rem"  
+			},500,function(){  
+			$(this).css({marginTop : "0.7rem"}).find("li:first").appendTo(this);  
+		})  
+	}
+	$(function(){ 
+		var num = $('.notice_active').find('li').length;
+		if(num > 1){
+		   var time=setInterval('timer(".notice_active")',3500);
+			$('.gg_more a').mousemove(function(){
+				clearInterval(time);
+			}).mouseout(function(){
+				time = setInterval('timer(".notice_active")',3500);
+			}); 
+		}
+		
+		$(".news_ck").click(function(){
+			location.href = $(".notice_active .notice_active_ch").children(":input").val();
+		})
+	});
+</script>
+<style type="text/css">
+/*border-bottom: 1px solid #F0F0F0;*/
+	.huadong {width: 60rem;height:4rem;padding: 0.5rem 0 0.3rem 0; border-bottom: 1px solid #F0F0F0; position:relative;font: 12px/1.5 "Hiragino Sans GB","Microsoft YaHei",simsun;margin:0 auto;}
+	.huadong .huabox {margin:0 auto; line-height: 4rem;}
+	.huadong .hdimg {float:left;line-height:3.5rem;}
+	.huadong .hdimg img {width: 100%; vertical-align:middle;}
+	.huadong .hdimg img {width: 100%; vertical-align:middle;}
+	.huadong h5 {font-size:1rem;float:left; line-height: 2.2rem; margin: 0.8rem 0 0 0;}
+	.huadong .gg_more {float: left;}
+	.huadong .gg_more a {font-size: 0.8rem; text-decoration:none;}
+	
+	.huadong .notice_active {
+
+			float: left;
+			width: 55%;
+			height: 26rem;
+			padding: 0;
+			overflow: hidden;
+			
+	}
+	.huadong .notice_active ul{padding-top:4rem;}
+	.huadong .notice_active li{list-style-type:none;line-height: 2rem;overflow: hidden;}
+	/*.huadong .notice_active li.notice_active_ch {}*/
+	
+	.huadong .gg_more .news_ck {
+			float: left;
+			margin: 0 1rem 0 1rem;
+			color: #888;
+			width: 5rem;
+			height: 2rem;
+			line-height: 2rem;
+			display: block;
+			border: 1px solid #656972;
+			text-align: center;
+			border-radius: 0.7rem;
+			font-size: 0.8rem;
+			margin-top: 1rem;
+		}
+	.huadong .gg_more .news_more {
+		
+	}
+	.huadong .notice_active li.notice_active_ch em {text-align:right;float:right;color:#888;font-size:0.8rem;font-style:normal;}
+</style>
+
+<title>萨飞宝-<?php echo $this->_var['data']['name']; ?></title>
+</head>
+<body ontouchstart="" class="open-body">
+	<div class="wrapper">
+		<div class="bg rotate"></div>
+		<div class="open-has ">
+			<h3 class="title-close"><span class="user">天上飘来一个宝箱！</span></h3>
+
+			<h3 class="title-open" id="word1">恭喜您，成功打开了宝箱</h3>
+
+			<div class="mod-chest">
+				<div class="chest-close show ">
+					<div class="gift"></div>
+					<div class="tips">
+						<i class="arrow"></i>
+					</div>
+					<div class="remain-num" id="remain-count">
+						您还剩<?php echo $this->_var['data']['user_num']; ?>次抽奖机会！
+					</div>
+				</div>
+				<div class="chest-open ">
+					<div class="mod-chest-cont open-cont">
+						<div class="content">
+							<div class="func">
+								<button class="chest-btn" id="word2"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="open-none" style="display:none">
+			<h3>你来晚啦，下次早点吧！</h3>
+			<div class="mod-chest">
+				<div class="chest-open show"></div>
+			</div>
+			<div class="func">
+				<button class="chest-btn">查看领取详情</button>
+			</div>
+		</div>
+		<div class="func" style="width:30%;margin-left:35%;z-index:100;" id="reload" hidden>
+			<button class="chest-btn" id="reload-btn" href="#" style="z-index:999;"><p id="reload-text" style="z-index:0;">再来一次</p></button>
+		</div>
+		
+		<div class="func" style="width:30%;margin-left:35%;margin-top:50px;z-index:100;" id="log" hidden>
+			<button class="chest-btn" id="log-btn" href="#" style="z-index:999;"><p id="log-text" style="z-index:0;">查看中奖记录</p></button>
+		</div>
+		获奖名单
+		<div class="wrap" style="width:700px;margin: 0 auto;"> 
+		<div style="width:500px;float:left">
+		<?php $_from = $this->_var['goods_info']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list');if (count($_from)):
+    foreach ($_from AS $this->_var['list']):
+?>
+	
+			<div style="line-height:30px;">恭喜用户<span style=""><?php echo $this->_var['list']['user_name']; ?></span>于<span style=""><?php echo $this->_var['list']['time_create']; ?></span>获得了<span style="color:#d9501a"><?php echo $this->_var['list']['name']; ?></span></div>
+		<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		</div>
+		<div style="width:200px;float:left">
+		<h3>抽奖可获得奖品如下：</h3>
+		<?php $_from = $this->_var['goods_all']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list');if (count($_from)):
+    foreach ($_from AS $this->_var['list']):
+?>
+		<p style="line-height:30px;"><?php echo $this->_var['list']['name']; ?></p>
+		<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		</div>
+		</div> 
+		<div class="huadong" style="width:800px;margin: 0 auto;">
+	<div class="huabox">
+	
+		<div class="notice_active"  style="width:500px;">
+		<h4>【获奖名单】</h4>
+			<ul>
+				<?php $_from = $this->_var['goods_info']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list');if (count($_from)):
+    foreach ($_from AS $this->_var['list']):
+?>
+				<li class="notice_active_ch">
+					恭喜用户<span style=""><?php echo $this->_var['list']['user_name']; ?></span>于<span style=""><?php echo $this->_var['list']['time_create']; ?></span>获得了<span style="color:#d9501a"><?php echo $this->_var['list']['name']; ?></span>               
+					
+				</li>
+				<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+				
+			</ul>   
+	
+		</div>
+<div style="width:200px;float:left">
+		<h4>抽奖可获得奖品如下：</h4>
+		<?php $_from = $this->_var['goods_all']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list');if (count($_from)):
+    foreach ($_from AS $this->_var['list']):
+?>
+		<p style="line-height: 2rem;"><?php echo $this->_var['list']['name']; ?></p>
+		<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		</div>
+	</div>
+</div>
+	</div>
+
+  
+<script type="text/javascript">
+	$(function(){
+		$(".chest-close").click(function(){
+		
+			var remain_num = <?php echo $this->_var['data']['user_num']; ?>;
+			if(remain_num == 0)
+			{
+				alert('您的抽奖次数为0，赶紧去投资吧！');
+				return false;
+			}
+			
+			var ajaxurl = "http://www.safeionline.com/member.php?ctl=uc_lottery&act=do_lottery";
+			$(this).addClass("shake");
+			var that=this;
+			
+			$.ajax({
+				url:ajaxurl,
+				data:{id:<?php echo $this->_var['data']['id']; ?>},
+				type:"POST",
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					if(res.status == 1)
+					{
+						
+						$("#word2").empty();
+						$("#word2").html(res.msg);
+						
+						
+						that.addEventListener("webkitAnimationEnd", function(){
+						  
+							$(that).closest(".open-has").addClass("opened");
+							setTimeout(function(){
+								$(that).removeClass("show");
+								$(that).closest(".mod-chest").find(".chest-open").addClass("show");
+								setTimeout(function(){
+									$(".chest-open").addClass("blur");
+									$("#reload").show();
+								},500)
+							},200)
+						}, false);
+						
+					}else if(res.status == 2)
+					{	
+						$("#word2").empty();
+						$("#word2").html(res.msg);
+						
+						that.addEventListener("webkitAnimationEnd", function(){
+						  
+							$(that).closest(".open-has").addClass("opened");
+							setTimeout(function(){
+								$(that).removeClass("show");
+								$(that).closest(".mod-chest").find(".chest-open").addClass("show");
+								setTimeout(function(){
+									$(".chest-open").addClass("blur");
+									$("#reload").show();
+									$("#log").show();
+								},500)
+							},200)
+						}, false);
+						
+					}else
+					{
+						alert(res.msg);
+						return false;
+					}
+				},
+				error:function(xhr, type)
+				{
+				}
+			});
+		})
+		
+		$("#reload").click(function(){
+			console.log(1);
+			location.reload();
+		});
+		$("#reload-btn").click(function(){
+			console.log(1);
+			location.reload();
+		});
+		$("#reload-text").click(function(){
+			console.log(1);
+			location.reload();
+		});
+		$("#log").click(function(){
+			window.location.href =  "/member.php?ctl=uc_lottery&act=lottery_log";
+		});
+		$("#log-btn").click(function(){
+			window.location.href =  "/member.php?ctl=uc_lottery&act=lottery_log";
+		});
+		$("#log-text").click(function(){
+			window.location.href =  "/member.php?ctl=uc_lottery&act=lottery_log";
+		});
+	});
+	
+	
+	
+</script>
+</body>
+</html> -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>来抽奖</title>
+    <link rel="stylesheet" href="/public/lottery/css/css1.css">
+    <script type="text/javascript" src="/public/lottery/js/jquery-1.8.3.min.js"></script>
+   	<script type="text/javascript" src="/public/lottery/js/custom.js"></script>
+    <script type="text/javascript" src="/public/lottery/js/jquery.imgscroll.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+        imgScroll.rolling({
+            name:'g1',
+            width:'600px',
+            height:'37px',
+            direction:'top',
+            speed:40,
+            addcss:true
+        });
+    })
+    </script>
+</head>
+<body>
+<!--头部-->
+<div class="top"></div>
+<!--头部 en-->
+<div class="cj_banner"></div>
+
+<div class="hidden cj_main">
+<!--top-->
+<ul class="cj_top">
+	<li class="cj_jh">你还有<i><?php echo $this->_var['data']['user_num']; ?></i>次机会</li>
+	<li class="cj_bx"></li>
+    <li class="cj_nav"><a rel="popupre" class="popup"></a></li>
+	<li class="cj_con">(以5000的倍数计算开启宝箱的次数，活动时间截止为到9:30日）</li>
+	<li class="cj_con2">请登录查看您的开箱次数，<a href="http://www.safeionline.com/index.php?ctl=user&act=login">登录</a></li>
+</ul>
+<div class="popupbox" id="popupre">
+	<i class="popupbox_i"></i>
+    <ul>
+    	<li class="i"><img src=""  id="lottery_image" /></li>
+    	<li class="t">恭喜您中奖</li>
+        <li class="t">获得加息劵一张</li>
+        <li class="n"><a href="http://www.safei.com/member.php?ctl=uc_lottery&act=lottery_log">查看我的奖励</a></li>
+    </ul>
+</div>
+<!--cj_jp-->
+<div class="cj_jp">
+	<ul>
+    	<li class="jp1">
+        	<div></div>
+        	<p>MacBook Pro</p>
+            <p>3台</p>
+        </li>
+        <li class="jp2">
+        	<div></div>
+        	<p>iPhone 7 Plus</p>
+            <p>6台</p>
+        </li>
+        <li class="jp3">
+        	<div></div>
+        	<p>iPad平板电脑</p>
+            <p>6台</p>
+        </li>
+        <li class="jp4">
+        	<div></div>
+        	<p>魔音耳机</p>
+            <p>12副</p>
+        </li>
+        <li class="jp5">
+        	<div></div>
+        	<p>精美项链</p>
+            <p>30条</p>
+        </li>
+        <li class="jp6">
+        	<div></div>
+        	<p>现金50元</p>
+            <p>50份</p>
+        </li>
+        <li class="jp7">
+        	<div></div>
+        	<p>话费50元</p>
+            <p>80份</p>
+        </li>
+        <li class="jp8">
+        	<div></div>
+        	<p>现金30元</p>
+            <p>120份</p>
+        </li>
+        <li class="jp9">
+        	<div></div>
+        	<p>话费30元</p>
+            <p>150份</p>
+        </li>
+        <li class="jp10">
+        	<div></div>
+        	<p>现金10元</p>
+            <p>200份</p>
+        </li>
+        <li class="jp11">
+        	<div></div>
+        	<p>话费10元</p>
+            <p>250份</p>
+        </li>
+        <li class="jp12">
+        	<div></div>
+        	<p>加息劵3%</p>
+            <p>数额不限</p>
+        </li>
+        <li class="jp13">
+        	<div></div>
+        	<p>加息劵2%</p>
+            <p>数额不限</p>
+        </li>
+        
+    </ul>
+</div>
+
+<!--开箱直播-->
+<div class="cj_zb">
+	<dd>开箱直播</dd>
+    <div class="g1">
+        <ul>
+        	<?php $_from = $this->_var['goods_info']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list');if (count($_from)):
+    foreach ($_from AS $this->_var['list']):
+?>
+        	<li>
+            	<div><i>恭喜用户</i><?php echo $this->_var['list']['user_name']; ?></div>
+                <div><?php echo $this->_var['list']['time_create']; ?></div>
+                
+                <div>获得了<i><?php echo $this->_var['list']['name']; ?></i></div>
+            </li> 
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+        </ul>
+    </div>
+    <a href="​​http://www.safeionline.com"><ol>去首页投标></ol></a>
+</div>
+
+<!--foot-->
+	<div class="cj_foot">
+    	<dd>抽奖说明：</dd>
+        <p>每累计投资满5000元可获得一次抽奖机会，抽奖次数无上限。</p>
+        <p>活动时间：8月25日-9月30日</p>
+        <p><br /></p>
+        <dd>活动规则：</dd>
+        <p>1、用户累计投资5000元及以上标的方可参与活动；</p>
+        <p>2、投资金额越多，期限越长，获得鼓励金越多；</p>
+        <p>4、现金奖励和加息劵将于活动结束后7个工作日内（节假日顺延）发放至您的“我的账户”中，请注意查收;</p>
+        <p>5、实物奖品将于活动结束后7个工作日内（节假日顺延）发放，请保持电话畅通。</p>
+        <ol>本活动的最终解释权归萨飞投资管理（上海）有限公司所有</ol>
+    </div>	
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	$(function(){
+		$(".popup").click(function(){
+			var remain_num = <?php echo $this->_var['data']['user_num']; ?>;
+			if(remain_num == 0)
+			{
+				alert('您的抽奖次数为0，赶紧去投资吧！');
+				
+				$("#popupre").hide();
+				window.location.reload();
+			}else{
+				$.ajax({
+					url:"http://www.safei.com/member.php?ctl=uc_lottery&act=add_lottery_log",
+					data:{num:remain_num},
+					type:"post",
+					success:function(data){
+						var data = jQuery.parseJSON(data);
+						if(data.status == 1){
+
+							if(data.id == 11){
+								$("#lottery_image").attr("src","/public/lottery/images/cj_j11.png");
+							}else if(data.id == 15){
+								$("#lottery_image").attr("src","/public/lottery/images/cj_j10.png");
+							}
+							$("#popupre").show();
+						}
+					}
+				})
+			}
+		})
+	})
+</script>

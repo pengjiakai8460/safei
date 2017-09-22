@@ -1,0 +1,204 @@
+<?php if ($this->_var['is_ajax'] == 0): ?>
+<?php echo $this->fetch('inc/header.html'); ?>
+
+<div class="blank"></div>
+<div class="bdd bddf clearfix">
+	<div class="toptitle pt15">注册认证</div>
+	<div class="line950"></div>
+	<div class="credit_list">
+	  	<div class="tit">必要信用认证</div>
+		<div class="blank"></div>
+	    <p>以下几项为必要信用认证，上传齐全后将开始审核。必要认证缺失的用户，无法得到贷款。</p>
+	    <div class="items ">
+	    	<ul>
+	    	
+	        	<?php $_from = $this->_var['credit_file']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'credit');if (count($_from)):
+    foreach ($_from AS $this->_var['credit']):
+?>
+				<?php if ($this->_var['credit']['must'] == 1): ?>
+	        	<li>
+	        		<div class="tt">
+	        			<?php if ($this->_var['credit']['icon']): ?>
+			        	<div class="icon"><img src="<?php echo $this->_var['credit']['icon']; ?>" height=30 /></div>
+						<?php endif; ?>
+						<h3 class=""><?php echo $this->_var['credit']['type_name']; ?></h3>
+						<?php if ($this->_var['credit']['user_id'] > 0): ?>
+							<?php if ($this->_var['credit']['passed'] == 1): ?>
+								<?php if ($this->_var['credit']['has_expire'] == 1): ?>
+								<div class="status guoqi">审核过期</div>
+								<?php else: ?>
+								<div class="status tongguo">审核通过</div>
+								<?php endif; ?>
+							<?php elseif ($this->_var['credit']['passed'] == 2): ?>
+							<div class="status shibai">审核失败</div>
+							<?php else: ?>
+							<div class="status shehezhong">待审核</div>
+							<?php endif; ?>
+						<?php else: ?>
+							<div class="status weishangchuan">未上传</div>
+						<?php endif; ?>
+						<div class="update">
+						<?php if ($this->_var['credit']['passed'] == 1): ?>
+							已认证
+						<?php else: ?>
+							<a href="javascript:void(0);" onclick="openupload(this,'<?php echo $this->_var['credit']['type']; ?>');" rel="<?php if ($this->_var['credit']['user_id'] > 0): ?>补充<?php else: ?>立即<?php endif; ?>上传">
+							<?php if ($this->_var['credit']['user_id'] > 0): ?>补充<?php else: ?>立即<?php endif; ?>上传
+							</a>
+						<?php endif; ?>
+						</div>
+					</div>
+					<div class="J_tb" rel="<?php echo $this->_var['credit']['type']; ?>" style="display:none"></div>
+	    		</li>
+	    		<?php endif; ?>
+				<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	   		</ul>
+		</div>
+		<div class="blank20"></div>
+		<div class="tit">可选信用认证</div>
+		<div class="blank"></div>
+	    <p>您可以选择上传的认证项目，只要通过了这些可选信用认证，将会提高您的“信用等级”和“信用额度” 。</p>
+	    <div class="items ">
+	    	<ul>
+	        	<?php $_from = $this->_var['credit_file']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'credit');if (count($_from)):
+    foreach ($_from AS $this->_var['credit']):
+?>
+				<?php if ($this->_var['credit']['must'] == 0): ?>
+	        	<li>
+	        		<div class="tt">
+			        	<?php if ($this->_var['credit']['icon']): ?>
+			        	<div class="icon"><img src="<?php echo $this->_var['credit']['icon']; ?>" height=30 /></div>
+						<?php endif; ?>
+						<h3 class=""><?php echo $this->_var['credit']['type_name']; ?></h3>
+						<?php if ($this->_var['credit']['user_id'] > 0): ?>
+							<?php if ($this->_var['credit']['passed'] == 1): ?>
+								<?php if ($this->_var['credit']['has_expire'] == 1): ?>
+								<div class="status guoqi">审核过期</div>
+								<?php else: ?>
+								<div class="status tongguo">审核通过</div>
+								<?php endif; ?>
+							<?php elseif ($this->_var['credit']['passed'] == 2): ?>
+							<div class="status shibai">审核失败</div>
+							<?php else: ?>
+								<div class="status shehezhong">待审核</div>
+							<?php endif; ?>
+						<?php else: ?>
+							<div class="status weishangchuan">未上传</div>
+						<?php endif; ?>
+						<div class="update">
+						<?php if ($this->_var['credit']['passed'] == 1): ?>
+							已认证
+						<?php else: ?>
+							<a href="javascript:void(0);" onclick="openupload(this,'<?php echo $this->_var['credit']['type']; ?>');" rel="<?php if ($this->_var['credit']['user_id'] > 0): ?>补充<?php else: ?>立即<?php endif; ?>上传">
+							<?php if ($this->_var['credit']['user_id'] > 0): ?>补充<?php else: ?>立即<?php endif; ?>上传
+							</a>
+						<?php endif; ?>
+						</div>
+					</div>
+					<div class="J_tb" rel="<?php echo $this->_var['credit']['type']; ?>" style="display:none"></div>
+	    		</li>
+	    		<?php endif; ?>
+				<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	   		</ul>
+		</div>
+		
+		<div class="clearfix f_red" style="margin: 20px 0;">注意：如果上传中遇到问题，请联系客服。</div>
+			
+    </div>
+</div>
+<div class="blank"></div>
+<link rel="stylesheet" href="<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/themes/default/default.css" />
+<script type='text/javascript'  src='<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/kindeditor.js'></script>
+<script type="text/javascript" src="<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/lang/zh_CN.js"></script>
+<?php else: ?>
+<!--ajax-->
+<div class="credit_list" style="padding:0;">
+	    <div class="items ">
+	    	<ul>
+	        	<?php $_from = $this->_var['credit_file']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'credit');if (count($_from)):
+    foreach ($_from AS $this->_var['credit']):
+?>
+	        	<li>
+	        		<div class="tt">
+	        			<?php if ($this->_var['credit']['icon']): ?>
+			        	<div class="icon"><img src="<?php echo $this->_var['credit']['icon']; ?>" height=30 /></div>
+						<?php endif; ?>
+						<h3 class=""><?php echo $this->_var['credit']['type_name']; ?></h3>
+						<?php if ($this->_var['credit']['user_id'] > 0): ?>
+							<?php if ($this->_var['credit']['passed'] == 1): ?>
+								<?php if ($this->_var['credit']['has_expire'] == 1): ?>
+								<div class="status guoqi">审核过期</div>
+								<?php else: ?>
+								<div class="status tongguo">审核通过</div>
+								<?php endif; ?>
+							<?php elseif ($this->_var['credit']['passed'] == 2): ?>
+							<div class="status shibai">审核失败</div>
+							<?php else: ?>
+							<div class="status shehezhong">待审核</div>
+							<?php endif; ?>
+						<?php else: ?>
+							<div class="status weishangchuan">未上传</div>
+						<?php endif; ?>
+						<div class="update">
+						<?php if ($this->_var['credit']['passed'] == 1): ?>
+							已认证
+						<?php else: ?>
+							<a href="javascript:void(0);" onclick="openupload(this,'<?php echo $this->_var['credit']['type']; ?>');" rel="<?php if ($this->_var['credit']['user_id'] > 0): ?>补充<?php else: ?>立即<?php endif; ?>上传">
+							<?php if ($this->_var['credit']['user_id'] > 0): ?>补充<?php else: ?>立即<?php endif; ?>上传
+							</a>
+						<?php endif; ?>
+						</div>
+					</div>
+					<div class="J_tb" rel="<?php echo $this->_var['credit']['type']; ?>" style="display:none"></div>
+	    		</li>
+				<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	   		</ul>
+		</div>
+		
+		<div class="clearfix" style="color: #C94140;margin: 20px 0;">注意：如果上传中遇到问题，请联系客服。</div>
+			
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+	var VAR_MODULE = "m";
+	var VAR_ACTION = "a";
+	var ROOT = '<?php echo $this->_var['APP_ROOT']; ?>/file.php';
+	var ROOT_PATH = '<?php echo $this->_var['APP_ROOT']; ?>';
+	var MAX_FILE_SIZE = "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+	function openupload(ob,type){
+		if($(ob).hasClass("v")){
+			$(ob).html($(ob).attr("rel"));
+			$(ob).removeClass("v");
+			$(".J_tb[rel='"+type+"']").slideUp();
+		}
+		else{
+			$(ob).html("取消"+$(ob).attr("rel"));
+			$(ob).addClass("v");
+			if($.trim($(".J_tb[rel='"+type+"']").html())==""){
+				var ajaxurl = APP_ROOT+"/index.php?ctl=credit&type="+type+"&is_ajax=1";
+				$.ajax({
+					url:ajaxurl,
+					dataType:"json",
+					success:function(ajaxobj){
+						if(ajaxobj.status==1){
+							$(".J_tb[rel='"+type+"']").html(ajaxobj.info);
+							$(".J_tb[rel='"+type+"']").slideDown();
+							bindKindeditor();
+							init_ui_checkbox();
+							init_ui_textbox();
+							init_ui_select();
+						}
+						else
+							$.showErr(ajaxobj.info);
+					}
+				});
+			}
+			else{
+				$(".J_tb[rel='"+type+"']").slideDown();
+			}
+		}
+		
+	}
+</script>
+<?php if ($this->_var['is_ajax'] == 0): ?>
+<?php echo $this->fetch('inc/footer.html'); ?>
+<?php endif; ?>

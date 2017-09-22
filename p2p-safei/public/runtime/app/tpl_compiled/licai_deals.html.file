@@ -1,0 +1,369 @@
+<?php echo $this->fetch('licai/inc/header_licai.html'); ?>
+<?php
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/countUp.min.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/fanwe_utils/countUp.min.js";
+$this->_var['dpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.SuperSlide.2.1.js";
+$this->_var['dcpagejs'][] = $this->_var['TMPL_REAL']."/js/jquery.SuperSlide.2.1.js";
+?>
+<script type="text/javascript" src="<?php 
+$k = array (
+  'name' => 'parse_script',
+  'v' => $this->_var['dpagejs'],
+  'c' => $this->_var['dcpagejs'],
+);
+echo $k['name']($k['v'],$k['c']);
+?>"></script>
+<style type="text/css">
+	body{background:#fff;}
+</style>
+</div>
+<div class="blank0"></div>
+<div class="licai">
+	<div class="licai_deals">
+		<div class="banner_box pr">
+			<!--  海报区域开始  1-->
+			<div class="banner slideBox" id="banner">
+				<div class="btn_tit effect_hd">
+					<ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+					</ul>
+				</div>
+				<div class="banner_cont effect_bd">
+					<ul>
+						<li rel="1"><a href="javascript:void(0);"><adv adv_id="理财列表页广告位1" /></a></li>
+                        <li rel="2"><a href="javascript:void(0);"><adv adv_id="理财列表页广告位2" /></a></li>
+                        <li rel="3"><a href="javascript:void(0);"><adv adv_id="理财列表页广告位3" /></a></li>
+                        <li rel="4"><a href="javascript:void(0);"><adv adv_id="理财列表页广告位4" /></a></li>
+                        <li rel="5"><a href="javascript:void(0);"><adv adv_id="理财列表页广告位5" /></a></li>						
+					</ul>
+				</div>
+				<div class="fy_box" style="display:none">
+					<!--左右翻页按钮，可以不用-->
+					<a class="prev" href="javascript:void(0)"></a>
+					<a class="next" href="javascript:void(0)"></a>
+				</div>
+			</div>
+            <script type="text/javascript">
+				if(!$(".banner_cont ul").has('li').length){ 
+					$("#banner").css("display","none");
+					$(".xf_m").hide();
+				} 
+				
+				$(".btn_tit li").each(function(i,e){
+					var obj = $(".banner_cont ul li:eq("+ i +")");
+					
+					if(obj.length == 0 || obj.has("img").length == 0)
+					{
+						obj.remove();
+						$(e).remove();
+					}
+				});
+				
+				if($(".banner_cont ul").find('li').length==1){ 
+					$(".btn_tit").css("display","none");
+				}
+				else if($(".banner_cont ul").find('li').length>1){
+					$(".btn_tit").css("display","block");
+				}
+				
+				if($(".banner_cont ul").find('li').length>1){
+					jQuery("#banner").slide({mainCell:".banner_cont ul",effect:"fold",autoPlay:true,delayTime:700});
+					$("#banner").mousemove(function(){
+						$(this).find(".prev").show();
+						$(this).find(".next").show();
+					}).mouseout(function(){
+						$(this).find(".prev").hide();
+						$(this).find(".next").hide();
+					});
+				}
+			</script>
+			<!--  海报区域结束  -->
+			<!-- 悬浮登录窗口 开始 -->
+			<div class="xf_m">
+				<div class="xf_wrap">
+					<div class="xf_main">
+						<div class="xf_body">
+							<div class="xf_text" id="xf_text">
+								<div class="xf_hd effect_hd">
+									<?php $_from = $this->_var['rectype_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'rectype_item');$this->_foreach['rectype_items'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['rectype_items']['total'] > 0):
+    foreach ($_from AS $this->_var['rectype_item']):
+        $this->_foreach['rectype_items']['iteration']++;
+?>
+									<span></span>
+									<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+								</div>
+								<div class="xf_cont effect_bd">
+									<ul class="xf_cont_ul">
+										<?php $_from = $this->_var['rectype_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'rectype_item');$this->_foreach['rectype_items'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['rectype_items']['total'] > 0):
+    foreach ($_from AS $this->_var['rectype_item']):
+        $this->_foreach['rectype_items']['iteration']++;
+?>
+										<li>
+											<div class="l_box">
+												<h3><span class="f20 f_red mr15"><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['rectype_item']['name'],
+  'b' => '0',
+  'e' => '20',
+);
+echo $k['name']($k['v'],$k['b'],$k['e']);
+?></span><a href="<?php echo $this->_var['rectype_item']['url']; ?>" target="_blank"  class="ui_button theme_bgcolor">抢先购买</a></h3>
+												<div class="data_box">
+													<ul>
+														<li class="tl">
+															<div class="data_hd">七日年化收益率</div>
+															<div class="data_bd f_red"><span><?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['rectype_item']['average_income_rate'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?></span>%</div>
+														</li>
+														<li class="tc">
+															<div class="data_hd">当前日期</div>
+															<div class="data_bd now_time"></div>
+														</li>
+														<li class="tr last">
+															<div class="data_hd">每万份收益</div>
+															<div class="data_bd"><?php echo $this->_var['rectype_item']['per_million_revenue']; ?></div>
+														</li>
+													</ul>
+												</div>
+												<div class="total_box">
+													<span class="first">当前成交总额：<span class="f_red"><?php echo $this->_var['rectype_item']['subscribing_amount']; ?></span></span>
+													<span>产品规模：<span class="f_red"><?php echo $this->_var['rectype_item']['product_size']; ?></span></span>
+												</div>
+											</div>
+											<div class="r_box">
+												<div class="item_tt">
+													<span>推荐产品</span>
+												</div>
+												<div class="blank10"></div>
+												<div class="item_bd">
+													<ul>
+														<li>
+															<span>*平均1个工作日购买成功，节假日顺延</span>
+														</li>
+														<li>
+															<span>*购买成功后，每日15:00可在余额宝账户中查看收益</span>
+														</li>
+														<li>
+															<span>*随时支取，结算当日不计利息</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+									</ul>
+								</div>
+							</div>
+							<script type="text/javascript">
+								// 悬浮banner
+								(function(){
+									if($(".xf_hd").find("span").length <= 1){
+										$(".xf_hd").find("span").remove();
+									}
+									var $xf_text=$(".xf_text"),
+									 	$xf_hd=$(".xf_text").find(".xf_hd"),
+									 	$xf_cont_ul=$(".xf_text").find(".xf_cont_ul");
+									$xf_cont_ul.find("li:first").animate({
+										top:0, opacity:'show'
+									},600);
+									$xf_hd.find("span:first").addClass("on");
+									$xf_hd.find("span").each(function(i){
+										var $obj=$(this);
+										$obj.on('mousemove',function(){
+											$obj.addClass("on").siblings().removeClass("on");
+											$(".xf_cont_ul>li").eq(i).animate({
+												top:0, opacity: 'show'
+											},600).siblings().stop(true).css("top","8px").hide();
+										});
+									});
+								})();
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 悬浮登录窗口 结束 -->
+		</div>
+		<div class="totals_box">
+			<div class="wrap">
+				<span>理财宝已经为用户赚了：<span class="f22 f_red" id="total_money"></span>&nbsp;收益</span>
+			</div>
+		</div>
+		<div class="wrap">
+			<div class="selects_box">
+				<dl>
+					<dt>起购金额：</dt>
+					<?php $_from = $this->_var['money_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'money');if (count($_from)):
+    foreach ($_from AS $this->_var['money']):
+?>
+					<dd><a href="<?php echo $this->_var['money']['url']; ?>" <?php if ($this->_var['money']['selected'] == 1): ?>class="cur"<?php endif; ?>><?php echo $this->_var['money']['name']; ?></a></dd>
+					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+				</dl>
+				<div class="blank20"></div>
+				<dl>
+					<dt>年化收益：</dt>
+					<?php $_from = $this->_var['rate_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'rate');if (count($_from)):
+    foreach ($_from AS $this->_var['rate']):
+?>
+					<dd><a href="<?php echo $this->_var['rate']['url']; ?>" <?php if ($this->_var['rate']['selected'] == 1): ?>class="cur"<?php endif; ?>><?php echo $this->_var['rate']['name']; ?></a></dd>
+					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+				</dl>
+			</div>
+			<div class="deals_box">
+				<div class="deals_select">
+					<ul>
+						<?php $_from = $this->_var['orderby_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'orderby');if (count($_from)):
+    foreach ($_from AS $this->_var['orderby']):
+?>
+						<li>
+							<a href="<?php echo $this->_var['orderby']['url']; ?>" <?php if ($this->_var['orderby']['selected'] == 1): ?>class="cur"<?php endif; ?>>
+							<?php if ($this->_var['orderby']['key'] != ''): ?><i class="<?php if ($this->_var['orderby']['descby'] == 'DESC'): ?>down<?php else: ?>up<?php endif; ?>"></i><?php endif; ?><?php echo $this->_var['orderby']['name']; ?>
+							</a>
+						</li>
+						<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+					</ul>
+				</div>
+				<div class="deals_list">
+					<?php echo $this->fetch('licai/inc/licai_deal_list.html'); ?>
+				</div>
+			</div>
+			<div class="l_r_layout">
+				<div class="l_layout">
+					<div class="hot_box">
+						<h3 class="common_tt"><span>热卖产品</span></h3>
+						<div class="main">
+							<div class="main_hd">
+								<span class="f_red">猜你喜欢</span>
+							</div>
+							<div class="main_bd">
+								<ul>
+									<?php $_from = $this->_var['hot_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'hot_item');$this->_foreach['hot_items'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['hot_items']['total'] > 0):
+    foreach ($_from AS $this->_var['hot_item']):
+        $this->_foreach['hot_items']['iteration']++;
+?>
+										<?php if ($this->_foreach['hot_items']['iteration'] <= 6): ?>
+									 	<?php if ($this->_foreach['hot_items']['iteration'] % 3 == 1): ?>
+				                        <li>
+				                        <?php endif; ?>
+											<div class="list_box">
+												<a href="<?php echo $this->_var['hot_item']['url']; ?>" target="_blank">
+													<div class="img mr20 f_l">
+														<img src="<?php if ($this->_var['hot_item']['img'] == ''): ?><?php echo $this->_var['TMPL']; ?>/images/empty_thumb.gif<?php else: ?><?php 
+$k = array (
+  'name' => 'get_spec_image',
+  'v' => $this->_var['hot_item']['img'],
+  'w' => '200',
+  'h' => '200',
+);
+echo $k['name']($k['v'],$k['w'],$k['h']);
+?><?php endif; ?>" alt="<?php echo $this->_var['hot_item']['name']; ?>" />
+													</div>
+													<div class="text f_l">
+														<div class="text_hd">
+															<div class="big_tt"><?php echo $this->_var['hot_item']['name']; ?></div>
+															<?php if ($this->_foreach['hot_items']['iteration'] % 3 == 1): ?>
+															<div class="small_tt f_999">最近3个月收益率&nbsp;<?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['hot_item']['average_income_rate'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?>%</div>
+															<div class="blank5"></div>
+															<span class="f12 f_999">( 截止<?php echo $this->_var['hot_item']['end_buy_date']; ?> )</span>
+															<?php endif; ?>
+														</div>
+														<div class="text_bd">
+															<dl class="dl_l">
+																<dt>最新净值</dt>
+																<dd class="f_red"><span><?php echo $this->_var['hot_item']['net_value']; ?></span>元</dd>
+															</dl>
+															<dl class="dl_r">
+																<dt>投资风险</dt>
+																<dd><?php if ($this->_var['hot_item']['risk_rank'] == 0): ?>低<?php elseif ($this->_var['hot_item']['risk_rank'] == 1): ?>中<?php else: ?>高<?php endif; ?></dd>
+															</dl>
+														</div>
+													</div>
+												</a>
+											</div>
+									 	<?php if ($this->_foreach['hot_items']['iteration'] % 3 == 0): ?>
+				                        </li>
+				                        <?php endif; ?>
+			                        <?php endif; ?>
+									<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="r_layout">
+					<h3 class="common_tt" style="text-indent:-999em"><span>推广</span></h3>
+					<div class="r_m_banner">
+						<adv adv_id="理财列表页右侧广告位1" />
+					</div>
+					<div class="blank20"></div>
+					<div class="r_m_banner">
+						<adv adv_id="理财列表页右侧广告位2" />
+					</div>
+					<div class="blank20"></div>
+					<div class="r_m_banner">
+						<adv adv_id="理财列表页右侧广告位3" />
+					</div>
+					<div class="blank20"></div>
+					<div class="r_m_banner">
+						<adv adv_id="理财列表页右侧广告位4" />
+					</div>
+				</div>
+				<div class="blank0"></div>
+			</div>
+			<div class="blank20"></div>
+			<div class="mb20">
+				<adv adv_id="理财列表页底部广告位" />
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+(function(){
+	// 统计数值滚动
+	var options = {
+	    useEasing : true, 
+	    useGrouping : true, 
+	    separator : ',', 
+	    decimal : '.', 
+	    prefix : '', 
+	    suffix : '' 
+	};
+	var total_money = new countUp("total_money", 0, <?php echo $this->_var['user_income']; ?>, 2, 2.5, options);
+	total_money.start();
+})();
+
+(function(){
+	$hot_box_li=$(".hot_box li");
+	$hot_box_li.find(".list_box:first").addClass("l_box").siblings().addClass("r_box");
+	$hot_box_li.find(".list_box:nth-child(2)").addClass("mb20");
+})();
+(function(){
+	var d = new Date();
+	var d_str = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+	$(".now_time").html(d_str);
+})();
+</script>
+<div class="blank0"></div>
+<div>
+<?php echo $this->fetch('inc/footer.html'); ?>

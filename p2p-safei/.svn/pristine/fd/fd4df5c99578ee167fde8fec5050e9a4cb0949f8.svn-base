@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+<style>
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+/* CSS Document */
+body{padding:0; font-family:"Microsoft YaHei",Arial;font-size:14px;}
+.fl{float: left;}
+.fr{float: right;}
+.margin{margin:0 auto;}
+.hidden{overflow:hidden;}
+.width1200{width:1200px;}
+/* top */
+.yh_banner{ background:url(images/yh_banner.jpg) no-repeat scroll 50% center; height:598px; min-width:1200px;}
+/* yh_lc_bg */
+.yh_lc_bg{ background-color:#f2f2f2; width:100%; min-width:1200px; padding:40px 0px;}
+.yh_lc_bg dd{ text-align:center; font-size:48px; color:#2650a4; font-weight:bold; height:75px;}
+.yh_lc_bg ol{ font-size:18px; color:#707071; text-align:center; padding-bottom:45px; height:30px; line-height:30px; background:url(images/xia.png) no-repeat scroll center 35px;}
+.yh_lc_bg .img{ text-align:center; padding:20px 0px;}
+/* yh_tit */
+.yh_tit dd{ font-size:40px; color:#707071; text-align:center; font-weight:bold; padding-top:70px;}
+.yh_tit ol{ text-align:center; font-size:40px; color:#707071; padding-top:30px;}
+/*yh_bg*/
+.yh_bg{ width:100%;min-width:1200px; margin-top:110px; position:relative;}
+.yh_bg dd{ position:relative; z-index:8;text-align:center; font-size:30px; color:#fff; width:600px; height:80px; line-height:80px; background:url(images/yh2.png) no-repeat; margin:0px auto;}
+.yh_bg div{ padding-top:90px; background:url(images/yh3.png) no-repeat scroll 50% center; width:100%; height:391px; min-width:1200px; margin-top:-40px;}
+.yh_bg div p{ width:1180px; margin:0px auto; font-size:18px; color:#fff; line-height:35px;text-indent: 30px; }
+.yh_bg div p i{ color:#f2c820;}
+.yh_bg2{ background:url(images/yh4.png) no-repeat scroll 0px top; width:1329px; margin:0px auto; overflow:hidden; height:1008px; margin-bottom:90px;}
+.yh_bg2 dd{text-align:center; font-size:30px; color:#fff; width:600px; height:80px; line-height:80px; background:url(images/yh2.png) no-repeat; margin:60px auto;}
+
+/*wt_bg*/
+.wt_bg{ background-color:#f2f2f2; width:100%;}
+.wt_bg dd{ text-align:center; padding:50px 0px;}
+.wt_bg dd b{ font-size:43px;}
+.wt_bg dd p{ color:#959595; font-size:14px;}
+.wt_bg ul{ width:1240px; margin:0px auto; overflow:hidden; padding-bottom:65px;}
+.wt_bg ul li{ overflow:hidden;}
+.wt_bg ul li ol{ font-weight:bold; font-size:18px; color:#6b6c6e; height:50px; line-height:50px;}
+.wt_bg ul li div{ background-color:#fff; padding:10px 0px 10px 50px; min-height:80px;}
+.wt_bg ul li div p{ font-size:14px; color:#484747; line-height:30px;}
+.wt_bg ul li div p i{ color:#2650a4;}
+
+/* foot */
+.foot_bg{ background-color:#282e3b; height:260px; padding-top:60px;}
+.foot_bg div.ul_div{ width:510px; height:165px;}
+.foot_bg div.ul_div ul{ float:left; overflow:hidden; width:25%;}
+.foot_bg div.ul_div ul li{ overflow:hidden; line-height:30px;}
+.foot_bg div.ul_div ul li.top{ font-size:18px; color:#9099b0;}
+.foot_bg div.ul_div ul li a{ color:#9099b0;}
+.foot_bg div.ul_div ul li a:hover{ text-decoration:underline;}
+.foot_bg div.img_div{ width:390px;}
+.foot_bg div.img_div p{ overflow:hidden;margin-bottom:15px;color:#e7e8ea;}
+.foot_bg div.img_div p.sz{padding-left:80px;height:30px;line-height:30px;font-size:25px;font-weight:bold;background:url(images/foot1.png) no-repeat scroll 20px 0px;}
+.foot_bg div.img_div p.sj i.fl,.foot_bg div.img_div p.qq i.fl{ font-size:16px; color:#9099b0; margin-right:15px;}
+.foot_bg div.img_div p.sj i.fr,.foot_bg div.img_div p.qq i.fr{ font-size:16px; color:#9099b0; width:285px; padding-left:25px;}
+.foot_bg div.img_div p.sj i.fr{ background:url(images/foot_nav.png) no-repeat scroll 0px 2px;}
+.foot_bg div.img_div p.qq i.fr{ background:url(images/foot_nav.png) no-repeat scroll 0px -30px;}
+.foot_bg .foot_con{ color:#5d667d; height:90px; text-align:center;}
+.foot_bg .foot_con p{ margin:5px 0px;}
+.foot_bg .foot_con p img{ margin:0px 10px;}
+
+.foot_bg ul.fr{ width:300px;}
+.foot_bg ul.fr li{ text-align:center; margin-left:10px; color:#fff; font-size:14px;}
+.foot_bg ul.fr li p{ line-height:30px;}
+</style>
+</head>
+<body>
+<!--头部-->
+<div class="yh_banner"></div>
+<!--操作流程指引-->
+<div class="yh_lc_bg">
+	<div class="width1200 hidden margin">
+    	<dd>操作流程指引</dd>
+        <ol>上海银行存管系统支持IE内核浏览器（例如：遨游、360安全浏览器等）火狐浏览器内核浏览器。</ol>
+        <div class="img"><img src="images/yh1.png" /></div>
+    </div>
+</div>
+<!--yh_tit-->
+<div class="width1200 hidden margin yh_tit">
+	<dd>合规是硬道理</dd>
+	<ol>自律领跑行业</ol>
+</div>
+<!--yh_bg-->
+<div class="yh_bg">
+	<dd>萨飞宝为何接入银行存管系统？</dd>
+    <div>
+        <p>2016年是互联网金融的监管元年，随着《网络借贷信息中介机构业务活动管理暂行办法》的落地，P2P网贷行业经历了监管政策从无到有的过程，行业监管终于有法可依。银行存管作为P2P网贷平台合规性的一大硬性指标，成了网贷平台合规之路上的重要门槛，各P2P平台都 在为跨越这道门槛而努力。</p>
+        <p>萨飞宝通自上线以来，就一直以用户为本，致力于不断完善用户服务，保障投资人的资金安全是我们义不容辞的责任。萨飞投资始终坚持合法合规的道路，积极响应监管部门的要求。</p>
+        <p><i>萨飞投资接入银行资金存管是积极配合监管，严格自律并领跑行业之举，直接接入上海银行资金存管系统，归属“直接存管”模式，完全符合监管要求。</i></p>
+    </div>
+</div>
+
+<div class="yh_bg2">
+	<dd>上海银行如何保保障我的资金安全？</dd>
+</div>
+
+<!--存管问题-->
+<div class="wt_bg">
+	<dd>
+    	<b>存管问题</b>
+    	<p>QUESTION AND ANSWER</p>
+    </dd>
+    <ul>
+    	<li>
+        	<ol>1Q：什么是真的资金银行存管?</ol>
+        	<div>
+            <p>A：所有的出借人以及借款人在上海银行开设E账户，在选择资金出借时，选择手机银行、网上银行、银行柜台转账至上海银行E账户中，资金由上海银行划拨结算。</p>
+        	</div>
+        </li>
+        <li>
+        	<ol>2Q：萨飞宝与银行的资金存管才是真的资金存管?</ol>
+        	<div>
+            <p>A：萨飞宝与上海银行合作的资金存管模式下，用户需要在上海银行专门开通独立的存管子账户。上海银行会对所有萨飞宝用户的交易与资金流水进行簿记，以此实现账户的独立管理，避免平台进行挪用。同时，用户也可在上海银行提供的投融资平台查询资金余额、资产交易情况等数据，避免平台提供不实信息。</p>
+        	</div>
+        </li>
+        <li>
+        	<ol>3Q：如何分辨平台与银行是直接资金存管?</ol>
+        	<div>
+            <p>A：看用户是否在银行开设独立子账户；</p>
+            <p>B : 看交易行为是否只发生在银行独立子账户之间，监管政策要求存管银行不得委托网贷机构和第三方机构代开出借人和借款人交易结算资金账户；</p>
+            <p>C : 看银行是否可监管交易全流程，交易行为是否完全由用户授权。</p>
+        	</div>
+        </li>
+        <li>
+        	<ol>4Q：上海银行存管系统支持哪些浏览器和系统！</ol>
+        	<div>
+            <p>A：上海银行浏览器建议使用：IE（含IE8、9、10）及IE内核浏览器（如遨游、360安全浏览器等）、Firefox火狐浏览器，操作系统支持：Windows XP、Windows Vista、Windows 7、Windows 8。<i>不支持OS X系统和Windows 10系统。</i></p>
+            </div>
+        </li>
+        <li>
+        	<ol>5Q：上海银行存管传说需要刷脸是真的吗??</ol>
+        	<div>
+            <p>A：目前上海银行电脑版仅支持绑定一张储蓄卡，如需绑定多张卡片（华兴暂时关闭该功能）、换卡，请下载“上海银行投融资平台APP”进行换卡操作（要刷脸哦~）。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<!--底部-->
+<div class="foot_bg">
+	<div class="width1200 hidden margin">
+    	<div class="fl ul_div">
+        	<ul>
+            	<li class="top">关于萨飞</li>
+                <li><a href="">核心团队</a></li>
+                <li><a href="">公司证照</a></li>
+                <li><a href="">公司简介</a></li>
+                <li><a href="">资费标准</a></li>
+            </ul>
+            <ul>
+            	<li class="top">基本介绍</li>
+                <li><a href="">关于p2p信贷</a></li>
+                <li><a href="">常用名词解释</a></li>
+            </ul>
+            <ul>
+            	<li class="top">安全保护</li>
+                <li><a href="">政策法规</a></li>
+                <li><a href="">政策法规</a></li>
+            </ul>
+            <ul>
+            	<li class="top">了解更多</li>
+                <li><a href="">咨询热点</a></li>
+            </ul>
+        </div>
+        <div class="fl img_div">
+        	<p class="sz">021-65378310</p>
+            <p class="sj"><i class="fl">工作时间</i><i class="fr">周一到周日：9:00-18:00</i></p>
+            <p class="qq"><i class="fl">	  </i><i class="fr">官方QQ群 ：655452159</i></p>
+            
+        </div>
+        <ul class="fr">
+        	<li class="fl">
+                <img src="images/ewm1.jpg" />
+                <p>下载安卓APP</p>
+            </li>
+            <li class="fl">
+                <img src="images/ewm2.jpg" />
+                <p>下载苹果APP</p>
+            </li>
+            <li class="fr">
+                <img src="images/ewm3.jpg" />
+                <p>关注微信</p>
+            </li>
+        </ul>
+    </div>
+    <div class="width1200 hidden margin foot_con">
+    	<p><img src="images/foot2.png" /><img src="images/foot2.png" /><img src="images/foot3.png" /></p>
+    	<p>Copyright@2017 www.safeionline.com All rights reserved︱萨飞投资管理（上海）有限公司︱ 沪ICP备17013896号-1</p>
+    </div>
+</div>
+<!--底部 en-->
+</body>
+</html>

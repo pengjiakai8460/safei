@@ -1,0 +1,140 @@
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001288010845","md5":"92913f36a6f58169d7c14e981392f194","order_amt":"200","order_pay_error":"","order_id":"20170811104758788","order_date":"20170811","resv1":""}
+0002900F0486447|20170811104758788|20170811|200|11|0000|||001288010845|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+92913f36a6f58169d7c14e981392f194***92913f36a6f58169d7c14e981392f194
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001288010845","md5":"92913f36a6f58169d7c14e981392f194","order_amt":"200","order_pay_error":"","order_id":"20170811104758788","order_date":"20170811","resv1":""}
+0002900F0486447|20170811104758788|20170811|200|11|0000|||001288010845|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+92913f36a6f58169d7c14e981392f194***92913f36a6f58169d7c14e981392f194
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001290175311","md5":"60f7ef5119d588c854bd44ba12c99f67","order_amt":"100","order_pay_error":"","order_id":"20170813010050631","order_date":"20170813","resv1":""}
+0002900F0486447|20170813010050631|20170813|100|11|0000|||001290175311|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+60f7ef5119d588c854bd44ba12c99f67***60f7ef5119d588c854bd44ba12c99f67
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001290175311","md5":"60f7ef5119d588c854bd44ba12c99f67","order_amt":"100","order_pay_error":"","order_id":"20170813010050631","order_date":"20170813","resv1":""}
+0002900F0486447|20170813010050631|20170813|100|11|0000|||001290175311|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+60f7ef5119d588c854bd44ba12c99f67***60f7ef5119d588c854bd44ba12c99f67
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001290175311","md5":"60f7ef5119d588c854bd44ba12c99f67","order_amt":"100","order_pay_error":"","order_id":"20170813010050631","order_date":"20170813","resv1":""}
+0002900F0486447|20170813010050631|20170813|100|11|0000|||001290175311|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+60f7ef5119d588c854bd44ba12c99f67***60f7ef5119d588c854bd44ba12c99f67
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001290882771","md5":"e716d3bb517c1845eda3ceb773fe1696","order_amt":"1000","order_pay_error":"","order_id":"20170814102317771","order_date":"20170814","resv1":""}
+0002900F0486447|20170814102317771|20170814|1000|11|0000|||001290882771|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+e716d3bb517c1845eda3ceb773fe1696***e716d3bb517c1845eda3ceb773fe1696
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001291123897","md5":"e896cbd389f208e743d14a6f50ae37b1","order_amt":"1000","order_pay_error":"","order_id":"20170814014320325","order_date":"20170814","resv1":""}
+0002900F0486447|20170814014320325|20170814|1000|11|0000|||001291123897|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+e896cbd389f208e743d14a6f50ae37b1***e896cbd389f208e743d14a6f50ae37b1
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001297079449","md5":"6223d8a03e352c3473e4ee845922896a","order_amt":"100","order_pay_error":"","order_id":"20170820114028829","order_date":"20170820","resv1":""}
+0002900F0486447|20170820114028829|20170820|100|11|0000|||001297079449|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+6223d8a03e352c3473e4ee845922896a***6223d8a03e352c3473e4ee845922896a
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001297985669","md5":"1410e7ebafb2a166f179394edbf2b45c","order_amt":"200","order_pay_error":"","order_id":"20170821111634292","order_date":"20170821","resv1":""}
+0002900F0486447|20170821111634292|20170821|200|11|0000|||001297985669|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+1410e7ebafb2a166f179394edbf2b45c***1410e7ebafb2a166f179394edbf2b45c
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300252484","md5":"4c4394f636bb0c9ca7c600be950e008b","order_amt":"200","order_pay_error":"","order_id":"20170823120422346","order_date":"20170823","resv1":""}
+0002900F0486447|20170823120422346|20170823|200|11|0000|||001300252484|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+4c4394f636bb0c9ca7c600be950e008b***4c4394f636bb0c9ca7c600be950e008b
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300364863","md5":"a48a9d8f05cc15cd5f6e88ee1d116365","order_amt":"100","order_pay_error":"","order_id":"20170823015638827","order_date":"20170823","resv1":""}
+0002900F0486447|20170823015638827|20170823|100|11|0000|||001300364863|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+a48a9d8f05cc15cd5f6e88ee1d116365***a48a9d8f05cc15cd5f6e88ee1d116365
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300367406","md5":"2cd50f268985935fc79f547771ba7ae1","order_amt":"100","order_pay_error":"","order_id":"20170823015828449","order_date":"20170823","resv1":""}
+0002900F0486447|20170823015828449|20170823|100|11|0000|||001300367406|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+2cd50f268985935fc79f547771ba7ae1***2cd50f268985935fc79f547771ba7ae1
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300364863","md5":"a48a9d8f05cc15cd5f6e88ee1d116365","order_amt":"100","order_pay_error":"","order_id":"20170823015638827","order_date":"20170823","resv1":""}
+0002900F0486447|20170823015638827|20170823|100|11|0000|||001300364863|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+a48a9d8f05cc15cd5f6e88ee1d116365***a48a9d8f05cc15cd5f6e88ee1d116365
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300370023","md5":"3b2846072774635b5a80371773fb534d","order_amt":"100","order_pay_error":"","order_id":"20170823015941672","order_date":"20170823","resv1":""}
+0002900F0486447|20170823015941672|20170823|100|11|0000|||001300370023|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+3b2846072774635b5a80371773fb534d***3b2846072774635b5a80371773fb534d
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300370023","md5":"3b2846072774635b5a80371773fb534d","order_amt":"100","order_pay_error":"","order_id":"20170823015941672","order_date":"20170823","resv1":""}
+0002900F0486447|20170823015941672|20170823|100|11|0000|||001300370023|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+3b2846072774635b5a80371773fb534d***3b2846072774635b5a80371773fb534d
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300370583","md5":"6c50afa38ce89d5c332ef1236caacf8d","order_amt":"100","order_pay_error":"","order_id":"20170823020027724","order_date":"20170823","resv1":""}
+0002900F0486447|20170823020027724|20170823|100|11|0000|||001300370583|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+6c50afa38ce89d5c332ef1236caacf8d***6c50afa38ce89d5c332ef1236caacf8d
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300370583","md5":"6c50afa38ce89d5c332ef1236caacf8d","order_amt":"100","order_pay_error":"","order_id":"20170823020027724","order_date":"20170823","resv1":""}
+0002900F0486447|20170823020027724|20170823|100|11|0000|||001300370583|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+6c50afa38ce89d5c332ef1236caacf8d***6c50afa38ce89d5c332ef1236caacf8d
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001300371420","md5":"837002796b9e2f1a9185daf3e49300c8","order_amt":"100","order_pay_error":"","order_id":"20170823020111419","order_date":"20170823","resv1":""}
+0002900F0486447|20170823020111419|20170823|100|11|0000|||001300371420|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+837002796b9e2f1a9185daf3e49300c8***837002796b9e2f1a9185daf3e49300c8
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001307485923","md5":"99706cc9a348213db25e38ae8980fed0","order_amt":"10000","order_pay_error":"","order_id":"20170830034608404","order_date":"20170830","resv1":""}
+0002900F0486447|20170830034608404|20170830|10000|11|0000|||001307485923|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+99706cc9a348213db25e38ae8980fed0***99706cc9a348213db25e38ae8980fed0
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001309236428","md5":"272532e44f159c48108516a81adc2ff8","order_amt":"10000","order_pay_error":"","order_id":"20170901102749236","order_date":"20170901","resv1":""}
+0002900F0486447|20170901102749236|20170901|10000|11|0000|||001309236428|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+272532e44f159c48108516a81adc2ff8***272532e44f159c48108516a81adc2ff8
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001309236428","md5":"272532e44f159c48108516a81adc2ff8","order_amt":"10000","order_pay_error":"","order_id":"20170901102749236","order_date":"20170901","resv1":""}
+0002900F0486447|20170901102749236|20170901|10000|11|0000|||001309236428|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+272532e44f159c48108516a81adc2ff8***272532e44f159c48108516a81adc2ff8
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001312102780","md5":"9b790b536910714c162680910923ed27","order_amt":"500","order_pay_error":"","order_id":"20170904094048887","order_date":"20170904","resv1":""}
+0002900F0486447|20170904094048887|20170904|500|11|0000|||001312102780|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+9b790b536910714c162680910923ed27***9b790b536910714c162680910923ed27
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001312102780","md5":"9b790b536910714c162680910923ed27","order_amt":"500","order_pay_error":"","order_id":"20170904094048887","order_date":"20170904","resv1":""}
+0002900F0486447|20170904094048887|20170904|500|11|0000|||001312102780|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+9b790b536910714c162680910923ed27***9b790b536910714c162680910923ed27
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001313650962","md5":"06f7ea8fbef45ce2f7b1d89e64bf89be","order_amt":"500","order_pay_error":"","order_id":"20170905042301359","order_date":"20170905","resv1":""}
+0002900F0486447|20170905042301359|20170905|500|11|0000|||001313650962|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+06f7ea8fbef45ce2f7b1d89e64bf89be***06f7ea8fbef45ce2f7b1d89e64bf89be
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001313650962","md5":"06f7ea8fbef45ce2f7b1d89e64bf89be","order_amt":"500","order_pay_error":"","order_id":"20170905042301359","order_date":"20170905","resv1":""}
+0002900F0486447|20170905042301359|20170905|500|11|0000|||001313650962|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+06f7ea8fbef45ce2f7b1d89e64bf89be***06f7ea8fbef45ce2f7b1d89e64bf89be
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001314254151","md5":"f65fb03b5c632f21348ab4ea285b8fae","order_amt":"500","order_pay_error":"","order_id":"20170906094432502","order_date":"20170906","resv1":""}
+0002900F0486447|20170906094432502|20170906|500|11|0000|||001314254151|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+f65fb03b5c632f21348ab4ea285b8fae***f65fb03b5c632f21348ab4ea285b8fae
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001314254151","md5":"f65fb03b5c632f21348ab4ea285b8fae","order_amt":"500","order_pay_error":"","order_id":"20170906094432502","order_date":"20170906","resv1":""}
+0002900F0486447|20170906094432502|20170906|500|11|0000|||001314254151|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+f65fb03b5c632f21348ab4ea285b8fae***f65fb03b5c632f21348ab4ea285b8fae
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001315333211","md5":"3c11ed98dd2694ecf8aeceac2aa73a7f","order_amt":"500","order_pay_error":"","order_id":"20170907093558681","order_date":"20170907","resv1":""}
+0002900F0486447|20170907093558681|20170907|500|11|0000|||001315333211|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+3c11ed98dd2694ecf8aeceac2aa73a7f***3c11ed98dd2694ecf8aeceac2aa73a7f
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001315333211","md5":"3c11ed98dd2694ecf8aeceac2aa73a7f","order_amt":"500","order_pay_error":"","order_id":"20170907093558681","order_date":"20170907","resv1":""}
+0002900F0486447|20170907093558681|20170907|500|11|0000|||001315333211|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+3c11ed98dd2694ecf8aeceac2aa73a7f***3c11ed98dd2694ecf8aeceac2aa73a7f
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001315402475","md5":"f6cd402073d5d941ed2a0c40e25c0e7f","order_amt":"10000","order_pay_error":"","order_id":"20170907103259636","order_date":"20170907","resv1":""}
+0002900F0486447|20170907103259636|20170907|10000|11|0000|||001315402475|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+f6cd402073d5d941ed2a0c40e25c0e7f***f6cd402073d5d941ed2a0c40e25c0e7f
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001315402475","md5":"f6cd402073d5d941ed2a0c40e25c0e7f","order_amt":"10000","order_pay_error":"","order_id":"20170907103259636","order_date":"20170907","resv1":""}
+0002900F0486447|20170907103259636|20170907|10000|11|0000|||001315402475|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+f6cd402073d5d941ed2a0c40e25c0e7f***f6cd402073d5d941ed2a0c40e25c0e7f
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001315402475","md5":"f6cd402073d5d941ed2a0c40e25c0e7f","order_amt":"10000","order_pay_error":"","order_id":"20170907103259636","order_date":"20170907","resv1":""}
+0002900F0486447|20170907103259636|20170907|10000|11|0000|||001315402475|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+f6cd402073d5d941ed2a0c40e25c0e7f***f6cd402073d5d941ed2a0c40e25c0e7f
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001316492749","md5":"bf326db5059563c1d03df5a58c645b14","order_amt":"500","order_pay_error":"","order_id":"20170908094949702","order_date":"20170908","resv1":""}
+0002900F0486447|20170908094949702|20170908|500|11|0000|||001316492749|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+bf326db5059563c1d03df5a58c645b14***bf326db5059563c1d03df5a58c645b14
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001317639441","md5":"509e455517625ea0514f9a6207316688","order_amt":"200","order_pay_error":"","order_id":"20170909094756432","order_date":"20170909","resv1":""}
+0002900F0486447|20170909094756432|20170909|200|11|0000|||001317639441|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+509e455517625ea0514f9a6207316688***509e455517625ea0514f9a6207316688
+succ ok!
+{"ctl":"payment","act":"notify","class_name":"fuiou","order_st":"11","txn_cd":"B21","mchnt_cd":"0002900F0486447","order_pay_code":"0000","fy_ssn":"001317639441","md5":"509e455517625ea0514f9a6207316688","order_amt":"200","order_pay_error":"","order_id":"20170909094756432","order_date":"20170909","resv1":""}
+0002900F0486447|20170909094756432|20170909|200|11|0000|||001317639441|5zy57pkl08i0ycenyjd2m33mm52dkxwq
+509e455517625ea0514f9a6207316688***509e455517625ea0514f9a6207316688
+succ ok!

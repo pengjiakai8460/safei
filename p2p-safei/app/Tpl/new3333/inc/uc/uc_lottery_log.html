@@ -1,0 +1,21 @@
+
+<div class="uc_box bdd bt0">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc-table">
+			<tr>
+				<th>奖品名称</th>
+				<th>状态</th>
+				<th>中奖时间</th>
+			</tr>
+			{foreach from=$list item=log key=key name="logs"}
+			<tr class="item {if $key mod 2 eq 1}item_1{/if}" {if $smarty.foreach.logs.last}style="border-bottom:0"{/if}>
+				<td>{$log.goods_name}</td>
+				<td>{$log.status}</td>
+				<td>{$log.time_create}</td>
+			</tr>
+			{/foreach}
+	</table>
+	
+	<div class="blank"></div>
+	<div class="pages">{$pages}</div>
+	<div class="blank2"></div>
+</div>

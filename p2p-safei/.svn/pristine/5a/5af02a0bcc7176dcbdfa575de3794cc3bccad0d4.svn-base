@@ -1,0 +1,10 @@
+<?php
+return array(
+'DB_HOST'=>'rm-bp1lihb213ntg65g5o.mysql.rds.aliyuncs.com',
+'DB_NAME'=>'safei_mysql',
+'DB_USER'=>'safeisql',
+'DB_PWD'=>'3O232OSD3die29',
+'DB_PORT'=>'3306',
+'DB_PREFIX'=>'p2p_',
+);
+?>

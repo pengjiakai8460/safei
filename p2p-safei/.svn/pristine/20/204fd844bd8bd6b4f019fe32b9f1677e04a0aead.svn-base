@@ -1,0 +1,107 @@
+<?php
+
+/**
+  后台通知
+ */
+require '../system/common.php';
+require 'banklist.php';
+
+//
+$payment = $GLOBALS['db']->getRow("select id,config from " . DB_PREFIX . "payment where class_name='fuiouwap'");
+
+$payment['config'] = unserialize($payment['config']);
+
+$mchnt_key = $payment['config']['fuiou_key'];
+// 测试密钥
+
+$res = array();
+$res['version'] = $_REQUEST['VERSION'];
+$res['type'] = $_REQUEST['TYPE'];
+$res['code'] = $_REQUEST['RESPONSECODE'];
+$res['msg'] = $_REQUEST['RESPONSEMSG'];
+$res['mchntcd'] = $_REQUEST['MCHNTCD'];
+$res['order_id'] = $_REQUEST['MCHNTORDERID'];
+$res['fuiou_order_id'] = $_REQUEST['ORDERID'];
+$res['bank_card'] = $_REQUEST['BANKCARD'];
+$res['amt'] = $_REQUEST['AMT'];
+$res['sign'] = $_REQUEST['SIGN'];
+$money = $res['amt'] / 100;
+
+$_data = $res['type'] . "|" . $res['version'] . "|" . $res['code'] . "|" . $res['mchntcd'] . "|" . $res['order_id'] . "|" . $res['fuiou_order_id'] . "|" . $res['amt'] . "|" . $res['bank_card'] . "|" . $mchnt_key;
+$_md5 = md5($_data);
+
+//开始初始化参数
+$payment_notice_sn = $res['order_id'];
+//$money = $res['amt'];
+//$payment_id = $payment['id'];
+$outer_notice_sn = $res['fuiou_order_id'];
+file_put_contents("fuionpay.txt", json_encode($_REQUEST) . "\r\n", FILE_APPEND);
+file_put_contents("fuionpay.txt", $_data . "\r\n", FILE_APPEND);
+file_put_contents("fuionpay.txt", $_md5 . '***' . $res['sign'] . "\r\n", FILE_APPEND);
+
+if ($_md5 == $res['sign'] && $res['code'] == '0000') {
+    file_put_contents("fuionpay.txt", "succ ok!\r\n", FILE_APPEND);
+    $payment_notice = $GLOBALS['db']->getRow("select * from " . DB_PREFIX . "payment_notice where notice_sn = '" . $res['order_id'] . "'");
+ 
+    require_once APP_ROOT_PATH . "system/libs/cart.php";
+	 
+    $rs = payment_paid($payment_notice['id'],$res['fuiou_order_id']);
+
+    /*ly修改*/
+    $userinfo = $GLOBALS['db']->getRow("select * from ".DB_PREFIX. "user where id = ".$payment_notice['user_id']);
+    /*获取银行分类ID*/
+    $bank_id=bankInfo($res['bank_card'],$banklist);
+    if($userinfo['is_bank'] == 0)
+    {
+        $update = $GLOBALS['db']->getRow("update ".DB_PREFIX."user set is_bank = 1 , idcardpassed = 1 where id = ".$payment_notice['user_id']);
+        $data = array(
+            'user_id' => $userinfo['id'],
+            'bank_id' => $bank_id,
+            'bankcard'  => $userinfo['bank_number'],
+            'real_name'  => $userinfo['real_name'],
+            'region_lv1' => 1,
+            'region_lv2' => 1,
+            'region_lv3' => 1,
+            'region_lv4' => 1,
+            'bankzone'   => '0'
+        );
+        $GLOBALS['db']->autoExecute(DB_PREFIX."user_bank",$data,"INSERT");
+    }
+    $sum_money = $userinfo['bank_change_money'] + $money;
+    $bank_change_money = $GLOBALS['db']->getRow("update ". DB_PREFIX ."user set bank_change_money = ".$sum_money." where id = ".$payment_notice['user_id']);
+
+    $url = APP_ROOT . "/../wap/member.php?ctl=uc_center";
+    app_redirect($url);
+	
+} else {
+	
+    $url = APP_ROOT . "/../wap/member.php?ctl=uc_center";
+    app_redirect($url);
+	
+}
+
+function bankInfo($card,$bankList)
+{
+	$card_8 = substr($card, 0, 8);
+	if (isset($bankList[$card_8])) {
+		echo $bankList[$card_8];
+		return;
+	}
+	$card_6 = substr($card, 0, 6);
+	if (isset($bankList[$card_6])) {
+		echo $bankList[$card_6];
+		return;
+	}
+	$card_5 = substr($card, 0, 5);
+	if (isset($bankList[$card_5])) {
+		echo $bankList[$card_5];
+		return;
+	}
+	$card_4 = substr($card, 0, 4);
+	if (isset($bankList[$card_4])) {
+		echo $bankList[$card_4];
+		return;
+	}
+	echo '0';
+}
+?>

@@ -1,0 +1,337 @@
+<link rel="stylesheet" href="<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/themes/default/default.css" />
+<script type='text/javascript'  src='<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/kindeditor.js'></script>
+<script type="text/javascript" src="<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+	var VAR_MODULE = "m";
+	var VAR_ACTION = "a";
+	var ROOT = '<?php echo $this->_var['APP_ROOT']; ?>/file.php';
+	var ROOT_PATH = '<?php echo $this->_var['APP_ROOT']; ?>';
+	var can_use_quota = "<?php echo $this->_var['can_use_quota']; ?>";
+	var MAX_FILE_SIZE = "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+</script>
+	<div class="tabbox">
+		<div class="tab cur"><a href="<?php
+echo parse_url_tag("u:index|uc_company#index|"."".""); 
+?>"><?php echo $this->_var['LANG']['UC_COMPANY']; ?></a></div>
+	</div>
+	<div class="uc_box bdd bt0">
+
+	<div class="blank"></div>
+	<form method="post" action="<?php
+echo parse_url_tag("u:index|uc_company#save|"."".""); 
+?>" name="modify">
+		<table width="900px" class="user_info_table">
+			<tr>
+				<td class="tr">
+					<button type="button" class="true_btn" id="edit-account">编辑资料</button>
+				</td>
+			</tr>
+			<tr>
+				
+				<td class="pt10" >
+					
+					<!--显示框开始-->
+					<div class="account-view-box">
+						<div class="field company_name">
+							<label for="settings-company_name"><span class="red">*</span>公司名称</label>
+							<span class="f_l"><?php echo $this->_var['company']['company_name']; ?></span>
+						</div>
+						<div class="blank10"></div>
+						<div class="field contact">
+							<label for="settings-contact"><span class="red">*</span>企业法人</label>
+							<span class="f_l"><?php echo $this->_var['company']['contact']; ?></span>
+							
+						</div>
+						<div class="blank10"></div>
+													
+						<div class="field officetype">
+							<label for="settings-officetype"><span class="red">*</span>公司类型</label>
+							<span class="f_l"><?php echo $this->_var['company']['officetype']; ?></span>
+							
+						</div>
+						<div class="blank10"></div>
+						<div class="field officedomain">
+							<label for="settings-officedomain"><span class="red">*</span>公司行业</label>
+							<span class="f_l"><?php echo $this->_var['company']['officedomain']; ?></span>
+							
+						</div>
+						<div class="blank10"></div>
+						<div class="field officecale">
+							<label for="settings-officecale"><span class="red">*</span>公司规模</label>
+							<span class="f_l"><?php echo $this->_var['company']['officecale']; ?></span>
+							
+						</div>
+						<div class="blank10"></div>
+						<div class="field register_capital">
+							<label><span class="red">*</span>注册资金</label>
+							<span class="f_l">
+							<?php echo $this->_var['company']['register_capital']; ?><?php if ($this->_var['company']['register_capital'] != ''): ?>万<?php endif; ?>
+							</span>
+						</div>
+						<div class="blank10"></div>
+						<div class="field asset_value">
+							<label for="settings-asset_value"><span class="red">*</span>资产净值</label>
+							<div class="f_l">
+								<?php echo $this->_var['company']['asset_value']; ?><?php if ($this->_var['company']['asset_value'] != ''): ?>万<?php endif; ?>
+							</div>
+						</div>
+						<div class="blank10"></div>
+						<div class="field officeaddress">
+							<label for="settings-officeaddress"><span class="red">*</span>公司地址</label>
+							<div class="f_l">
+								<?php echo $this->_var['company']['officeaddress']; ?>
+							</div>
+						</div>
+						
+						<div class="blank10"></div>
+						<div class="field bankLicense">
+							<label for="settings-bankLicense"><span class="red">*</span>开户银行许可证</label>
+							<div class="f_l desc-b" style="width:650px">
+								<?php echo $this->_var['company']['bankLicense']; ?>
+							</div>
+						</div>
+						<div class="blank10"></div>
+						<div class="field orgNo">
+							<label for="settings-orgNo"><span class="red">*</span>组织机构代码</label>
+							<div class="f_l desc-b" style="width:650px">
+								<?php echo $this->_var['company']['orgNo']; ?>
+							</div>
+						</div>
+						<div class="blank10"></div>
+						<div class="field businessLicense">
+							<label for="settings-businessLicense"><span class="red">*</span>营业执照编号</label>
+							<div class="f_l desc-b" style="width:650px">
+								<?php echo $this->_var['company']['businessLicense']; ?>
+							</div>
+						</div>
+						<div class="blank10"></div>
+						<div class="field taxNo">
+							<label for="settings-taxNo"><span class="red">*</span>税务登记号</label>
+							<div class="f_l desc-b" style="width:650px">
+								<?php echo $this->_var['company']['taxNo']; ?>
+							</div>
+						</div>
+						<div class="blank10"></div>
+						<div class="field description">
+							<label for="settings-description"><span class="red">*</span>公司简介</label>
+							<div class="f_l itemc" >
+								<?php echo $this->_var['company']['description']; ?>
+							</div>
+						</div>
+					</div>
+					<!--显示框结束-->
+					<!--编辑框开始-->
+					<div class="hide account-edit-box">
+						<div class="field company_name">
+							<label for="settings-company_name"><span class="red">*</span>公司名称</label>
+							<span class="f_l"><input name="company_name" class="f-input ui-textbox f_l" id="settings-company_name" value="<?php echo $this->_var['company']['company_name']; ?>" /></span>
+						</div>
+						<div class="blank10"></div>
+						<div class="field contact">
+							<label for="settings-contact"><span class="red">*</span>企业法人</label>
+							<span class="f_l"><input name="contact" class="f-input ui-textbox f_l" id="settings-contact" value="<?php echo $this->_var['company']['contact']; ?>" /></span>
+							
+						</div>
+						<div class="blank10"></div>
+													
+						<div class="field officetype">
+							<label for="settings-officetype"><span class="red">*</span>公司类型</label>
+							<span class="f_l">
+								<select name="officetype" id="settings-officetype" class="ui-select select-officetype">
+									<option value="">请选择</option>
+									<option value="国家机关" <?php if ($this->_var['company']['officetype'] == '国家机关'): ?>selected="selected"<?php endif; ?>>国家机关</option>
+									<option value="事业单位" <?php if ($this->_var['company']['officetype'] == '事业单位'): ?>selected="selected"<?php endif; ?>>事业单位</option>
+									<option value="央企（包括下级单位）" <?php if ($this->_var['company']['officetype'] == '央企（包括下级单位）'): ?>selected="selected"<?php endif; ?>>央企（包括下级单位）</option>
+									<option value="地方国资委直属企业" <?php if ($this->_var['company']['officetype'] == '地方国资委直属企业'): ?>selected="selected"<?php endif; ?>>地方国资委直属企业</option>
+									<option value="世界500强（包括合资企业及下级单位）" <?php if ($this->_var['company']['officetype'] == '世界500强（包括合资企业及下级单位）'): ?>selected="selected"<?php endif; ?>>世界500强（包括合资企业及下级单位）</option>
+									<option value="外资企业（包括合资企业）" <?php if ($this->_var['company']['officetype'] == '外资企业（包括合资企业）'): ?>selected="selected"<?php endif; ?>>外资企业（包括合资企业）</option>
+									<option value="一般上市公司（包括国外上市）" <?php if ($this->_var['company']['officetype'] == '一般上市公司（包括国外上市）'): ?>selected="selected"<?php endif; ?>>一般上市公司（包括国外上市）</option>
+									<option value="一般民营企业" <?php if ($this->_var['company']['officetype'] == '一般民营企业'): ?>selected="selected"<?php endif; ?>>一般民营企业</option>
+								</select>
+							</span>
+							
+						</div>
+						<div class="blank10"></div>
+						<div class="field officedomain">
+							<label for="settings-officedomain"><span class="red">*</span>公司行业</label>
+							<span class="f_l">
+								<select name="officedomain" id="settings-officedomain" class="ui-select select-officedomain">
+									<option value="">请选择</option>
+									<option value="制造业" <?php if ($this->_var['company']['officedomain'] == '制造业'): ?>selected="selected"<?php endif; ?>>制造业</option>
+									<option value="IT" <?php if ($this->_var['company']['officedomain'] == 'IT'): ?>selected="selected"<?php endif; ?>>IT</option>
+									<option value="政府机关" <?php if ($this->_var['company']['officedomain'] == '政府机关'): ?>selected="selected"<?php endif; ?>>政府机关</option>
+									<option value="媒体/广告" <?php if ($this->_var['company']['officedomain'] == '媒体/广告'): ?>selected="selected"<?php endif; ?>>媒体/广告</option>
+									<option value="零售/批发" <?php if ($this->_var['company']['officedomain'] == '零售/批发'): ?>selected="selected"<?php endif; ?>>零售/批发</option>
+									<option value="教育/培训" <?php if ($this->_var['company']['officedomain'] == '教育/培训'): ?>selected="selected"<?php endif; ?>>教育/培训</option>
+									<option value="公共事业" <?php if ($this->_var['company']['officedomain'] == '公共事业'): ?>selected="selected"<?php endif; ?>>公共事业</option>
+									<option value="交通运输业" <?php if ($this->_var['company']['officedomain'] == '交通运输业'): ?>selected="selected"<?php endif; ?>>交通运输业</option>
+									<option value="房地产业" <?php if ($this->_var['company']['officedomain'] == '房地产业'): ?>selected="selected"<?php endif; ?>>房地产业</option>
+									<option value="能源业" <?php if ($this->_var['company']['officedomain'] == '能源业'): ?>selected="selected"<?php endif; ?>>能源业</option>
+									<option value="金融/法律" <?php if ($this->_var['company']['officedomain'] == '金融/法律'): ?>selected="selected"<?php endif; ?>>金融/法律</option>
+									<option value="餐饮/旅馆业" <?php if ($this->_var['company']['officedomain'] == '餐饮/旅馆业'): ?>selected="selected"<?php endif; ?>>餐饮/旅馆业</option>
+									<option value="医疗/卫生/保健" <?php if ($this->_var['company']['officedomain'] == '医疗/卫生/保健'): ?>selected="selected"<?php endif; ?>>医疗/卫生/保健</option>
+									<option value="建筑工程" <?php if ($this->_var['company']['officedomain'] == '建筑工程'): ?>selected="selected"<?php endif; ?>>建筑工程</option>
+									<option value="农业" <?php if ($this->_var['company']['officedomain'] == '农业'): ?>selected="selected"<?php endif; ?>>农业</option>
+									<option value="娱乐服务业" <?php if ($this->_var['company']['officedomain'] == '娱乐服务业'): ?>selected="selected"<?php endif; ?>>娱乐服务业</option>
+									<option value="体育/艺术" <?php if ($this->_var['company']['officedomain'] == '体育/艺术'): ?>selected="selected"<?php endif; ?>>体育/艺术</option>
+									<option value="公益组织" <?php if ($this->_var['company']['officedomain'] == '公益组织'): ?>selected="selected"<?php endif; ?>>公益组织</option>
+									<option value="其它" <?php if ($this->_var['company']['officedomain'] == '其它'): ?>selected="selected"<?php endif; ?>>其它</option>
+								</select>
+							</span>
+							
+						</div>
+						<div class="blank10"></div>
+						<div class="field officecale">
+							<label for="settings-officecale"><span class="red">*</span>公司规模</label>
+							<span class="f_l">
+								<select name="officecale" id="settings-officecale">
+									<option value="">请选择</option>
+									<option value="10人以下" <?php if ($this->_var['company']['officecale'] == '10人以下'): ?>selected="selected"<?php endif; ?>>10人以下</option>
+									<option value="10-100人" <?php if ($this->_var['company']['officecale'] == '10-100人'): ?>selected="selected"<?php endif; ?>>10-100人</option>
+									<option value="100-500人" <?php if ($this->_var['company']['officecale'] == '100-500人'): ?>selected="selected"<?php endif; ?>>100-500人</option>
+									<option value="500人以上" <?php if ($this->_var['company']['officecale'] == '500人以上'): ?>selected="selected"<?php endif; ?>>500人以上</option>
+								</select>
+							</span>
+							
+						</div>
+						<div class="blank10"></div>
+						<div class="field register_capital">
+							<label><span class="red">*</span>注册资金</label>
+							<span class="f_l">
+								<input name="register_capital" class="f-input ui-textbox f_l" id="settings-register_capital" value="<?php echo $this->_var['company']['register_capital']; ?>" />万
+							</span>
+						</div>
+						<div class="blank10"></div>
+						<div class="field asset_value">
+							<label for="settings-asset_value"><span class="red">*</span>资产净值</label>
+							<div class="f_l">
+								<input name="asset_value" class="f-input ui-textbox f_l" id="settings-asset_value" value="<?php echo $this->_var['company']['asset_value']; ?>" />万
+							</div>
+						</div>
+						<div class="blank10"></div>
+						<div class="field officeaddress">
+							<label for="settings-officeaddress"><span class="red">*</span>公司地址</label>
+							<div class="f_l">
+								<input name="officeaddress" class="f-input ui-textbox f_l" id="settings-officeaddress" value="<?php echo $this->_var['company']['officeaddress']; ?>" />
+							</div>
+						</div>
+						
+						<div class="blank10"></div>
+						<div class="field bankLicense">
+							<label for="settings-bankLicense"><span class="red">*</span>开户银行许可证</label>
+							<div class="f_l">
+								<input name="bankLicense" class="f-input ui-textbox f_l" id="settings-bankLicense" value="<?php echo $this->_var['company']['bankLicense']; ?>" />
+							</div>
+						</div>
+						
+						<div class="blank10"></div>
+						<div class="field orgNo">
+							<label for="settings-orgNo"><span class="red">*</span>组织机构代码</label>
+							<div class="f_l">
+								<input name="orgNo" class="f-input ui-textbox f_l" id="settings-orgNo" value="<?php echo $this->_var['company']['orgNo']; ?>" />
+							</div>
+						</div>
+						
+						<div class="blank10"></div>
+						<div class="field businessLicense">
+							<label for="settings-businessLicense"><span class="red">*</span>营业执照编号</label>
+							<div class="f_l">
+								<input name="businessLicense" class="f-input ui-textbox f_l" id="settings-businessLicense" value="<?php echo $this->_var['company']['businessLicense']; ?>" />
+							</div>
+						</div>
+						
+						<div class="blank10"></div>
+						<div class="field taxNo">
+							<label for="settings-taxNo"><span class="red">*</span>税务登记号</label>
+							<div class="f_l">
+								<input name="taxNo" class="f-input ui-textbox f_l" id="settings-taxNo" value="<?php echo $this->_var['company']['taxNo']; ?>" />
+							</div>
+						</div>
+						
+						<div class="blank10"></div>
+						<div class="field description">
+							<label for="settings-description"><span class="red">*</span>公司简介</label>
+							<div class="f_l itemc" >
+								<?php 
+$k = array (
+  'name' => 'show_ke_textarea',
+  'id' => 'description',
+  'w' => '650',
+  'height' => '350',
+  'cnt' => $this->_var['company']['description'],
+);
+echo $k['name']($k['id'],$k['w'],$k['height'],$k['cnt']);
+?>
+							</div>
+						</div>
+					<!--编辑框结束-->
+				</td>
+				
+			</tr>
+			
+		</table>
+		<div class="blank20"></div>
+		<div style="text-align:center">
+			<div class="hide account-edit-box">
+				<input type="submit" class="sub_btn theme_bgcolor" id="settings-submit" name="commit" value="保存更改">
+			</div>
+		</div>
+		<div class="blank"></div>
+		
+	</form>
+</div>
+<script type="text/javascript" src="<?php echo $this->_var['TMPL']; ?>/js/ajaxupload.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#settings-submit").click(function(){
+		if($("#settings-company_name").val()==""){
+			$.showErr("公司名称不能为空");
+			return false;
+		}
+		if($("#settings-contact").val()==""){
+			$.showErr("企业法人不能为空");
+			return false;
+		}
+		if($("#settings-officetype").val()==""){
+			$.showErr("请选择公司类型");
+			return false;
+		}
+		if($("#settings-officedomain").val()==""){
+			$.showErr("请选择公司行业");
+			return false;
+		}
+		if($("#settings-officecale").val()==""){
+			$.showErr("请选择公司规模");
+			return false;
+		}
+		if($("#settings-register_capital").val()==""){
+			$.showErr("注册资金不能为空");
+			return false;
+		}
+		if($("#settings-asset_value").val()==""){
+			$.showErr("资产净值不能为空");
+			return false;
+		}
+		if($("#settings-bankLicense").val()==""){
+			$.showErr("开户银行许可证不能为空");
+			return false;
+		}
+		if($("#settings-orgNo").val()==""){
+			$.showErr("组织机构代码不能为空");
+			return false;
+		}
+		if($("#settings-businessLicense").val()==""){
+			$.showErr("营业执照编号不能为空");
+			return false;
+		}
+		if($("#settings-taxNo").val()==""){
+			$.showErr("税务登记号不能为空");
+			return false;
+		}
+		if($("#description").val()==""){
+			$.showErr("公司简介不能为空");
+			return false;
+		}
+	});
+});
+</script>

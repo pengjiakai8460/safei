@@ -1,0 +1,264 @@
+<?php
+// +----------------------------------------------------------------------
+// | Yuemor 越陌p2p借贷系统
+// +----------------------------------------------------------------------
+// | Copyright (c) 2015 http://www.yuemor.com All rights reserved.
+// +----------------------------------------------------------------------
+// | 
+// +----------------------------------------------------------------------
+
+require APP_ROOT_PATH.'app/Lib/uc.php';
+
+class uc_lotteryModule extends SiteBaseModule
+{
+	private $space_user;
+	public function init_main()
+	{
+//		$user_info = $GLOBALS['db']->getRow("select * from ".DB_PREFIX."user where id = ".intval($GLOBALS['user_info']['id']));		
+//		require_once APP_ROOT_PATH."system/extend/ip.php";		
+//		$iplocation = new iplocate();
+//		$address=$iplocation->getaddress($user_info['login_ip']);
+//		$user_info['from'] = $address['area1'].$address['area2'];
+		$GLOBALS['tmpl']->assign('user_auth',get_user_auth());
+	}
+	
+	public function init_user(){
+		$this->user_data = $GLOBALS['user_info'];
+		
+		$this->user_data['lock_money'] = floatval($this->user_data['mortgage_money'])+floatval($this->user_data['lock_money']);
+		
+		$province_str = $GLOBALS['db']->getOne("select name from ".DB_PREFIX."region_conf where id = ".$this->user_data['province_id']);
+		$city_str = $GLOBALS['db']->getOne("select name from ".DB_PREFIX."region_conf where id = ".$this->user_data['city_id']);
+		if($province_str.$city_str=='')
+			$user_location = $GLOBALS['lang']['LOCATION_NULL'];
+		else 
+			$user_location = $province_str." ".$city_str;
+		
+		$this->user_data['fav_count'] = $GLOBALS['db']->getOne("select count(*) from ".DB_PREFIX."topic where user_id = ".$this->user_data['id']." and fav_id <> 0");
+		$this->user_data['user_location'] = $user_location;
+		$this->user_data['group_name'] = $GLOBALS['db']->getOne("select name from ".DB_PREFIX."user_group where id = ".$this->user_data['group_id']." ");
+		
+		$this->user_data['user_statics'] =sys_user_status($GLOBALS['user_info']['id'],false);
+		
+		$GLOBALS['tmpl']->assign('user_statics',$this->user_data['user_statics']);
+	}
+	
+	public function activity()
+	{	
+		$id = $_REQUEST['id'];
+		if(empty($id))showErr("非法参数");
+		
+		$activity = $GLOBALS['db']->getRow("select * from ".DB_PREFIX."lottery_activity where id = ".$id);
+		if(!$activity)showErr("活动不存在");
+		
+		$now = time();
+		if( $activity['time_start'] > $now || $activity['time_end'] < $now )
+		{
+			$GLOBALS['db']->autoExecute(DB_PREFIX."lottery_activity",array('status'=>2),"UPDATE","id=".$activity['id']);
+			$activity['status'] = 2;
+		}
+		$goods = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."lottery_goods where activity_id = ".$id);
+		$activity['goods'] = $goods;
+		
+		$this->init_user();
+		$user_info = $this->user_data;
+		
+		$activity['user_num'] = $user_info['lottery_num'];
+		
+		 $goods_info = $GLOBALS['db']->getAll("select a.id,a.time_create,b.name,c.user_name from ".DB_PREFIX."lottery_award_log a left join ".DB_PREFIX."lottery_goods b on a.goods_id =b.id left join ".DB_PREFIX."user c on a.user_id=c.id order by a.id desc");  
+	foreach($goods_info as $k =>$v){
+		$goods_info[$k]["time_create"] = date("Y-m-d H:i:s",$goods_info[$k]["time_create"]);
+	}
+	
+		 $goods_all = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."lottery_goods");
+		 
+		$GLOBALS['tmpl']->assign('goods_all',$goods_all);
+		$GLOBALS['tmpl']->assign('goods_info',$goods_info);
+		$GLOBALS['tmpl']->assign('data',$activity);
+		$GLOBALS['tmpl']->display("page/lottery.html");	
+	}
+
+	public function do_lottery()
+	{
+		$id = $_REQUEST['id'];
+		
+		if(empty($id))showErr("非法参数");
+		
+		$activity = $GLOBALS['db']->getRow("select * from ".DB_PREFIX."lottery_activity where id = ".$id);
+		if(!$activity)showErr("活动不存在");
+		
+		if($activity['status'] != 1)
+		{
+			$data = array(
+				'status' => false,
+				'msg'	 => '活动已结束！'
+			);
+			$this->json_return($data);
+		}
+		
+		$now = time();
+		if( $activity['time_start'] > $now || $activity['time_end'] < $now )
+		{
+			$GLOBALS['db']->autoExecute(DB_PREFIX."lottery_activity",array('status'=>2),"UPDATE","id=".$activity['id']);
+			$data = array(
+				'status' => false,
+				'msg'	 => '活动已结束！'
+			);
+			$this->json_return($data);
+		}
+		
+		$this->init_user();
+		$user_info = $this->user_data;
+		
+		if($user_info['lottery_num'] <= 0)
+		{
+			$data = array(
+				'status' => false,
+				'msg'	 => '您的抽奖次数已用尽！'
+			);
+			$this->json_return($data);
+		}
+		
+		$goods = $GLOBALS['db']->getAll("select * from ".DB_PREFIX."lottery_goods where activity_id = ".$id);
+		
+		$rand_start = 1;
+		$rand_end = intval($activity['num'] - $activity['sell_num']);
+		$lucky_num = intval(rand($rand_start,$rand_end));
+		
+		$i = 0;
+		$lucky_goods = array();
+		$lucky_goods_id = 0;
+		foreach($goods as $k=>$v)
+		{
+			$goods_start = intval($i + 1);
+			$goods_end = intval($i + $v['num'] - $v['sell_num']);
+			if($lucky_num > $goods_start && $lucky_num < $goods_end)
+			{
+				$lucky_goods_id = $v['id'];
+				$lucky_goods = $goods[$k];
+			}
+			$i = $goods_end;
+			unset($goods_start);
+			unset($goods_end);
+		}
+		if($lucky_goods['num'] <= $lucky_goods['sell_num'])$lucky_goods_id = 0;
+		
+		if($lucky_goods_id > 0)
+		{	
+			$log = array(
+				'activity_id'	=> $id,
+				'user_id' 		=> $user_info['id'],
+				'goods_id'	    => $lucky_goods_id,
+				'status'	    => 0,
+				'time_create'   => time()
+			);
+		
+			$GLOBALS['db']->autoExecute(DB_PREFIX."lottery_award_log",$log,"INSERT");
+			$GLOBALS['db']->query("update ".DB_PREFIX."lottery_goods set sell_num = sell_num+1 WHERE id =".$lucky_goods_id);
+			$GLOBALS['db']->query("update ".DB_PREFIX."lottery_activity set sell_num = sell_num+1 WHERE id =".$id);
+			$data = array(
+				'status' => 2,
+				'msg'    => '恭喜您中了'.$lucky_goods['name'],
+				'data'	 => $lucky_goods
+			);
+		}else
+		{	
+			$data = array(
+				'status' => 1,
+				'msg'    => '宝箱里面啥也没有！'
+			);
+		}
+		
+		$GLOBALS['db']->query("update ".DB_PREFIX."lottery_activity set take_part_num = take_part_num+1 WHERE id =".$id);
+		$GLOBALS['db']->query("update ".DB_PREFIX."user set lottery_num = lottery_num-1 WHERE id =".$user_info['id']);
+		
+		$this->json_return($data);
+	}
+	
+	function lottery_log(){
+		
+		$this->init_user();
+		$user_info = $this->user_data;
+		
+		$page = intval($_REQUEST['p']);
+		if($page==0)
+			$page = 1;
+		$limit = (($page-1)*app_conf("PAGE_SIZE")).",".app_conf("PAGE_SIZE");
+		
+		$result['count'] = $GLOBALS['db']->getOne("SELECT count(*) FROM ".DB_PREFIX."lottery_award_log WHERE user_id=".$user_info['id']." ORDER BY id DESC");
+		if($result['count'] > 0){
+			$sql = "SELECT g.name as goods_name, l.* FROM ".DB_PREFIX."lottery_award_log l , ".DB_PREFIX."lottery_goods g WHERE l.goods_id = g.id AND l.user_id=".$user_info['id']." ORDER BY id DESC LIMIT ".$limit;
+					//echo $sql;
+			$result['list'] = $GLOBALS['db']->getAll($sql);
+		}
+		
+		foreach($result['list'] as $k=>$v)
+		{
+			$result['list'][$k]['status'] = $v['status'] == 0 ? '未发奖' : '已发奖';
+			$result['list'][$k]['time_create'] = date('Y-m-d H:i:s',$v['time_create']);
+		}
+		
+		$GLOBALS['tmpl']->assign("list",$result['list']);
+		$page = new Page($result['count'],app_conf("PAGE_SIZE"));   //初始化分页对象 		
+		$p  =  $page->show();
+		$GLOBALS['tmpl']->assign('pages',$p);
+		$GLOBALS['tmpl']->assign("inc_file","inc/uc/uc_lottery_log.html");
+		$GLOBALS['tmpl']->display("page/uc.html");
+	}
+	
+	function json_return($data)
+	{
+		echo json_encode($data);
+		exit;
+	}
+
+	function add_lottery_log(){
+		$nums = $_REQUEST['num'];
+		//登录用户信息
+		$this->init_user();
+		$user_info = $this->user_data;
+
+		//取出中奖商品ID，11是2%加息劵，15是3%加息劵
+		$arr   = array(11,15);
+		$len   = count($arr);
+		$rand  = mt_rand(0,$len - 1);
+		$id    = $arr[$rand];
+		
+		/*$sql   = "SELECT * FROM" . DB_PREFIX . " lottery_goods WHERE id = " . $id;
+		$goodinfo = $GLOBALS['db']->getAll($sql);
+		if($goodinfo){
+			var_dump($goodinfo);
+		}*/
+		if($id){
+			$activity_id = 1;//活动类型，1代表来抽奖这个活动
+			$log = array(
+				'activity_id'	=> $activity_id,
+				'user_id' 		=> $user_info['id'],
+				'goods_id'	    => $id,
+				'status'	    => 0,
+				'time_create'   => time()
+			);
+		
+			$GLOBALS['db']->autoExecute(DB_PREFIX."lottery_award_log",$log,"INSERT");
+			$GLOBALS['db']->query("update ".DB_PREFIX."lottery_goods set sell_num = sell_num+1 WHERE id =".$id);
+			$GLOBALS['db']->query("update ".DB_PREFIX."lottery_activity set sell_num = sell_num+1 WHERE id =".$activity_id);
+
+			$data = array(
+				'status' => 1,
+				'msg'    => '恭喜您中奖了',
+				'id'	 => $id
+			);
+		}else{
+			$data = array(
+				'status' => 2,
+				'msg'    => '参数错误'
+				
+			);
+		}
+		$GLOBALS['db']->query("update ".DB_PREFIX."lottery_activity set take_part_num = take_part_num+1 WHERE id =".$activity_id);
+		$GLOBALS['db']->query("update ".DB_PREFIX."user set lottery_num = lottery_num-1 WHERE id =".$user_info['id']);
+
+		echo json_encode($data);
+	}
+}
+?>

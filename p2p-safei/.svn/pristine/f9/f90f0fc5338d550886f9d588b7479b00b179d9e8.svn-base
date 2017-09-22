@@ -1,0 +1,92 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/conf.js' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<script type="text/javascript">
+
+</script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/goods.js' />
+<script type="text/javascript">
+	window.onload = function()
+	{
+		init_dealform();
+	}
+</script>
+<div class="main">
+<div class="main_title">{%ADD}  <a href="{:u("Lottery/index")}" class="back_list">{%BACK_LIST}</a></div>
+<div class="blank5"></div>
+<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+	<table class="form conf_tab" cellpadding=0 cellspacing=0 rel="1">
+		<tr><td colspan=2 class="topTd"></td></tr>
+		<tr>
+			<td class="item_title">名称:</td>
+			<td class="item_input"><input type="text" class="textbox require" name="name" style="width:500px;" value="" /></td>
+		</tr>
+		<tr>
+			<td class="item_title">活动名称:</td>
+			<td class="item_input">
+				<select name="activity_id" class="require">
+					<option value="0">==请选择活动==</option>
+					<foreach name="activity" item="item">
+						<option value="{$item.id}">{$item.name}</option>
+					</foreach>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">总数量:</td>
+			<td class="item_input">
+				<input type="number" class="textbox require" name="num" min="0" value="0"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">已发放数量:</td>
+			<td class="item_input">
+				<input type="number" class="textbox require" name="sell_num" min="0" value=""/>
+			</td>
+		</tr>
+		<tr>
+			<td class="item_title">单位:</td>
+			<td class="item_input"><input type="text" class="textbox require" name="unitname" value="" /></td>
+		</tr>
+		<tr>
+			<td class="item_title">中奖率:</td>
+			<td class="item_input"><input type="text" class="textbox require" name="brief" value="" /></td>
+		</tr>
+		<tr>
+			<td class="item_title">描述:</td>
+			<td class="item_input">
+				<textarea class="textarea" name="description" ></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table>
+
+	<div class="blank5"></div>
+	<table class="form" cellpadding=0 cellspacing=0>
+		<tr>
+			<td colspan=2 class="topTd"></td>
+		</tr>
+		<tr>
+			<td class="item_title"></td>
+			<td class="item_input">
+			<!--隐藏元素-->
+			<input type="hidden" name="{:conf("VAR_MODULE")}" value="LotteryGoods" />
+			<input type="hidden" name="{:conf("VAR_ACTION")}" value="insert" />
+			<!--隐藏元素-->
+			<input type="submit" class="button" value="{%ADD}" />
+			<input type="reset" class="button" value="{%RESET}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="bottomTd"></td>
+		</tr>
+	</table> 	 
+</form>
+</div>
+<include file="Public:footer" />

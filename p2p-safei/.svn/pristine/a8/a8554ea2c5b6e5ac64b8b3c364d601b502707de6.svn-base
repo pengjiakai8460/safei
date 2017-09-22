@@ -1,0 +1,187 @@
+<?php
+$this->_var['repaycss'][] = $this->_var['TMPL_REAL']."/css/datepicker.css";
+$this->_var['repayjs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.ui.core.js";
+$this->_var['repayjs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.ui.widget.js";
+$this->_var['repayjs'][] = $this->_var['TMPL_REAL']."/js/utils/jquery.ui.datepicker.js";
+?>
+<link rel="stylesheet" type="text/css" href="<?php 
+$k = array (
+  'name' => 'parse_css',
+  'v' => $this->_var['repaycss'],
+);
+echo $k['name']($k['v']);
+?>" />
+<script type="text/javascript" src="<?php 
+$k = array (
+  'name' => 'parse_script',
+  'v' => $this->_var['repayjs'],
+  'c' => $this->_var['repayjs'],
+);
+echo $k['name']($k['v'],$k['c']);
+?>"></script>
+
+<script type="text/javascript">
+jQuery(function(){
+	$("input#begin_time").datepicker({showAnim:'fadeIn'});
+	$("input#end_time").datepicker({showAnim:'fadeIn'});
+	$("input#buy_begin_time").datepicker({showAnim:'fadeIn'});
+	$("input#buy_end_time").datepicker({showAnim:'fadeIn'});
+	
+	$("form#search-form").submit(function(){
+		var val = $("input#begin_time").val();
+		$("input[name='begin_time']").val(val.replace(/-/g,""));
+		
+		var val = $("input#end_time").val();
+		$("input[name='end_time']").val(val.replace(/-/g,""));
+		
+		var val = $("input#buy_begin_time").val();
+		$("input[name='buy_begin_time']").val(val.replace(/-/g,""));
+		
+		var val = $("input#buy_end_time").val();
+		$("input[name='buy_end_time']").val(val.replace(/-/g,""));
+		
+	});	
+	account_more_search("#more_search_btn","#more_search");
+});
+</script>
+<div class="tabbox clearfix">
+	<div class="tab cur"><a href="<?php
+echo parse_url_tag("u:index|licai#uc_published_lc|"."".""); 
+?>">发起的理财</a></div>
+</div>
+<div class="dlmain Myhomepage licai_uc bdd bt0 uc_box ">
+<div class='blank10'></div>
+	<div class="homeright pageright f_r">
+		<div class="uc_finance">
+			<div class="list_content uc_buyed_finance">
+				<div class="licai_total_box">
+					<div class="lf">
+						<div>成交总额</div>
+						<span><?php echo $this->_var['vo']['licai_total_money_format']; ?></span>
+					</div>
+					<div class="rt">
+						<ul>
+							<li>
+								<div>理财产品总数</div>
+								<div class="text"><?php echo $this->_var['vo']['licai_total_count']; ?>个</div>
+							</li>
+							<li>
+								<div>正在进行的总额</div>
+								<div class="text"><?php echo $this->_var['vo']['licai_total_ing_money']; ?></div>
+							</li>
+							<li class='last'>
+								<div>购买人数</div>
+								<div class="text"><?php echo $this->_var['vo']['total_people_count']; ?></div>
+							</li>
+						</ul>
+                        <a href="<?php
+echo parse_url_tag("u:index|licai#licai_create|"."id=".$this->_var['vo']['order_id']."".""); 
+?>" class="ui-button ui-small-button bg_red f_r" style="margin-top:35px">发起理财</a>
+					</div>
+				</div>
+				<div class="account_search" id="account_search">
+                	<form method="get"  id="account_project">
+					<div class="blank10"></div>
+					<div class="form_row f_l">
+						<label class="form_lable small_form_lable">理财名称：</label>
+						<div class="pr f_l">
+							<input type="text" name="deal_name" class="small_textbox textbox w200 mr10" value="<?php echo $this->_var['search']['deal_name']; ?>"/>
+							<span class="holder_tip">请输入项目名称</span>
+						</div>
+						<label class="form_lable small_form_lable">购买时间：</label>
+						<div class="small_form_text">
+							<input readonly="" type="text" class="small_textbox w100 jcDate" rel="input-text" value="<?php echo $this->_var['search']['buy_begin_time']; ?>" name="buy_begin_time" id="buy_begin_time" placeholder="开始时间">
+							<span class="f_l pl10 pr10">-</span>
+							<input readonly="" type="text" class="small_textbox w100 jcDate mr20" rel="input-text" value="<?php echo $this->_var['search']['buy_end_time']; ?>" name="buy_end_time" id="buy_end_time" placeholder="结束时间">
+						</div>
+					</div>
+					<input type="submit" value="搜索" class="true_btn select_btn f_l" />
+					<input type="hidden" name="ctl" value="licai">
+					<input type="hidden" name="act" value="uc_published_lc">
+					<a href="javascript:void(0);" id="more_search_btn" class="more_search_btn f_red">更多筛选</a>
+					<div id="more_search" style="display:none;">
+						<div class="blank0"></div>
+						<div class="form_row f_l">
+							<label class="form_lable small_form_lable">到期时间：</label>
+							<div class="small_form_text">
+								<input readonly="" type="text" class="small_textbox w100 jcDate" rel="input-text" value="<?php echo $this->_var['search']['begin_time']; ?>" name="begin_time" id="begin_time" placeholder="开始时间">
+								<span class="f_l pl10 pr10">-</span>
+								<input readonly="" type="text" class="small_textbox w100 jcDate" rel="input-text" value="<?php echo $this->_var['search']['end_time']; ?>" name="end_time" id="end_time" placeholder="结束时间">
+							</div>
+							<label class="form_lable small_form_lable ml20">类型：</label>
+							<select name="licai_type" id='licai_type' class="ui-select">
+                            	<option value="-1" <?php if ($this->_var['search']['licai_type'] == - 1): ?> selected="selected"<?php endif; ?>>全部</option>
+								<option value="0" <?php if ($this->_var['search']['licai_type'] == 0): ?> selected="selected"<?php endif; ?>>余额宝</option>
+								<option value="1" <?php if ($this->_var['search']['licai_type'] == 1): ?> selected="selected"<?php endif; ?>>固定定存</option>
+							</select>
+							<div class="blank0"></div>
+						</div>
+					</div>
+				</div>
+				<div class="blank20"></div>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc-table">
+					<thead>
+						<tr>
+							<th>理财名称</th>
+							<th width="15%">成交总额</th>
+							<th width="10%">收益率</th>
+							<th width="10%">理财期限</th>
+							<th width="15%">到期时间</th>
+                            <th width="10%">理财类型</th>
+							<th width="10%">状态</th>
+							<th width="10%">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php if ($this->_var['list']): ?>
+                    	<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item');$this->_foreach['deal'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['deal']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['item']):
+        $this->_foreach['deal']['iteration']++;
+?>
+						<tr class='item <?php if ($this->_var['key'] % 2 == 1): ?>item_1<?php endif; ?>' <?php if (($this->_foreach['deal']['iteration'] == $this->_foreach['deal']['total'])): ?>style="border-bottom:0"<?php endif; ?>>
+							<td><a href="<?php echo $this->_var['item']['url']; ?>" target="_blank" title="<?php echo $this->_var['item']['name']; ?>"><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['item']['name'],
+);
+echo $k['name']($k['v']);
+?></td>
+							<td><?php echo $this->_var['item']['total_money_format']; ?></td>
+							<td>
+								<?php echo $this->_var['item']['average_income_rate_format']; ?>
+							</td>
+							<td><?php echo $this->_var['item']['time_limit']; ?>个月</td>
+							<td><?php echo $this->_var['item']['end_date']; ?></td>
+                            <td><?php echo $this->_var['item']['type_format']; ?></td>
+							<td><?php echo $this->_var['item']['licai_status_format']; ?></td>
+							<td >
+								<a href="<?php
+echo parse_url_tag("u:index|licai#uc_deal_lc|"."id=".$this->_var['item']['id']."".""); 
+?>" target="_blank">查看详情</a><br/>
+                            	<a href="<?php
+echo parse_url_tag("u:index|licai#uc_record_lc|"."id=".$this->_var['item']['id']."".""); 
+?>">购买记录</a><br />
+								<a href="<?php
+echo parse_url_tag("u:index|licai#uc_redeem_lc|"."id=".$this->_var['item']['id']."".""); 
+?>">赎回管理</a>
+                            </td>
+						</tr>
+                        <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+                        <?php else: ?>
+                        <tr>
+                        	<td colspan="7" align="center">无任何记录</td>
+                        </tr>
+                        <?php endif; ?>
+					</tbody>
+				</table>
+				<div class="blank20"></div>
+				<div class="pages"><?php echo $this->_var['pages']; ?></div>
+				<div class="blank20"></div>
+			</div>
+		</div>
+		<div class="blank0"></div>
+	</div>
+	<div class="blank0"></div>
+</div>
+<div class="blank0"></div>

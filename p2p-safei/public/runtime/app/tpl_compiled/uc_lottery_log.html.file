@@ -1,0 +1,25 @@
+
+<div class="uc_box bdd bt0">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc-table">
+			<tr>
+				<th>奖品名称</th>
+				<th>状态</th>
+				<th>中奖时间</th>
+			</tr>
+			<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'log');$this->_foreach['logs'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['logs']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['log']):
+        $this->_foreach['logs']['iteration']++;
+?>
+			<tr class="item <?php if ($this->_var['key'] % 2 == 1): ?>item_1<?php endif; ?>" <?php if (($this->_foreach['logs']['iteration'] == $this->_foreach['logs']['total'])): ?>style="border-bottom:0"<?php endif; ?>>
+				<td><?php echo $this->_var['log']['goods_name']; ?></td>
+				<td><?php echo $this->_var['log']['status']; ?></td>
+				<td><?php echo $this->_var['log']['time_create']; ?></td>
+			</tr>
+			<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	</table>
+	
+	<div class="blank"></div>
+	<div class="pages"><?php echo $this->_var['pages']; ?></div>
+	<div class="blank2"></div>
+</div>

@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+<meta name="renderer" content="webkit">
+<meta name="Generator" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php if ($this->_var['page_title']): ?><?php echo $this->_var['page_title']; ?> - <?php endif; ?><?php if ($this->_var['show_site_titile'] == 1): ?><?php 
+$k = array (
+  'name' => 'app_conf',
+  'value' => 'SHOP_SEO_TITLE',
+);
+echo $k['name']($k['value']);
+?> - <?php endif; ?><?php echo $this->_var['site_info']['SHOP_TITLE']; ?></title>
+<link rel="icon" href="favicon.ico" type="/image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="/image/x-icon" />
+<meta name="keywords" content="<?php if ($this->_var['page_keyword']): ?><?php echo $this->_var['page_keyword']; ?><?php endif; ?><?php echo $this->_var['site_info']['SHOP_KEYWORD']; ?>" />
+<meta name="description" content="<?php if ($this->_var['page_description']): ?><?php echo $this->_var['page_description']; ?><?php endif; ?><?php echo $this->_var['site_info']['SHOP_DESCRIPTION']; ?>" />
+<?php echo $this->fetch('inc/common/load_css_js.html'); ?>
+<link href="<?php echo $this->_var['TMPL']; ?>/css/css.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo $this->_var['TMPL']; ?>/js/jquery.imgscroll.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+        imgScroll.rolling({
+            name:'g1',
+            width:'425px',
+            height:'50px',
+            direction:'top',
+            speed:40,
+            addcss:true
+        });
+        imgScroll.rolling({
+            name:'g2',
+            width:'640px',
+            height:'50px',
+            direction:'top',
+            speed:40,
+            addcss:true
+        });
+    })
+    </script>
+    <script>
+	$(document).ready(function(){
+		$('.news_ul li').click(function(){
+				var liindex = $('.news_ul li').index(this);
+				$(this).addClass('action').siblings().removeClass('action');
+				$('.tab ul.news_con').eq(liindex).fadeIn(150).siblings('ul.news_con').hide();
+			});
+	})
+	</script>
+</head>
+<body>
+<!--头部-->
+<?php if ($this->_var['vote']): ?>
+<a id="vote" href="<?php
+echo parse_url_tag("u:index|vote|"."".""); 
+?>" target="_blank"></a>	
+<?php endif; ?>
+<div class="header" id="header">
+   <?php echo $this->fetch('inc/common/load_top.html'); ?>
+	<div class="main_bars">
+		<div class="main_bar wrap">	
+			<div class="logo mr15">
+				<a class="link f_l" href="<?php echo $this->_var['APP_ROOT']; ?>/">
+					<?php
+						$this->_var['logo_image'] = app_conf("SHOP_LOGO");
+					?>
+					<?php 
+$k = array (
+  'name' => 'load_page_png',
+  'v' => $this->_var['logo_image'],
+);
+echo $k['name']($k['v']);
+?>
+				</a>
+			</div>     
+			<!--<?php if ($this->_var['MODULE_NAME'] <> 'user' && $this->_var['MODULE_NAME'] <> 'manageagency' && $this->_var['MODULE_NAME'] <> 'authorized' && $this->_var['MODULE_NAME'] <> 'agency_money'): ?>加载菜单-->
+			<ul class="main_nav">
+				<?php $_from = $this->_var['nav_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'nav_item');if (count($_from)):
+    foreach ($_from AS $this->_var['nav_item']):
+?>
+					<li class="<?php if ($this->_var['nav_item']['current'] == 1): ?>current<?php endif; ?> <?php if (count ( $this->_var['nav_item']['sub_nav'] ) > 0): ?>jcur<?php endif; ?> ml5 bdr3 pr" rel='<?php echo $this->_var['nav_item']['id']; ?>'>
+						<a href="<?php echo $this->_var['nav_item']['url']; ?>" target="<?php if ($this->_var['nav_item']['blank'] == 1): ?>_blank<?php endif; ?>" <?php if (count ( $this->_var['nav_item']['sub_nav'] ) > 0): ?>class="pr20"<?php endif; ?>><?php echo $this->_var['nav_item']['name']; ?> <?php if ($this->_var['nav_item']['sub_nav']): ?><i class="iconfont">&#xe61c;</i><?php endif; ?></a>
+						<?php if ($this->_var['nav_item']['sub_nav']): ?>
+                        <div class="sub_main_nav ps hide">
+						<?php $_from = $this->_var['nav_item']['sub_nav']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'sub_item');if (count($_from)):
+    foreach ($_from AS $this->_var['sub_item']):
+?>
+							<a href="<?php echo $this->_var['sub_item']['url']; ?>" <?php if ($this->_var['sub_item']['current'] == 1): ?>class="current"<?php endif; ?> target="<?php if ($this->_var['sub_item']['blank'] == 1): ?>_blank<?php endif; ?>"><?php echo $this->_var['sub_item']['name']; ?></a>
+						<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+						</div>
+						<?php endif; ?>
+					</li>
+				<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+			</ul>
+			<!--加载菜单END<?php else: ?>-->
+			 <?php echo $this->fetch('inc/common/load_other_nav.html'); ?>
+			<!--<?php endif; ?>-->
+		</div>
+	</div>
+</div>
+<?php 
+$k = array (
+  'name' => 'load_user_tip_index',
+);
+echo $this->_hash . $k['name'] . '|' . base64_encode(serialize($k)) . $this->_hash;
+?>
+<div id="main_adv_box" class="main_adv_box f_l b_white" style="display:block;margin-bottom:60px;">
+	<div id="main_adv_img" class="main_adv_img">
+		<span rel="1"><adv adv_id="首页广告位1" /></span>
+		<span rel="2"><adv adv_id="首页广告位2" /></span>
+		<span rel="3"><adv adv_id="首页广告位3" /></span>
+		<span rel="4"><adv adv_id="首页广告位4" /></span>	
+		<span rel="5"><adv adv_id="首页广告位5" /></span>					
+	</div>
+	<div id="main_adv_ctl" class="main_adv_ctl">
+		<ul>
+			<li rel="1">1</li>
+			<li rel="2">2</li>
+			<li rel="3">3</li>
+			<li rel="4">4</li>
+			<li rel="5">5</li>
+		</ul>
+	</div>
+</div>
+<!--头部 en-->
+<!--index_main_top-->
+<div class="index_gg">
+	<div class="width1200 hidden margin">
+    	<div class="g1">
+            <ul>
+            <?php $_from = $this->_var['notice_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'notice');if (count($_from)):
+    foreach ($_from AS $this->_var['notice']):
+?>
+            	<li><a href="<?php echo $this->_var['notice']['url']; ?>"><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['notice']['title'],
+  's' => '0',
+  'e' => '18',
+);
+echo $k['name']($k['v'],$k['s'],$k['e']);
+?>（<?php 
+$k = array (
+  'name' => 'date',
+  'c' => 'Y年m月d日',
+  'v' => $this->_var['notice']['create_time'],
+);
+echo $k['name']($k['c'],$k['v']);
+?>）</a></li>
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+            </ul>
+        </div>
+        <a href="index.php?ctl=notice&act=list" class="fl gg_more">更多>></a>
+        <div class="fr">平台实时数据</div>
+    </div>
+</div>
+<!--index_main_top en-->
+<!--///中部///-->
+<div class="width1200 hidden margin">
+	<!--imdex_top-->
+    <div class="imdex_top">
+    	<ul class="fl">
+        	<li class="top1">
+            	<dd>银行存管</dd>
+                <p>上海银行存管（即将上线） </p>
+                <p>更安全</p>
+            </li>
+            <li class="top2">
+            	<dd>运营报告</dd>
+                <p>每月15号更新</p>
+                <p>链接报告内容</p>
+            </li>
+            <li class="top3">
+            	<dd>业务模式</dd>
+                <p>供应链金融</p>
+                <p>更稳定</p>
+            </li>
+            <li class="top4">
+            	<dd>普惠金融</dd>
+                <p>坚持小额分散借贷</p>
+                <p>合理规避金融风险</p>
+            </li>
+        </ul>
+        <ul class="fr">
+        	<li class="top">稳健运行<?php echo $this->_var['yytime']['Y']; ?>年<?php echo $this->_var['yytime']['M']; ?>月<?php echo $this->_var['yytime']['D']; ?>日起统计</li>
+            <li class="tit">累计投资总额（元）</li>
+            <li class="sz"><?php echo $this->_var['VIRTUAL_MONEY_1_FORMAT']; ?></li>
+            <li class="tit">用户累计收益（元）</li>
+            <li class="sz"><?php echo $this->_var['VIRTUAL_MONEY_2_FORMAT']; ?></li>
+            <li class="tit">活跃用户数（人）</li>
+            <li class="sz"><?php echo $this->_var['stats']['user_count']; ?></li>
+        </ul>
+    </div>
+    <!--新手专享-->
+    <div class="imdex_xs">
+    	<div class="tit"><i><b>新手专享</b>新手专享，高回报率</i><a href="<?php
+echo parse_url_tag("u:index|deals|"."".""); 
+?>">更多>></a></div>
+        <ul class="libiao_ul">
+     <?php $_from = $this->_var['new_deal_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'deal');$this->_foreach['deals'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['deals']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['deal']):
+        $this->_foreach['deals']['iteration']++;
+?>
+        <?php if (($this->_foreach['deals']['iteration'] - 1) < 5): ?>
+        	<li>
+            	<dd><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['deal']['name'],
+  's' => '0',
+  'e' => '12',
+);
+echo $k['name']($k['v'],$k['s'],$k['e']);
+?></dd>
+            	<p>
+                	<i><?php echo $this->_var['deal']['borrow_amount_format']; ?></i>
+                    <span class="xm_je">项目金额</span>
+                </p>
+                <p class="xm_qx">
+					<?php echo $this->_var['deal']['repay_time']; ?><?php if ($this->_var['deal']['repay_time_type'] == 0): ?>天<?php else: ?>个月<?php endif; ?>
+                </p>
+                <p class="xm_ll">
+                	<b> <?php echo $this->_var['deal']['rate']; ?>%<?php if ($this->_var['deal']['user_bid_rebate'] > 0): ?><em class="f12" title="投资返利:<?php echo $this->_var['deal']['user_bid_rebate']; ?>%">+<?php echo $this->_var['deal']['user_bid_rebate']; ?>%</em><?php endif; ?></b>
+                </p>
+                <p>
+                <br />
+                <?php if ($this->_var['deal']['deal_status'] >= 4): ?>
+                <span class="iepng ui-progressbar-mid" style="background-position: -5400px 0;" >100%</span>
+                <?php else: ?>
+                <?php
+                $rate_img =  round($this->_var['deal']['progress_point'],0)*54;
+                ?>
+                <span class="iepng ui-progressbar-mid" style="background-position: -<?php echo $rate_img;?>px 0;" ><?php 
+$k = array (
+  'name' => 'round',
+  'v' => $this->_var['deal']['progress_point'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?>%</span>
+                <?php endif; ?>
+                <span class="unfinished">完成度</span>
+                </p>
+                <p class="xm_sj">
+                	<?php echo $this->_var['deal']['start_date']; ?><br />
+                	发标时间
+                </p>
+                <p>
+                	<br />
+                	 <a class="listbtn lh30" href="<?php echo $this->_var['deal']['url']; ?>">
+                    <?php if ($this->_var['deal']['is_delete'] == 2): ?>
+                    <span class="now_touzi">待发布</span>
+                    <?php elseif ($this->_var['deal']['is_wait'] == 1): ?>
+                    <span class="now_touzi">未开始</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 5): ?>
+                    <span class="now_touzi">还款完毕</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 4): ?>
+                    <span class="now_touzi">还款中</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 0): ?>
+                    <span class="btn_gray f_white"><?php if ($this->_var['deal']['need_credit'] == 0): ?>等待审核<?php else: ?>等待材料<?php endif; ?></span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 1 && $this->_var['deal']['remain_time'] > 0): ?>
+                    <span class="now_touzi pitch_on">马上投标</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 2): ?>
+                    <span class="now_touzi f_white" style=" position:relative;">已满标</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 3): ?>
+                    <span class="now_touzi f_white">已流标</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 1 && $this->_var['deal']['remain_time'] <= 0): ?>
+                    <span class="now_touzi f_white">已过期</span>
+                    <?php endif; ?>
+                </a>
+                </p>
+            </li>
+         <?php endif; ?>
+        <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+          </ul>
+    </div>
+    <!--操作流程-->
+    <div class="imdex_lc">
+    	<div class="tit">操作流程</div>
+        <ul>
+        	<li class="lc1">
+            	<div class="img"></div>
+                <div class="con">
+                	点击注册<br />
+					进行实名认证
+                </div>
+            </li>
+            <li class="lc2">
+            	<div class="img"></div>
+                <div class="con">
+                	绑定银行卡<br />
+					充值一定金额
+                </div>
+            </li>
+            <li class="lc3">
+            	<div class="img"></div>
+                <div class="con">
+                	点击“我要投资<br />
+					选择合适产品购买
+                </div>
+            </li>
+            <li class="lc4">
+            	<div class="img"></div>
+                <div class="con">
+                	投资成功<br />
+					坐收每月利息和到期本息
+                </div>
+            </li>
+            <li class="lc5">
+            	<div class="img"></div>
+                <div class="con">
+                	选择“我的账户”<br />
+					点击提现，当天即可到账
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--///中部 en///-->
+<!--操作流程-->
+<div class="index_tzxm">
+	<div class="width1200 hidden margin">
+    	<div class="tit"><i><b>投资项目</b>收益高于银行，选择最合适的</i><a href="<?php
+echo parse_url_tag("u:index|deals|"."".""); 
+?>">更多>></a></div>
+        <ul class="libiao_ul">
+        <?php $_from = $this->_var['deal_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'deal');$this->_foreach['deals'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['deals']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['deal']):
+        $this->_foreach['deals']['iteration']++;
+?>
+        <?php if (($this->_foreach['deals']['iteration'] - 1) < 3): ?>
+        
+        	<li>
+            	<dd><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['deal']['name'],
+  's' => '0',
+  'e' => '40',
+);
+echo $k['name']($k['v'],$k['s'],$k['e']);
+?></dd>
+            	<p>
+                	<i><?php echo $this->_var['deal']['borrow_amount_format']; ?></i>
+                    <span class="xm_je">项目金额</span>
+                </p>
+                <p class="xm_qx">
+				     	<?php echo $this->_var['deal']['repay_time']; ?><?php if ($this->_var['deal']['repay_time_type'] == 0): ?>天<?php else: ?>个月<?php endif; ?>
+                </p>
+                <p class="xm_ll">
+                	<b><?php echo $this->_var['deal']['rate']; ?>%<?php if ($this->_var['deal']['user_bid_rebate'] > 0): ?><em class="f12" title="投资返利:<?php echo $this->_var['deal']['user_bid_rebate']; ?>%">+<?php echo $this->_var['deal']['user_bid_rebate']; ?>%</em><?php endif; ?></b>
+                </p>
+                <p>
+                	<br />
+               <?php if ($this->_var['deal']['deal_status'] >= 4): ?>
+                <span class="iepng ui-progressbar-mid" style="background-position: -5400px 0;" >100%</span>
+                <?php else: ?>
+                <?php
+                $rate_img =  round($this->_var['deal']['progress_point'],0)*54;
+                ?>
+                <span class="iepng ui-progressbar-mid" style="background-position: -<?php echo $rate_img;?>px 0;" ><?php 
+$k = array (
+  'name' => 'round',
+  'v' => $this->_var['deal']['progress_point'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?>%</span>
+                <?php endif; ?>
+                </p>
+                <p class="xm_sj">
+                	<?php echo $this->_var['deal']['start_date']; ?><br />
+                	发标时间
+                </p>
+                <p>
+                	<br />
+                	<a class="listbtn lh30" href="<?php echo $this->_var['deal']['url']; ?>">
+                    <?php if ($this->_var['deal']['is_delete'] == 2): ?>
+                    <span class="now_touzi">待发布</span>
+                    <?php elseif ($this->_var['deal']['is_wait'] == 1): ?>
+                    <span class="now_touzi">未开始</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 5): ?>
+                    <span class="now_touzi">还款完毕</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 4): ?>
+                    <span class="now_touzi">还款中</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 0): ?>
+                    <span class="btn_gray f_white"><?php if ($this->_var['deal']['need_credit'] == 0): ?>等待审核<?php else: ?>等待材料<?php endif; ?></span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 1 && $this->_var['deal']['remain_time'] > 0): ?>
+                    <span class="now_touzi pitch_on">马上投标</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 2): ?>
+                    <span class="now_touzi f_white" style=" position:relative;">已满标</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 3): ?>
+                    <span class="now_touzi f_white">已流标</span>
+                    <?php elseif ($this->_var['deal']['deal_status'] == 1 && $this->_var['deal']['remain_time'] <= 0): ?>
+                    <span class="now_touzi f_white">已过期</span>
+                    <?php endif; ?>
+                </a>
+                </p>
+            </li>
+          <?php endif; ?>
+        <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+        </ul>
+        <div class="tzxm_more"><a href="<?php
+echo parse_url_tag("u:index|deals|"."".""); 
+?>"><p>查看更多</p></a></div>
+    </div>
+</div>
+<!--news-->
+<div class="width1200 hidden margin">
+	<ul class="news_ul">
+        <li class="action">公司最新新闻</li>
+        <a href="http://www.safeionline.com/index.php?ctl=acate&id=25"></a><li class="">投资项目公告</li></a>
+    </ul>
+    <div class="tab">
+        <ul class="news_con" style="display:block;">
+        <?php $_from = $this->_var['notice_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'notice');if (count($_from)):
+    foreach ($_from AS $this->_var['notice']):
+?>    	
+        	<li class="news_li1">
+            	<img src="<?php echo $this->_var['notice']['icon']; ?>"  />
+                <div>
+                	<a href="<?php echo $this->_var['notice']['url']; ?>" title="<?php echo $this->_var['notice']['title']; ?>"><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['notice']['title'],
+  's' => '0',
+  'e' => '18',
+);
+echo $k['name']($k['v'],$k['s'],$k['e']);
+?></a>
+                    <p><?php 
+$k = array (
+  'name' => 'to_date',
+  'v' => $this->_var['notice']['create_time'],
+  'f' => 'Y-m-d',
+);
+echo $k['name']($k['v'],$k['f']);
+?></p>
+                    <ol><?php 
+$k = array (
+  'name' => 'msubstr',
+  'v' => $this->_var['notice']['brief'],
+  's' => '0',
+  'e' => '80',
+);
+echo $k['name']($k['v'],$k['s'],$k['e']);
+?></ol>
+                </div>
+            </li>
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+        </ul>
+    </div>
+</div>
+<!--他们正在投资-->
+<div class="tz_bg">
+    <div class="width1200 hidden margin">
+        <div class="tit"><i><b>他们正在投资</b>收益高于银行，选择最合适的</i></div>
+        <div class="hidden">
+        	<div class="g2">
+                <ul>
+                <?php $_from = $this->_var['near_deal_loads']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'load');if (count($_from)):
+    foreach ($_from AS $this->_var['load']):
+?>
+                    <li>
+                    	<div>用户：<?php 
+$k = array (
+  'name' => 'utf_substr',
+  'v' => $this->_var['load']['user_name'],
+);
+echo $k['name']($k['v']);
+?></div>
+                        <div>投资：<i><?php echo $this->_var['load']['money']; ?>元</i></div>
+                        <div>年化收益：<i><?php echo $this->_var['load']['rate']; ?>%</i></div>
+                    </li>
+   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+                </ul>
+            </div>
+            <img src="<?php echo $this->_var['TMPL']; ?>/images/tx.jpg" class="tx" />
+        </div>
+    </div>
+</div>
+<!--视频专区-->
+<div class="width1200 hidden margin">
+	<div class="video_tit">视频专区</div>
+    <div class="hidden video_con">
+    	<div class="fl">
+        	<embed src="http://player.video.qiyi.com/d1bdce8b64bfcc5fd530efc456c7f880/0/0/w_19rquqlzht.swf-albumId=2105540509-tvId=2105540509-isPurchase=0-cnId=24" allowFullScreen="true" quality="high" width="640" height="426" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+        </div>
+        <div class="fr">
+        	<dd>互联网金融介绍</dd>
+            <p>互联网金融是传统金融行业与互联网“开放，平等，协作，分享”的精神相结合的新兴领域。指借助于互联网技术，移动通信技术实现资金融通，支付和信息中介等业务的新兴金融模式。当下，互联网金融掀起时代的浪潮，已构建成新的社会经济模式，因此，本站特分享互联网金融短片一部，敬请大家鉴赏。</p>
+        	<a href=""><ol>了解更多信息</ol></a>
+            <div class="fx_t">分享视频到 <i></i></div>
+            <div class="fx">
+            	<a href="" class="fx_nav1" target="_blank"></a>
+                <a href="" class="fx_nav2" target="_blank"></a>
+                <a href="" class="fx_nav3" target="_blank"></a>
+                <a href="" class="fx_nav4" target="_blank"></a>
+                <a href="" class="fx_nav5" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--底部-->
+<div class="foot_bg">
+	<div class="width1200 hidden margin">
+    	<div class="fl ul_div">
+   <?php $_from = $this->_var['deal_help']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'help_cate');$this->_foreach['help_cate'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['help_cate']['total'] > 0):
+    foreach ($_from AS $this->_var['help_cate']):
+        $this->_foreach['help_cate']['iteration']++;
+?>
+					<?php if ($this->_foreach['help_cate']['iteration'] <= app_conf ( 'HELP_CATE_LIMIT' )): ?>
+			
+    	<ul>
+            <li class="top"><a href=""><?php echo $this->_var['help_cate']['title']; ?></a></li>
+            <?php $_from = $this->_var['help_cate']['help_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'help_item');$this->_foreach['help_item'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['help_item']['total'] > 0):
+    foreach ($_from AS $this->_var['help_item']):
+        $this->_foreach['help_item']['iteration']++;
+?>
+							<?php if ($this->_foreach['help_item']['iteration'] <= app_conf ( 'HELP_ITEM_LIMIT' )): ?>
+							<li><a href="<?php echo $this->_var['help_item']['url']; ?>" <?php if ($this->_var['help_item']['new'] == 1): ?>target="_blank"<?php endif; ?>><?php echo $this->_var['help_item']['title']; ?></a></li>
+							<?php endif; ?>
+							<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>  
+        </ul>
+          	<?php endif; ?>
+					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+        </div>
+        <div class="fl img_div">
+        	<p class="sz">400-778-1969</p>
+            <p class="sj"><i class="fl">工作时间</i><i class="fr">周一到周日：9:00-18:00</i></p>
+            <p class="qq"><i class="fl">	  </i><i class="fr">官方QQ群 ：655452159</i></p>
+            
+        </div>
+        <ul class="fr">
+        	<li class="fl">
+                <img src="<?php echo $this->_var['TMPL']; ?>/images/ewm1.jpg" />
+                <p>下载安卓APP</p>
+            </li>
+            <li class="fl">
+                <img src="<?php echo $this->_var['TMPL']; ?>/images/ewm2.jpg" />
+                <p>下载苹果APP</p>
+            </li>
+            <li class="fr">
+                <img src="<?php echo $this->_var['TMPL']; ?>/images/ewm3.jpg" />
+                <p>关注微信</p>
+            </li>
+        </ul>
+    </div>
+    <div class="width1200 hidden margin foot_con">
+    	<p><a id="_pingansec_bottomimagelarge_p2p" href="http://si.trustutn.org/info?sn=207170828000601522788&certType=4" target="_blank"><img src="<?php echo $this->_var['TMPL']; ?>/images/foot2.png" /></a>
+            	<a id="_pingansec_bottomimagelarge_p2p" href="https://ss.knet.cn/verifyseal.dll?sn=e1708293101106871644oz000000&ct=df&a=1&pa=0.020491837756708264" target="_blank"><img src="<?php echo $this->_var['TMPL']; ?>/images/foot1.jpg" /></a>
+             <a href="https://v.pinpaibao.com.cn/cert/site/?site=www.safeionline.com&at=business" target="_blank"><img src="<?php echo $this->_var['TMPL']; ?>/images/foot3.png" /></a>
+       </p>
+    	<p>Copyright@2017 www.safeionline.com All rights reserved︱萨飞投资管理（上海）有限公司︱ 沪ICP备17013896号-1</p>
+    </div>
+</div>
+<?php if ($this->_var['online_qq']): ?>
+    <?php echo $this->fetch('inc/kefu.html'); ?>
+    <?php endif; ?>
+<!--底部 en-->
+</body>
+</html>

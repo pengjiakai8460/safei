@@ -1,0 +1,12 @@
+<?php echo $this->fetch('inc/header.html'); ?> 
+<div class="blank"></div>
+<div class="wrap clearfix bdd bddf">
+	<div class="toptitle pt15"><?php echo $this->_var['info']['title']; ?></div>
+	<div class="line950"></div>
+	<div class="clearfix" style="padding:30px 110px;">
+		<?php echo $this->_var['info']['content']; ?>
+	</div>
+</div>
+<div class="blank"></div>
+
+<?php echo $this->fetch('inc/footer.html'); ?>

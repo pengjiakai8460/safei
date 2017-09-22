@@ -1,0 +1,71 @@
+</div>
+<!--底部-->
+<div class="foot_bg">
+	<div class="width1200 hidden margin">
+    	<div class="fl ul_div">
+   {foreach from=$deal_help item=help_cate name="help_cate"}
+					{if $smarty.foreach.help_cate.iteration <= app_conf('HELP_CATE_LIMIT')}
+			
+    	<ul>
+            <li class="top"><a href="">{$help_cate.title}</a></li>
+            {foreach from=$help_cate.help_list item=help_item name="help_item"}
+							{if $smarty.foreach.help_item.iteration <= app_conf('HELP_ITEM_LIMIT')}
+							<li><a href="{$help_item.url}" {if $help_item.new eq 1}target="_blank"{/if}>{$help_item.title}</a></li>
+							{/if}
+							{/foreach}  
+        </ul>
+          	{/if}
+					{/foreach}
+        </div>
+        <div class="fl img_div">
+        	<p class="sz">400-778-1969</p>
+            <p class="sj"><i class="fl">工作时间</i><i class="fr">周一到周日：9:00-18:00</i></p>
+            <p class="qq"><i class="fl">	  </i><i class="fr">官方QQ群 ：655452159</i></p>
+            
+        </div>
+        <ul class="fr">
+        	<li class="fl">
+                <img src="{$TMPL}/images/ewm1.jpg" />
+                <p>下载安卓APP</p>
+            </li>
+            <li class="fl">
+                <img src="{$TMPL}/images/ewm2.jpg" />
+                <p>下载苹果APP</p>
+            </li>
+            <li class="fr">
+                <img src="{$TMPL}/images/ewm3.jpg" />
+                <p>关注微信</p>
+            </li>
+        </ul>
+    </div>
+    <div class="width1200 hidden margin foot_con">
+    	<p><a id="_pingansec_bottomimagelarge_p2p" href="http://si.trustutn.org/info?sn=207170828000601522788&certType=4" target="_blank"><img src="{$TMPL}/images/foot2.png" /></a>
+            	<a id="_pingansec_bottomimagelarge_p2p" href="https://ss.knet.cn/verifyseal.dll?sn=e1708293101106871644oz000000&ct=df&a=1&pa=0.020491837756708264" target="_blank"><img src="{$TMPL}/images/foot1.jpg" /></a>
+             <a href="https://v.pinpaibao.com.cn/cert/site/?site=www.safeionline.com&at=business" target="_blank"><img src="{$TMPL}/images/foot3.png" /></a>
+       </p>
+    	<p>Copyright@2017 www.safeionline.com All rights reserved︱萨飞投资管理（上海）有限公司︱ 沪ICP备17013896号-1</p>
+    </div>
+</div>
+    {if $online_qq}
+    {include file="inc/kefu.html"}
+    {/if}
+    <!--<div id="gotop"></div>-->
+    {if $MODULE_NAME neq 'guide'}
+    <script type="text/javascript" defer="defer">
+        resetWindowBox();
+    </script>
+    <script>
+        $(function () {
+            $(".ft .ft_left .ft_left_ul li a:first").addClass("ft_left_xz");
+            $(".ft .ft_left .ft_left_ul li a").mouseover(function () {
+                $(this).addClass("ft_left_xz").siblings().removeClass("ft_left_xz");
+            }).mouseout(function () {
+                $(this).removeClass("ft_left_xz").siblings().show();
+            })
+        })
+    </script>
+    {/if}
+</div>
+
+</body>
+</html>

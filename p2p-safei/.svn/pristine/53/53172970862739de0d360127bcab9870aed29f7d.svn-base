@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)http://www.jc587.com/jc/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta charset="utf-8">
+	<title>财吉升辉APP下载</title>
+	<link href="./mobile.css" rel="stylesheet" type="text/css">
+	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css">
+	 <script  type="text/javascript" src="js/jweixin-1.0.0.js" charset="UTF-8"></script>
+ <script  type="text/javascript" src="js/jquery-3.2.0.min.js" charset="UTF-8"></script>
+
+	<link rel="icon" href="./lottery.png">
+</head>
+<body>
+<div id="weixin-tip">
+    <p>
+        <img src="img/live_weixin.png" alt="微信扫描打开APP下载链接提示代码优化">
+   
+    </p>
+</div>
+	<div class="big_box">
+	
+	
+		
+	</div>
+	
+
+
+<script type="text/javascript">
+downandroid();
+    	//安卓客户端
+		
+    	//Android维修师
+		
+	
+function is_weixin () {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+				
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function doLocation(url) {
+            var a = document.createElement("a");
+            if (!a.click) {
+                window.location = url;
+                return;
+            }
+            a.setAttribute("href", url);
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+        }
+        function downandroid() {
+var androidUrl = "http://www.cjshjr.com/apkdown/CJSH.apk";
+            if (is_weixin()) {
+                var winHeight = typeof window.innerHeight != "undefined" ? window.innerHeight : document.documentElement.clientHeight;
+                //兼容IOS，不需要的可以去掉
+                var tip = document.getElementById("weixin-tip");
+                var close = document.getElementById("close");
+                tip.style.height = winHeight + "px";
+                //兼容IOS弹窗整屏
+                tip.style.display = "block";
+             
+            } else {
+                doLocation(androidUrl);
+            }
+        }
+
+       
+
+	var targetUrl = location.href.split('#')[0];
+
+    </script>
+
+
+</body></html>

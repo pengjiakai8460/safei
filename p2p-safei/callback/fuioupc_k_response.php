@@ -1,0 +1,95 @@
+﻿<?php
+/**
+ * 前台显示支付结果页面
+ */
+ require '../system/common.php';
+ require 'banklist.php';
+ 
+// 获得返回的数据
+$mchnt_cd = $_POST['mchnt_cd'];
+$order_id = $_POST['order_id'];
+$order_date = $_POST['order_date'];
+$order_amt = $_POST['order_amt'];
+$order_st = $_POST['order_st'];
+$order_pay_code = isset($_POST['order_pay_code']) ? $_POST['order_pay_code'] : '';
+$order_pay_msg = isset($_POST['order_pay_msg']) ? $_POST['order_pay_msg'] : '';
+$user_id = $_POST['user_id'];
+$fy_ssn = $_POST['fy_ssn'];
+$card_no = $_POST['card_no'];
+$RSA = $_POST['RSA'];
+
+$fy_date = $order_date;
+$data = $mchnt_cd . '|' . $user_id . '|' . $order_id . '|' . $order_amt . '|' . $fy_date . '|' . $card_no . '|' . $fy_ssn;
+
+$dataGBK = iconv('UTF-8', 'GBK', $data);
+
+// 测试用公钥，在正式环境时，更换为正式公钥
+$rsaKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCn26E6VU4mVfUlsaScZDuPyYTSszoFCS7ctk6K6kO4y6xZrrVSoGhrd6ej1PXa421uqvDEpmrrnZBaJO0y7S/6niWNzwZQ5ajWo929ZH0HrqsD4DENUEyBTj8U9etnxx7J1wZFtPzgHd3FrUSj1RVjpy5QA40 ls29KD2DhJU/oFwIDAQAB';
+$pemKey = chunk_split($rsaKey, 64, "\n");
+$pem = "-----BEGIN PUBLIC KEY-----\n" . $pemKey . "-----END PUBLIC KEY-----\n";
+$pubKey = openssl_pkey_get_public($pem);
+
+$ret = openssl_verify($dataGBK, base64_decode($RSA), $pubKey, OPENSSL_ALGO_MD5);
+if ($ret==1) {
+	    if ($order_st=='11' && $order_pay_code=='0000') {
+	       file_put_contents("fuionpay.txt", "succ ok!\r\n", FILE_APPEND);
+        $payment_notice = $GLOBALS['db']->getRow("select * from " . DB_PREFIX . "payment_notice where notice_sn = '" . $order_id . "'");
+        
+        require_once APP_ROOT_PATH . "system/libs/cart.php";
+        $rs = payment_paid($payment_notice['id'],$order_id);
+        /*ly修改*/
+        $userinfo = $GLOBALS['db']->getRow("select * from ".DB_PREFIX. "user where id = ".$payment_notice['user_id']);
+        /*获取银行分类ID*/
+        $bank_id=bankInfo($card_no,$banklist);
+        
+        if($userinfo['is_bank'] == 0)
+        {
+        	$update = $GLOBALS['db']->getRow("update ".DB_PREFIX."user set is_bank = 1 , idcardpassed = 1 where id = ".$payment_notice['user_id']);
+        	$data = array(
+        			'user_id' => $userinfo['id'],
+        			'bank_id' => $bank_id,
+        			'bankcard'  => $userinfo['bank_number'],
+        			'real_name'  => $userinfo['real_name'],
+        			'region_lv1' => 1,
+        			'region_lv2' => 1,
+        			'region_lv3' => 1,
+        			'region_lv4' => 1,
+        			'bankzone'   => '0'
+        	);
+        	$GLOBALS['db']->autoExecute(DB_PREFIX."user_bank",$data,"INSERT");
+        }
+        $url = APP_ROOT . "/../member.php?ctl=uc_center";
+        app_redirect($url);
+    } else {
+    	  exit($order_pay_msg);
+       $url = APP_ROOT . "/../member.php?ctl=uc_center";
+       app_redirect($url);
+    }
+} else {
+	    exit("公钥错误！请联系网站管理员。");
+}
+function bankInfo($card,$bankList)
+{
+	$card_8 = substr($card, 0, 8);
+	if (isset($bankList[$card_8])) {
+		echo $bankList[$card_8];
+		return;
+	}
+	$card_6 = substr($card, 0, 6);
+	if (isset($bankList[$card_6])) {
+		echo $bankList[$card_6];
+		return;
+	}
+	$card_5 = substr($card, 0, 5);
+	if (isset($bankList[$card_5])) {
+		echo $bankList[$card_5];
+		return;
+	}
+	$card_4 = substr($card, 0, 4);
+	if (isset($bankList[$card_4])) {
+		echo $bankList[$card_4];
+		return;
+	}
+	echo '该卡号信息暂未录入';
+}
+?>

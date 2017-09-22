@@ -1,0 +1,12 @@
+<div class="tree-box clearfix">
+	<div class="tree clearfix">
+		<div class="hd hd_cur">使用技巧</div>
+		<?php $_from = $this->_var['use_tech_list']['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'use');if (count($_from)):
+    foreach ($_from AS $this->_var['use']):
+?>
+		<div class="item<?php if ($this->_var['article']['id'] == $this->_var['use']['id']): ?> act<?php endif; ?>"><a href="<?php
+echo parse_url_tag("u:index|usagetip|"."id=".$this->_var['use']['id']."".""); 
+?>"><?php echo $this->_var['use']['title']; ?></a></div>
+		<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	</div>
+</div>

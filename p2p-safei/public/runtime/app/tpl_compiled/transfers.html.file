@@ -1,0 +1,299 @@
+<?php echo $this->fetch('inc/header.html'); ?>
+<adv adv_id="债权转让列表页顶部广告" />
+	<div class="ur_here"><a href="<?php
+echo parse_url_tag("u:index|index|"."".""); 
+?>">首页</a> > <a href="<?php
+echo parse_url_tag("u:index|transfer|"."".""); 
+?>">转让列表</a></div>
+	<div id="content" class="clearfix"> 
+		<div class="f_l filterbox w830">
+			<div  id="deallist" name="deallist">
+		        <div class="propAttrs clearfix pr <?php if ($this->_var['scity_id'] != 0 || $this->_var['level'] != 0 || $this->_var['months_type'] != 0 || $this->_var['lefttime'] != 0): ?>v<?php endif; ?>" id="search_condition" <?php if ($this->_var['scity_id'] == 0 && $this->_var['level'] == 0 && $this->_var['months_type'] == 0 && $this->_var['lefttime'] == 0): ?>style="height:180px"<?php endif; ?>>
+					<a href="javascript:void(0);" class="j_more f_blue ps" style="bottom:10px;right:10px;z-index:10;">更多筛选</a>
+		            <form action="<?php
+echo parse_url_tag("u:index|deals|"."cid=".$this->_var['cid']."".""); 
+?>" method="post" id="searchByConditionForm">
+		                <?php if ($this->_var['cate_list_url']): ?>
+						<div class="attr">
+		                    <div class="attrKey">认证标识：</div>
+		                    <div class="attrValues">
+								<ul class="av-collapse" id="dashboard">
+									<?php $_from = $this->_var['cate_list_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'cates');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['cates']):
+?>
+									<li >
+										<a href="<?php echo $this->_var['cates']['url']; ?>#deallist" <?php if ($this->_var['cates']['id'] == $this->_var['cate_id']): ?>class="cur"<?php endif; ?>><?php echo $this->_var['cates']['name']; ?></a>
+									</li>
+									<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>								
+								</ul>
+		                    </div>
+		                </div>
+						<?php endif; ?>
+						<?php if ($this->_var['city_urls']): ?>
+		                <div class="attr">
+							<div class="attrKey">区域列表：</div>
+							<div class="attrValues">
+								<ul class="av-collapse" name="city" id="city">
+									<?php $_from = $this->_var['city_urls']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'city');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['city']):
+?>
+		                            <li><a href="<?php echo $this->_var['city']['url']; ?>#deallist"  <?php if ($this->_var['city']['id'] == $this->_var['city_id']): ?> class="cur" <?php endif; ?>><?php echo $this->_var['city']['name']; ?></a></li>
+									<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		                        </ul>
+		                    </div>
+		                </div>
+						<?php if ($this->_var['sub_citys']): ?>
+						<div class="attr">
+							<div class="attrKey">城市列表：</div>
+							<div class="attrValues">
+								<ul class="av-collapse" name="city" id="city">
+									<?php $_from = $this->_var['sub_citys']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'scity');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['scity']):
+?>
+		                            <li><a href="<?php echo $this->_var['scity']['url']; ?>#deallist"  <?php if ($this->_var['scity']['id'] == $this->_var['scity_id']): ?> class="cur" <?php endif; ?>><?php echo $this->_var['scity']['name']; ?></a></li>
+									<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		                        </ul>
+		                    </div>
+		                </div>
+						<?php endif; ?>
+						<?php endif; ?>
+						
+						<div class="attr">
+		                    <div class="attrKey">信誉等级：</div>
+		                    <div class="attrValues">
+								<ul class="av-collapse" name="level" id="level">
+									<?php $_from = $this->_var['level_list_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'ilevel');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['ilevel']):
+?>
+								   <li>
+									   <a href="<?php echo $this->_var['ilevel']['url']; ?>#deallist" <?php if ($this->_var['level'] == $this->_var['ilevel']['id']): ?>class="cur"<?php endif; ?>><?php echo $this->_var['ilevel']['name']; ?><?php if ($this->_var['key'] != 0): ?>以上<?php endif; ?></a>
+								   </li>
+								   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+								</ul>
+							</div>
+		                </div>
+		                
+		                 <div class="attr">
+		                    <div class="attrKey">借款用户：</div>
+		                    <div class="attrValues">
+								<ul class="av-collapse" name="user_type" id="user_type">
+									<?php $_from = $this->_var['user_type_urls']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'user_type');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['user_type']):
+?>
+								   <li>
+									   <a href="<?php echo $this->_var['user_type']['url']; ?>#deallist" <?php if ($this->_var['is_company'] == $this->_var['user_type']['key']): ?>class="cur"<?php endif; ?>><?php echo $this->_var['user_type']['name']; ?></a>
+								   </li>
+								   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+								</ul>
+							</div>
+		                </div>
+		                
+						<div class="attr">
+		                    <div class="attrKey">回馈利率：</div>
+		                    <div class="attrValues">
+								<ul class="av-collapse" name="interest" id="interest">
+		                           <?php $_from = $this->_var['interest_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'iinterest');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['iinterest']):
+?>
+								   <li>
+									   <a href="<?php echo $this->_var['iinterest']['url']; ?>#deallist" <?php if ($this->_var['interest'] == $this->_var['iinterest']['interest']): ?>class="cur"<?php endif; ?>><?php echo $this->_var['iinterest']['name']; ?><?php if ($this->_var['key'] != 0): ?>以上<?php endif; ?></a>
+								   </li>
+								   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		                        </ul>
+		                    </div>
+		                </div>
+		                
+		             
+		                
+		                
+						<div class="attr">
+							<div class="attrKey">借款期限：</div>
+							<div class="attrValues">
+								<ul class="av-collapse" name="interest" id="months">
+									<?php $_from = $this->_var['months_type_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'months_0_50041000_1503673232');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['months_0_50041000_1503673232']):
+?>
+		                            <li><a href="<?php echo $this->_var['months_0_50041000_1503673232']['url']; ?>#deallist" <?php if ($this->_var['key'] == $this->_var['months_type']): ?>class="cur"<?php endif; ?>><?php echo $this->_var['months_0_50041000_1503673232']['name']; ?></a></li>
+									<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		                        </ul>
+		                    </div>
+		                </div>
+						<div class="attr">
+		                    <div class="attrKey">剩余时间：</div>
+		                    <div class="attrValues">
+								<ul class="av-collapse" name="lefttime" id="lefttime">
+		                            <?php $_from = $this->_var['lefttime_url']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'ilefttime');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['ilefttime']):
+?>
+								   <li>
+									   <a href="<?php echo $this->_var['ilefttime']['url']; ?>#deallist" <?php if ($this->_var['lefttime'] == $this->_var['ilefttime']['lefttime']): ?>class="cur"<?php endif; ?>><?php echo $this->_var['ilefttime']['name']; ?><?php if ($this->_var['key'] != 0): ?>以内<?php endif; ?></a>
+								   </li>
+								   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+		                        </ul>
+		                    </div>
+		                </div>
+		            </form>
+		        </div>
+			</div>
+			<div class="blank0"></div>
+		</div>
+		<div class="creditschool-box">
+			<div class="f_l creditschool">
+				<div class="cs_tit f18">信贷学堂</div>
+				<div class="cs_con pt10">
+					<ul>
+						<?php 
+$k = array (
+  'name' => 'artile_list',
+  'datakey' => 'creditschool',
+  'cate' => '信贷学堂',
+  'limit' => '6',
+  'tpl' => 'inc/insert_article_list/creditschool.html',
+);
+echo $this->_hash . $k['name'] . '|' . base64_encode(serialize($k)) . $this->_hash;
+?>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="blank0"></div>
+	</div>
+	<div class="blank20"></div>
+</div>
+
+<div class="wrap">
+<div class="mainl f_l">
+	<div class="mainltit">
+		<a <?php if (! $this->_var['field'] || $this->_var['field'] == "rate"): ?>class="cur"<?php endif; ?> href="###" onclick="set_sort('rate','transfer');">默认</a>
+		<a <?php if ($this->_var['field'] == "repay_time"): ?>class="cur"<?php endif; ?> href="###" onclick="set_sort('repay_time','transfer');">剩余期限<i class="iconfont"><?php if ($this->_var['field'] != "repay_time"): ?>&#xe639;<?php else: ?><?php if ($this->_var['field_sort'] == 'desc'): ?>&#xe63a;<?php else: ?>&#xe639;<?php endif; ?><?php endif; ?></i></a>
+		<a <?php if ($this->_var['field'] == "borrow_amount"): ?>class="cur"<?php endif; ?> href="###" onclick="set_sort('borrow_amount','transfer');">转让价格<i class="iconfont"><?php if ($this->_var['field'] != "borrow_amount"): ?>&#xe639;<?php else: ?><?php if ($this->_var['field_sort'] == 'desc'): ?>&#xe63a;<?php else: ?>&#xe639;<?php endif; ?><?php endif; ?></i></a>
+		<div class="f_r calt">
+			<a href="<?php
+echo parse_url_tag("u:index|tool|"."".""); 
+?>" class="f_r">理财计算器</a>
+			<i class="iconfont f_blue" class="f_r">&#xe622;</i>
+		</div>
+	</div>
+	
+	<div class="mainlcon transfmainlcon">
+	<?php if ($this->_var['transfer_list']): ?>
+	<?php $_from = $this->_var['transfer_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'deal');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['deal']):
+?>
+		<div class="mainlbox">
+		<div class="f_l">
+		<div class="lboxtit"><a href="<?php echo $this->_var['deal']['url']; ?>" class="f18" title="<?php echo $this->_var['deal']['name']; ?>"><?php echo $this->_var['deal']['name']; ?></a></div>
+		<div class="blank0"></div>
+		</div>
+		<div class="blank10"></div>
+		<div class="t1 f_l w150">
+			<span><em class="f_red"><?php 
+$k = array (
+  'name' => 'format_price',
+  'v' => $this->_var['deal']['transfer_amount'],
+);
+echo $k['name']($k['v']);
+?></em></span>
+			<span>转让金</span>
+		</div>
+		<div class="t1 f_l">
+			<span><em><?php echo $this->_var['deal']['left_lixi_format']; ?></em> </span>
+			<span>利息</span>
+		</div>
+		<div class="t1 f_l">
+			<span><em><?php echo $this->_var['deal']['left_benjin_format']; ?></em> </span>
+			<span>本金</span>
+		</div>
+		<div class="t1 f_l w100">
+			<span><em><?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['deal']['rate'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?>%</em></span>
+			<span>利率</span>
+		</div>
+		<div class="t1 f_l">
+			<span><em><?php echo $this->_var['deal']['how_much_month']; ?>/<?php echo $this->_var['deal']['repay_time']; ?></em></span>
+			<span>待还/总期数</span>
+		</div>
+			<div class="m3 f_r">
+				<a href="<?php echo $this->_var['deal']['url']; ?>" >
+					 <?php if ($this->_var['deal']['t_user_id'] > 0): ?>
+						<span class="btn_gray f_white w115" style="">已转让</span>
+					<?php else: ?>
+						<?php if ($this->_var['deal']['status'] == 0): ?>
+							<span class="btn_gray f_white w115">已撤销</span>
+						<?php else: ?>
+							<?php if ($this->_var['deal']['remain_time'] < 0): ?>
+							  	<span class="btn_gray f_white w115">逾期还款</span>
+							<?php else: ?>
+								<span class="btn_red f_white w115">立即购买</span>
+							<?php endif; ?>
+						<?php endif; ?>
+					<?php endif; ?>
+				</a>
+			</div>
+		</div>
+	<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	<?php endif; ?>
+	</div>
+	<div class="f_r">
+		<div class="pages"><?php echo $this->_var['pages']; ?></div>
+		<div class="blank20"></div>
+	</div>
+</div>
+<div class="mainr f_r">
+	<div class="show-module">
+		<div class="sm_tit">理财数据<em>数据透明，一目了然</em></div>
+		<div class="sm_con">
+			<span>总投资额：</span>
+			<em><?php echo $this->_var['stats']['total_load_format']; ?> 元</em>
+		</div>
+		<div class="sm_con">
+			<span>P2P会员：</span>
+			<em><?php echo $this->_var['stats']['user_count']; ?> 位</em>
+		</div>
+		<div class="sm_con">
+			<span>累计投资：</span>
+			<em><?php echo $this->_var['stats']['load_count']; ?> 次</em>
+		</div>
+		<div class="sm_con">
+			<span>成交笔数：</span>
+			<em><?php echo $this->_var['stats']['deal_total_count']; ?> 个</em>
+		</div>
+		<div class="sm_con">
+			<span>累计创造收益：</span>
+			<em><?php echo $this->_var['stats']['total_rate_format']; ?></em> 元
+		</div>
+	</div>
+	<div class="right_adv">
+		<adv adv_id="首页右侧顶部广告" />
+	</div>
+</div>	
+<div class="blank"></div>
+</div>
+
+<!-- 旧模板 -->
+<div>
+<script type="text/javascript">
+	jQuery(function(){
+		$("#search_condition .j_more").click(function(){
+			if(!$("#search_condition").hasClass("v")){
+				$("#search_condition").animate({height:"270px"});
+				$(".creditschool").animate({height:"260px"});
+				$("#search_condition").addClass("v");
+				$(".j_more").text("收起");
+			}
+			else{
+				$("#search_condition").animate({height:"180px"});
+				$(".creditschool").animate({height:"170px"});
+				$("#search_condition").removeClass("v");
+				$(".j_more").text("更多筛选");
+			}
+		});
+	});
+</script>
+<?php echo $this->fetch('inc/footer.html'); ?>

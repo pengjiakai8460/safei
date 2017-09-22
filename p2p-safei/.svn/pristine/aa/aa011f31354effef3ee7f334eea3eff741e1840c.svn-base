@@ -1,0 +1,39 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="deal_table">
+	<thead>
+		<tr>
+			<th>基金名称</th>
+			<th width="10%">历史收益率</th>
+			<th width="15%">起购金额</th>
+			<th width="10%">理财期限</th>
+			<th width="15%">成交总额</th>
+			<th width="15%">先到先得</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list_item');$this->_foreach['list_items'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['list_items']['total'] > 0):
+    foreach ($_from AS $this->_var['list_item']):
+        $this->_foreach['list_items']['iteration']++;
+?>
+		<tr>
+			<td><a href="<?php echo $this->_var['list_item']['url']; ?>" target="_blank"><?php echo $this->_var['list_item']['name']; ?></a></td>
+			<td><?php 
+$k = array (
+  'name' => 'number_format',
+  'v' => $this->_var['list_item']['average_income_rate'],
+  'f' => '2',
+);
+echo $k['name']($k['v'],$k['f']);
+?>%</td>
+			<td><?php echo $this->_var['list_item']['min_money']; ?>元</td>
+			<td><?php if ($this->_var['list_item']['time_limit']): ?><?php echo $this->_var['list_item']['time_limit']; ?>个月<?php else: ?>无期限<?php endif; ?></td>
+			<td><?php echo $this->_var['list_item']['subscribing_amount']; ?>元</td>
+			<td><a href="<?php echo $this->_var['list_item']['url']; ?>" target="_blank" class="ui_button theme_bgcolor">抢先购买</a></td>
+		</tr>
+		<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	</tbody>
+</table>
+<div class="deals_tabel_pages">
+	<div class="pages"><?php echo $this->_var['pages']; ?></div>
+	<span class="f_999">相关数据由中证金牛提供</span>
+</div>

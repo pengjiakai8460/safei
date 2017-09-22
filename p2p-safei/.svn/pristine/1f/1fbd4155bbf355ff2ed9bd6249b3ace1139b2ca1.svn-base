@@ -1,0 +1,10 @@
+<?php
+return array(
+'DB_HOST'=>'localhost',
+'DB_NAME'=>'shafeitouzi',
+'DB_USER'=>'shafeitouzi',
+'DB_PWD'=>'tb1bant2FE2',
+'DB_PORT'=>'3306',
+'DB_PREFIX'=>'p2p_',
+);
+?>

@@ -1,0 +1,77 @@
+{// 引入标签库 }
+<tagLib name="html" />
+<include file="Public:header" />
+<load href='__TMPL__Common/js/conf.js' />
+<script type="text/javascript" src="__TMPL__Common/js/calendar/calendar.php?lang=zh-cn" ></script>
+<script type="text/javascript">
+
+</script>
+<load href='__TMPL__Common/js/calendar/calendar.css' />
+<load href='__TMPL__Common/js/calendar/calendar.js' />
+<load href='__TMPL__Common/js/goods.js' />
+<script type="text/javascript">
+    window.onload = function()
+    {
+        init_dealform();
+    }
+</script>
+<div class="main">
+	<div class="main_title">{%EDIT}  <a href="{:u("Lottery/index")}" class="back_list">{%BACK_LIST}</a></div>
+	<div class="blank5"></div>
+	<form name="edit" action="__APP__" method="post" enctype="multipart/form-data">
+		<table class="form conf_tab" cellpadding=0 cellspacing=0 rel="1">
+			<tr><td colspan=2 class="topTd"></td></tr>
+			<tr>
+				<td class="item_title">活动名称:</td>
+				<td class="item_input">
+					<input type="text" class="textbox require" value="{$vo.activity_name}" />
+				</td>
+			</tr>
+			<tr>
+				<td class="item_title">用户:</td>
+				<td class="item_input">
+					<input type="text" class="textbox require" value="{$vo.user_name}" />
+				</td>
+			</tr>
+			<tr>
+				<td class="item_title">奖品:</td>
+				<td class="item_input">
+					<input type="text" class="textbox require" value="{$vo.goods_name}" />
+				</td>
+			</tr>
+			<tr>
+				<td class="item_title">状态:</td>
+				<td class="item_input">
+					<label>中奖<input type="radio" name="status" value="0" <if condition="$vo.status eq 0">checked</if>  /></label>
+					<label>已发放<input type="radio" name="status" value="1" <if condition="$vo.status eq 1">checked</if>  /></label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="bottomTd"></td>
+			</tr>
+		</table>
+
+		<div class="blank5"></div>
+		<table class="form" cellpadding=0 cellspacing=0>
+			<tr>
+				<td colspan=2 class="topTd"></td>
+			</tr>
+			<tr>
+				<td class="item_title"></td>
+				<td class="item_input">
+					<!--隐藏元素-->
+					<input type="hidden" name="id" value="{$vo.id}">
+					<input type="hidden" name="{:conf("VAR_MODULE")}" value="LotteryAward" />
+					<input type="hidden" name="{:conf("VAR_ACTION")}" value="update" />
+					<!--隐藏元素-->
+					<input type="submit" class="button" value="{%EDIT}" />
+					<input type="reset" class="button" value="{%RESET}" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class="bottomTd"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<include file="Public:footer" />

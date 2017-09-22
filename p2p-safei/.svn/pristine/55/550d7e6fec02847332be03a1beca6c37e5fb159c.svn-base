@@ -1,0 +1,60 @@
+<?php echo $this->fetch('inc/header.html'); ?>
+<div class="ur_here">
+	<a href="<?php
+echo parse_url_tag("u:index|deals#about|"."".""); 
+?>">我要理财</a> &gt; 
+	<a href="<?php
+echo parse_url_tag("u:index|deals#about|"."".""); 
+?>">关于理财</a> &gt; 
+	<a href="<?php
+echo parse_url_tag("u:index|deals#about|"."u=".$this->_var['info']['uname']."".""); 
+?>"><?php echo $this->_var['info']['title']; ?></a>
+</div>
+<div class="long f_l">
+	<div class="bdd bddf article_box clearfix" style="padding:0 50px">
+		<div class="article_title f16 b tc pt10"><?php echo $this->_var['info']['title']; ?></div>
+		<div class="article_info">
+        	<?php echo $this->_var['info']['content']; ?>
+	    </div>
+	</div>
+	
+</div>
+
+<div class="short f_r">
+	<div class="clearfix">
+		<div class="gray_title clearfix">
+            <div class="f_l pl10 f16">加入我们</div>
+        </div>
+		<div class="bdd bt0 bddf clearfix tc pt10 pr5 pb10 pl5">
+	        <div class="p10">
+	             <input type="button" class="btn_blue bdr3 p5 f_white" value="开始理财" onclick="window.location.href='<?php
+echo parse_url_tag("u:index|deals|"."".""); 
+?>'">
+	        </div>
+	        <div>
+		            还没找到适合自己的理财方式吗？<br>
+		            快来加入我们吧！
+	        </div>
+        </div>
+	</div>
+	<div class="blank"></div>
+	<div class="clearfix">
+		<div class="gray_title clearfix">
+            <div class="f_l pl10 f16">关于理财</div>
+        </div>
+		<div class="bdd bt0 bddf clearfix pt5 pb5">
+            <ul style="margin:5px;">
+				<?php $_from = $this->_var['about_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'item');if (count($_from)):
+    foreach ($_from AS $this->_var['item']):
+?>
+	            <li style="padding: 2px;" class="ldot">· <a href="<?php
+echo parse_url_tag("u:index|deals#about|"."u=".$this->_var['item']['uname']."".""); 
+?>"><?php echo $this->_var['item']['title']; ?></a></li>
+	        	<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+			</ul>
+        </div>
+	</div>
+</div>
+<div class="blank"></div>
+
+<?php echo $this->fetch('inc/footer.html'); ?>

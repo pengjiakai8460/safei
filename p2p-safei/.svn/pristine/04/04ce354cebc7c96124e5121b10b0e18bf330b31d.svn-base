@@ -1,0 +1,198 @@
+{if $smarty.request.is_ajax neq 1}
+{include file="./inc/header.html"}	
+<?php
+$this->_var['hide_back'] = 1;
+?>
+<div class="page" id='{$data.act}'>
+{include file="./inc/title.html"}
+<div class="content pull-to-refresh-content">
+{/if}
+<!-- 这里是页面内容区 -->
+
+<div class="pull-to-refresh-layer">
+    <div class="preloader"></div>
+    <div class="pull-to-refresh-arrow"></div>
+</div>
+
+    <div class="swiper-container" data-space-between='10'>
+	    <div class="swiper-wrapper">
+	    	{foreach from=$data.index_list.adv_list item=adv key=k}
+	    	<div class="swiper-slide"><a href="#" onclick="RouterURL('{$adv.data}','#adv_{$adv.open_url_type}',1);" style="background-image:url('{$adv.img}')"></a></div>
+	    	{/foreach}
+	    </div>
+	    {if count($data.index_list.adv_list) >1}
+	    <div class="swiper-pagination"></div>
+	    {/if}
+	 </div>	
+<div class="blank055"></div>
+<div class="by">
+	<div class="bg"><img src="http://www.safeionline.com/wap/tpl/fanwe/images/img1.jpg"></div>
+	<div class="fl" style="
+    float: left;
+">
+    	<img src="http://www.safeionline.com/wap/tpl/fanwe/images/img1.png">
+		<p>累计投资总额（万元）</p>
+    	<p><i>{$data.virtual_money_1}</i></p>
+    </div>
+    <div class="fr" style="float: right;">
+		<img src="http://www.safeionline.com/wap/tpl/fanwe/images/img2.png">
+        <p>累计用户总收益（万元）</p>
+    	<p><i>{$data.virtual_money_2}</i></p>
+    </div>
+</div>
+<!--头部 en-->
+<!--///中部///-->
+<div class="index_con">
+	<div class="tit"><dd class="fl">新手专享，高回报率</dd><a href="#" onclick="RouterURL('/wap/index.php?ctl=deals','#deals')"><dd class="fr">更多</dd></a></div>
+ 		{if $data.index_list.rec_deal_list}		
+		<ul class="recommended_nav_2">
+				{foreach from=$data.index_list.rec_deal_list item="deal" } 
+				{if $deal.deal_status eq 1 && $deal.remain_time gt 0}
+			<li class="clearfix">
+				<a href="#" onclick="RouterURL('{wap_url a="index" r="deal" p="id=$deal.id"}','#deal',2);">
+					<div class="novice f_l">
+						{if $deal.is_advance eq 1 && $deal.start_time gt TIME_UTC}
+						<img src="{$TMPL}/images/novice_0.png" width="100%" height="100%"/>
+						{elseif $deal.is_new eq 1}
+						<img src="{$TMPL}/images/novice.png" width="100%" height="100%"/>
+						{/if}
+					</div>
+					<div class="title_nav bb1">
+						{if $deal.is_wait eq 1}<span class="state  c666666">
+			            	{else}
+							{if $deal.deal_status eq 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}<span class="state  c56b1ea">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 2}<span class="state  ea544a">{/if}
+							{if $deal.deal_status eq 3}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 4}<span class="state  c66d191">{/if}
+							{if $deal.deal_status eq 5}<span class="state  c666666">{/if}
+							{/if}
+								
+							{if $deal.is_wait eq 1}未开始
+			            	{else}
+							{if $deal.deal_status eq 0}等待材料{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}进行中{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}已过期{/if}
+							{if $deal.deal_status eq 2}已满标{/if}
+							{if $deal.deal_status eq 3}已流标{/if}
+							{if $deal.deal_status eq 4}还款中{/if}
+							{if $deal.deal_status eq 5}已还清{/if}
+							{/if}
+							</span>
+						<span class="name">{$deal.name}</span>
+						<span class="r_state">{function name="loantypename" v="$deal.loantype" type=1}</span>
+					</div>
+					<div class=" con_height">
+						<div class="  w_b  pt tc">
+							<div class=" tl lv"><i class="big">{function name="round" v=$deal.rate f=0}</i><i class="unit">%</i></div>
+							<div class=" tl je"><i class="small">{function name="replacemoney" v=$deal.borrow_amount}</i><i class="unit">万</i></div>
+							<div class=" tl sj"><i class="small">{$deal.repay_time}</i><i class="unit">{if $deal.repay_time_type eq 1}月{else}天{/if}</i></div>
+						<div class="w_b_f_1"></div>
+						<div  class="progress-radial_parent ">
+							<div class="progress-radial  progress-{if $deal.deal_status eq 4}100{else}{function name="round" v=$deal.progress_point f=0}{/if}
+							{if $deal.is_wait eq 1} c999999
+			            	{else}
+							{if $deal.deal_status eq 0}  c999999 {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}  c56b1ea {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}  c999999 {/if}
+							{if $deal.deal_status eq 2}  ea544a {/if}
+							{if $deal.deal_status eq 3}  c999999  {/if}
+							{if $deal.deal_status eq 4}  c66d191  {/if}
+							{if $deal.deal_status eq 5}  c999999  {/if}
+							{/if}
+							"><b></b></div>
+						</div>
+					</div>
+						</div>
+						
+				</a>
+			</li>
+			{/if}
+			{/foreach}		
+		</ul>
+		{/if}
+    <div class="tit2"><dd class="fl">收益高于银行，选择最合适的</dd><a href="#" onclick="RouterURL('/wap/index.php?ctl=deals','#deals')"><dd class="fr">更多</dd></a></div>
+	<ul class="recommended_nav_2">
+ 		{foreach from=$data.index_list.deal_list item="deal" } 
+ 		{if $deal.deal_status eq 1 && $deal.remain_time gt 0}
+			<li class="clearfix" onclick="RouterURL('{wap_url a="index" r="deal" p="id=$deal.id"}','#deal',2);">
+				
+					<div class="title_nav bb1">
+						{if $deal.is_wait eq 1}<span class="state  c666666">
+			            	{else}
+							{if $deal.deal_status eq 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}<span class="state  c56b1ea">{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 2}<span class="state  ea544a">{/if}
+							{if $deal.deal_status eq 3}<span class="state  c666666">{/if}
+							{if $deal.deal_status eq 4}<span class="state  c66d191">{/if}
+							{if $deal.deal_status eq 5}<span class="state  c666666">{/if}
+							{/if}
+								
+							{if $deal.is_wait eq 1}未开始
+			            	{else}
+							{if $deal.deal_status eq 0}等待材料{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}进行中{/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}已过期{/if}
+							{if $deal.deal_status eq 2}已满标{/if}
+							{if $deal.deal_status eq 3}已流标{/if}
+							{if $deal.deal_status eq 4}还款中{/if}
+							{if $deal.deal_status eq 5}已还清{/if}
+							{/if}
+							</span>
+						<span class="name" style="width: 40%;">{$deal.name}</span>
+						<span class="r_state">{function name="loantypename" v="$deal.loantype" type=1}</span>
+					</div>
+					<div class=" con_height">
+						<div class="  w_b  pt tc">
+							<div class=" tl lv"><i class="big">{function name="round" v=$deal.rate f=0}</i><i class="unit">%</i></div>
+							<div class=" tl je"><i class="small">{function name="replacemoney" v=$deal.borrow_amount}</i><i class="unit">万</i></div>
+							<div class=" tl sj"><i class="small">{$deal.repay_time}</i><i class="unit">{if $deal.repay_time_type eq 1}月{else}天{/if}</i></div>
+						<div class="w_b_f_1"></div>
+						<div  class="progress-radial_parent ">
+							<div class="progress-radial  progress-{function name="round" v=$deal.progress_point f=0}
+							{if $deal.is_wait eq 1} c999999
+			            	{else}
+							{if $deal.deal_status eq 0}  c999999 {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time gt 0}  c56b1ea {/if}
+							{if $deal.deal_status eq 1 && $deal.remain_time lte 0}  c999999 {/if}
+							{if $deal.deal_status eq 2}  ea544a {/if}
+							{if $deal.deal_status eq 3}  c999999  {/if}
+							{if $deal.deal_status eq 4}  c66d191  {/if}
+							{if $deal.deal_status eq 5}  c999999  {/if}
+							{/if}
+							"><b></b></div>
+						</div>
+					</div>
+				
+			</li>
+			{/if}
+			{/foreach}		
+		</ul>
+       
+   <!--  <div class="index_about">
+    	<dd>公司简介</dd>
+        <p>萨飞投资管理（上海）有限公司（以下简称萨飞资本），成立于2016年4月14日，注册资本5000万人民币，公司位于上海市杨浦区政通路177号万达广场C座17楼。</p>
+
+        <p>公司拥有一流的金融服务团队，主要从事民间投资管理服务中小企业和个人，发展民间借贷和互联网线上融资业务。</p>
+
+        <p>公司根据国内的经济形势，将先进的小额借贷管理模式和中国社会结合，力致打造优秀的投资理财和风控管理为核心的服务平台，向客户提供简单，快捷，灵活，普惠的融资服务，同时向广大投资人提供安全可靠，规范透明，收益稳定的网络投资理财服务。</p>
+
+    </div> 
+   
+	<div class="more"><a class="tab-item " href="http://www.safeionline.com/wap/index.php?ctl=show_article&id=96" ><dd>查看更多</dd></a></div>-->
+    <ul class="fwlx">
+    	<li class="t">400-778-1969</li>
+        <li class="c">工作时间：周一到周日：9:00-18:00</li>
+		<li class="c">官方QQ群 ：655452159</li>
+    </ul>
+</div>
+{if $smarty.request.is_ajax neq 1}
+{include file="./inc/footer.html"}
+{/if}
+
+
+
+
+

@@ -1,0 +1,10 @@
+<?php
+return array(
+'DB_HOST'=>'localhost',
+'DB_NAME'=>'p2p-safei',//shafeitouzi
+'DB_USER'=>'root',//shafeitouzi
+'DB_PWD'=>'root',//tb1bant2FE2
+'DB_PORT'=>'3306',
+'DB_PREFIX'=>'p2p_',
+);
+?>

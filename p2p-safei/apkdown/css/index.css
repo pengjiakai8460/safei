@@ -1,0 +1,149 @@
+ body {
+        color:#969b9d;
+   size:14px;
+    }
+    .table-striped>tbody>tr:nth-child(odd)>td,
+    .table-striped>tbody>tr:nth-child(odd)>th {
+        background-color:#eff1f2;
+    }
+
+    .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+        background-color:#e5e8e9;
+    }
+
+    .table-hover > tbody > tr > td.warning:hover, 
+    .table-hover > tbody > tr > th.warning:hover, 
+    .table-hover > tbody > tr.warning:hover > td, 
+    .table-hover > tbody > tr.warning:hover > th {
+        background-color:#e5e8e9;
+    }
+    #header {
+        background:url('../img/top_bg.png') no-repeat scroll center;
+        height:300px;
+    }
+    #appicon-bg {
+    box-shadow: 0 10px 29px rgba(0,0,0,.06);; 
+    -webkit-transition: box-shadow 0.2s ease-in-out;
+    -moz-transition: box-shadow 0.2s ease-in-out;
+    -o-transition: box-shadow 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
+        width: 180px;
+        height: 180px;
+        -webkit-border-radius: 24px;
+        -moz-border-radius: 24px;
+        border-radius: 24px;
+        border: none;
+        background-color:#ffffff;
+        padding:30px;
+        margin: auto;
+        margin-top:-150px;
+        margin-bottom: 30px;
+    }
+    .appicon{
+        border: none;
+    }
+    .btn-u-lg, a.btn-u-lg {
+        font-size: 18px;
+		margin:0 13px;
+        background-color: #28caad;
+        border-radius: 5px;
+		padding-right:40px
+    }
+
+    .btn-u.btn-u-green {
+        background-color: #28caad;
+    }
+	.apply{width:185px;display:inline-block;padding-left:50px}
+    .btn-u.btn-u-green:hover,
+    .btn-u.btn-u-green:focus,
+    .btn-u.btn-u-green:active{
+        background-color: #24bca1;
+        color:#fff;
+    }
+
+    .servive-block-light, .servive-block-default {
+        background:none;
+    }
+
+    .gray-text {
+        color:#969b9d;
+    }
+
+    .gray-text li {
+        color:#969b9d;
+    }
+
+    .breadcrumb>li+li:before {
+        content:none;
+    }
+
+    .breadcrumb>li {
+        padding: 0 5px;
+    }
+
+    .devider.devider-dotted {
+        border-top:1px solid #e7ebed;
+    }
+
+    .content-title {
+        size:20px;
+        color:#333;
+        margin-bottom:15px;
+    }
+    .table > thead > tr > th, 
+    .table > tbody > tr > th, 
+    .table > tfoot > tr > th, 
+    .table > thead > tr > td, 
+    .table > tbody > tr > td, 
+    .table > tfoot > tr > td {
+        border-top:0;
+    }
+    .state-error em{
+    margin-top: 6px;
+    padding: 0 1px;
+    font-style: normal;
+    font-size: 11px;
+    line-height: 15px;
+    color: #ee9393;
+}
+#formReport section{ font-size:14px !important}
+#formReport section .form-control{ font-size:14px !important; padding: 6px 12px;}
+.sky-form .btn-u.btn-u-default {
+    background-color: #ebebeb;
+    border-color: #adadad;
+    color: #333;
+}
+.sky-form a.btn-u {
+    color: #333;
+    line-height:1.5 !important
+}
+.sky-form a.btn-u:hover {color:#fff}
+.sky-form .btn-u {
+    line-height:1.5 !important;
+    border-radius:3px;
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 400;
+    padding: 6px 13px;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    width:auto;
+    height:auto;
+}
+#fileList li {
+    list-style:none;
+    padding:0 0 0 20px;
+    line-height:14px;
+}
+
+#loading {
+    display:none;
+}
+/*手机登录样式*/
+#loginTelModal .modal.in .modal-dialog {
+    width:100%;
+    height:100%;
+}

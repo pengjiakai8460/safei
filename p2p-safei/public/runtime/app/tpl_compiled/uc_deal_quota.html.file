@@ -1,0 +1,137 @@
+<div class="tabbox">
+	<div class="tab cur"><a href="">授信额度申请列表</a></div> 
+	<a class="sub_btn f_r mt5 mr15 lh34" id="J_quota_add">申请</a>
+</div>
+<div class="uc_box bdd bt0 clearfix">
+	<div class="sub_nav">
+		<span <?php if ($this->_var['status'] == 0): ?>class="act"<?php endif; ?>><a href="<?php
+echo parse_url_tag("u:index|uc_deal_quota#index|"."".""); 
+?>">全部</a></span>
+		<span <?php if ($this->_var['status'] == 3): ?>class="act"<?php endif; ?>><a href="<?php
+echo parse_url_tag("u:index|uc_deal_quota#index|"."status=3".""); 
+?>">未审核</a></span>
+		<span <?php if ($this->_var['status'] == 1): ?>class="act"<?php endif; ?>><a href="<?php
+echo parse_url_tag("u:index|uc_deal_quota#index|"."status=1".""); 
+?>">已通过</a></span>
+		<span <?php if ($this->_var['status'] == 2): ?>class="act"<?php endif; ?>><a href="<?php
+echo parse_url_tag("u:index|uc_deal_quota#index|"."status=2".""); 
+?>">未通过</a></span>
+	</div>
+	
+		<?php if ($this->_var['list']): ?>
+	    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="uc-table">
+	        <tbody>
+	            <tr border="0">
+	                <th style="width:10%">编号</th>
+	                <th class="tl pl5">借款标题</th>
+	                <th style="width:15%">申请金额</th>
+	                <th style="width:15%">申请时间</th>
+	                <th style="width:10%">状态</th>
+	                <th style="width:15%">审核时间</th>
+	                <th style="width:10%">操作</th>
+	            </tr>
+	           
+	           <?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item');$this->_foreach['quota'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['quota']['total'] > 0):
+    foreach ($_from AS $this->_var['key'] => $this->_var['item']):
+        $this->_foreach['quota']['iteration']++;
+?>
+	            <tr class="item <?php if ($this->_var['key'] % 2 == 1): ?>item_1<?php endif; ?>" <?php if (($this->_foreach['quota']['iteration'] == $this->_foreach['quota']['total'])): ?>style="border-bottom:0"<?php endif; ?>">
+	                <td >
+	                  <?php echo $this->_var['item']['id']; ?>
+	                </td>
+	                <td class="tl pl5">
+	                  <?php echo $this->_var['item']['name']; ?>
+	                </td>
+	                <td >
+	                  <?php echo $this->_var['item']['borrow_amount_format']; ?>
+	                </td>
+	                <td >
+	                  <?php echo $this->_var['item']['create_time_format']; ?>
+	                </td>
+	                <td >
+	                  <?php echo $this->_var['item']['status_format']; ?>
+	                </td>
+	                <td >
+	                <?php if ($this->_var['item']['update_time']): ?>
+	                  <?php echo $this->_var['item']['update_time_format']; ?>
+	                  <?php else: ?>
+	                  -
+	                  <?php endif; ?>
+	                </td>
+	                <td >
+	                <?php if ($this->_var['item']['status'] == 0): ?>
+	             		<a href="javascript:void(0);" class="J_delete_quota" dataid="<?php echo $this->_var['item']['id']; ?>">删除</a>
+	             	<?php else: ?>	     
+	             		 -
+	             	<?php endif; ?>
+	                </td>
+	            </tr>
+	            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	            
+	        </tbody>
+	    </table>
+	    <div class="pages"><?php echo $this->_var['pages']; ?></div>
+	<?php else: ?>
+	<div class="tc p15">暂无记录</div>
+   <?php endif; ?>
+   <div class="blank"></div>
+</div>
+<link rel="stylesheet" href="<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/themes/default/default.css" />
+<script type='text/javascript'  src='<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/kindeditor.js'></script>
+<script type="text/javascript" src="<?php echo $this->_var['APP_ROOT']; ?>/admin/public/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+	var VAR_MODULE = "m";
+	var VAR_ACTION = "a";
+	var ROOT = '<?php echo $this->_var['APP_ROOT']; ?>/file.php';
+	var ROOT_PATH = '<?php echo $this->_var['APP_ROOT']; ?>';
+	var can_use_quota = "<?php echo $this->_var['can_use_quota']; ?>";
+	var MAX_FILE_SIZE = "<?php echo (app_conf("MAX_IMAGE_SIZE")/1000000)."MB"; ?>";
+</script>
+<script type="text/javascript">
+jQuery(function(){
+	$("#J_quota_add").click(function(){
+		var ajaxurl = '<?php
+echo parse_url_tag("u:index|uc_deal_quota#add_quota|"."".""); 
+?>';
+		$.weeboxs.open(
+				ajaxurl,{
+					contentType:'ajax',
+					showButton:false,
+					title:"授信额度申请",
+					width:720,
+					height:500,
+					type:'wee'
+				});
+	});
+	
+	$(".J_delete_quota").click(function(){
+		$.showCfm("是否删除",function(){
+			var query = new Object();
+			query.quota_id = $(this).attr("dataid");
+			$.ajax({
+				url:'<?php
+echo parse_url_tag("u:index|uc_deal_quota#do_delete_quota|"."".""); 
+?>',
+				data:query,
+				type:"post",
+				dataType:"json",
+				success:function(ajaxobj){
+					if(ajaxobj.status==1){
+						$.showSuccess(ajaxobj.info,function(){
+							window.location.reload();
+						});
+					}
+					else{
+						$.showErr(ajaxobj.info);
+					}
+				}
+				,error:function(){
+					$.showErr("请求数据失败!");
+				}
+			});
+		});
+	});
+	
+})
+</script>
